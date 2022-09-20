@@ -23,6 +23,8 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     this.logger.log('Function create : start');
 
+    // ! hash password and insert in createdto
+
     // create in database
     const user = this.userModel.save(createUserDto);
     // ! delete password in user befor to send object
@@ -59,6 +61,22 @@ export class UserService {
     // ! delete password in user befor to send object
 
     this.logger.log('Function findOne : end');
+    return user;
+  }
+
+  /**
+   * get user with email,
+   * return password for test
+   * @param email string
+   * @returns Promise<User>
+   */
+  async findWithEmail(email: string): Promise<User> {
+    this.logger.log('Function findWithEmail : start');
+
+    // get user with email
+    const user = this.userModel.findOne({ where: { email: email } });
+
+    this.logger.log('Function findWithEmail : end');
     return user;
   }
 

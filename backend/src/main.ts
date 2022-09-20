@@ -8,7 +8,7 @@ async function bootstrap() {
   // prefixe of url
   app.setGlobalPrefix(process.env.APP_PREFIX_URL);
 
-  await app.listen(3000, () => {
+  await app.listen(process.env.APP_PORT, () => {
     config.logInfoStartServer();
   });
 }
