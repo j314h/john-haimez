@@ -4,6 +4,7 @@ import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -23,11 +24,15 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     this.logger.log('Function create : start');
 
-    // ! hash password and insert in createdto
+    // hash password
+    const hash = await bcrypt.hash(
+      createUserDto.password,
+      process.env.APP_SECRET_JWT,
+    );
+    createUserDto.password = hash;
 
     // create in database
     const user = this.userModel.save(createUserDto);
-    // ! delete password in user befor to send object
 
     this.logger.log('Function create : end');
     return user;
@@ -42,7 +47,6 @@ export class UserService {
 
     // get all user
     const users = this.userModel.find();
-    // ! delete password in user befor to send object
 
     this.logger.log('Function findAll : end');
     return users;
@@ -58,7 +62,6 @@ export class UserService {
 
     // get one user
     const user = this.userModel.findOne({ where: { id: id } });
-    // ! delete password in user befor to send object
 
     this.logger.log('Function findOne : end');
     return user;
