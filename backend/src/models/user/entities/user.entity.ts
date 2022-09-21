@@ -13,4 +13,8 @@ export class User {
 
   @Column()
   password: string;
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
 }

@@ -51,4 +51,43 @@ export const config: IConfig = {
       `Url doc in : ${process.env.APP_PORT}/${process.env.APP_PORT}`,
     );
   },
+
+  /**
+   * character string for the jwt secret
+   */
+  secretJwt: `${process.env.APP_SECRET_JWT}`,
+
+  /**
+   * config for jwt
+   */
+  jwtConfig: () => {
+    return {
+      secret: config.secretJwt,
+      signOptions: { expiresIn: '600s' },
+    };
+  },
+
+  /**
+   * create object for BadRequestException
+   * @param message string
+   * @returns object for BadRequestException
+   */
+  errorBad: (message: string) => {
+    return {
+      statusCode: 400,
+      message,
+    };
+  },
+
+  /**
+   * create object for UnauthorizedException
+   * @param message string
+   * @returns object for UnauthorizedException
+   */
+  errorUnauthorized: (message: string) => {
+    return {
+      statusCode: 401,
+      message,
+    };
+  },
 };

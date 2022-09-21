@@ -1,6 +1,7 @@
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
+import { config } from 'src/config/config';
 import { AuthService } from '../auth.service';
 
 @Injectable()
@@ -28,7 +29,8 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       this.logger.log('Function validate : end');
       return user;
     } catch (error) {
-      throw new UnauthorizedException();
+      this.logger.log('Function validate : error');
+      throw new UnauthorizedException(config.errorUnauthorized(error.message));
     }
   }
 }

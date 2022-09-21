@@ -1,3 +1,4 @@
+import { JwtModuleOptions } from '@nestjs/jwt';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 /**
@@ -12,4 +13,11 @@ export interface IConfig {
   database: () => TypeOrmModuleOptions;
   selectPathEnv: (valueEnv: TEnvironment) => string;
   logInfoStartServer: () => void;
+  secretJwt: string;
+  jwtConfig: () => JwtModuleOptions;
+  errorBad: (message: string) => { statusCode: number; message: string };
+  errorUnauthorized: (message: string) => {
+    statusCode: number;
+    message: string;
+  };
 }

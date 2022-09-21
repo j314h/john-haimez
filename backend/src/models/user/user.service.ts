@@ -5,6 +5,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { BadRequestException } from '@nestjs/common/exceptions';
+import { IUser } from './entities/user.interface';
+import { config } from 'src/config/config';
 
 @Injectable()
 export class UserService {
@@ -21,35 +24,52 @@ export class UserService {
    * @param createUserDto User
    * @returns Promise User
    */
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    this.logger.log('Function create : start');
+  async create(createUserDto: CreateUserDto): Promise<IUser> {
+    try {
+      this.logger.log('Function create : start');
 
-    // hash password
-    const hash = await bcrypt.hash(
-      createUserDto.password,
-      process.env.APP_SECRET_JWT,
-    );
-    createUserDto.password = hash;
+      // create salt
+      const salt = await bcrypt.genSalt();
+      // hash password
+      const hash = await bcrypt.hash(createUserDto.password, salt);
+      // replace password by hash
+      createUserDto.password = hash;
 
-    // create in database
-    const user = this.userModel.save(createUserDto);
+      // create in database
+      const user = await this.userModel.save(createUserDto);
+      // delete password on entity
+      const { password, ...newUser } = user;
 
-    this.logger.log('Function create : end');
-    return user;
+      this.logger.log('Function create : end');
+      return newUser;
+    } catch (error) {
+      this.logger.log('Function create : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   /**
    * get all user
    * @returns Promise User[]
    */
-  async findAll(): Promise<User[]> {
-    this.logger.log('Function findAll : start');
+  async findAll(): Promise<IUser[]> {
+    try {
+      this.logger.log('Function findAll : start');
 
-    // get all user
-    const users = this.userModel.find();
+      // get all user
+      const users = await this.userModel.find();
+      // delete password on entity
+      const allUsers = users.map((user) => {
+        const { password, ...newUser } = user;
+        return newUser;
+      });
 
-    this.logger.log('Function findAll : end');
-    return users;
+      this.logger.log('Function findAll : end');
+      return allUsers;
+    } catch (error) {
+      this.logger.log('Function findAll : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   /**
@@ -57,14 +77,20 @@ export class UserService {
    * @param id number
    * @returns Promise User
    */
-  async findOne(id: number): Promise<User> {
-    this.logger.log('Function findOne : start');
+  async findOne(id: number): Promise<IUser> {
+    try {
+      this.logger.log('Function findOne : start');
 
-    // get one user
-    const user = this.userModel.findOne({ where: { id: id } });
+      // get one user
+      const user = await this.userModel.findOne({ where: { id: id } });
+      const { password, ...newUser } = user;
 
-    this.logger.log('Function findOne : end');
-    return user;
+      this.logger.log('Function findOne : end');
+      return newUser;
+    } catch (error) {
+      this.logger.log('Function findOne : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   /**
@@ -74,13 +100,18 @@ export class UserService {
    * @returns Promise<User>
    */
   async findWithEmail(email: string): Promise<User> {
-    this.logger.log('Function findWithEmail : start');
+    try {
+      this.logger.log('Function findWithEmail : start');
 
-    // get user with email
-    const user = this.userModel.findOne({ where: { email: email } });
+      // get user with email
+      const user = await this.userModel.findOne({ where: { email: email } });
 
-    this.logger.log('Function findWithEmail : end');
-    return user;
+      this.logger.log('Function findWithEmail : end');
+      return user;
+    } catch (error) {
+      this.logger.log('Function findWithEmail : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   /**
@@ -93,13 +124,18 @@ export class UserService {
     id: number,
     updateUserDto: UpdateUserDto,
   ): Promise<UpdateResult> {
-    this.logger.log('Function update : start');
+    try {
+      this.logger.log('Function update : start');
 
-    // update user
-    const res = this.userModel.update(id, updateUserDto);
+      // update user
+      const res = await this.userModel.update(id, updateUserDto);
 
-    this.logger.log('Function update : end');
-    return res;
+      this.logger.log('Function update : end');
+      return res;
+    } catch (error) {
+      this.logger.log('Function update : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   /**
@@ -108,12 +144,17 @@ export class UserService {
    * @returns Promise<DeleteResult>
    */
   async remove(id: number): Promise<DeleteResult> {
-    this.logger.log('Function remove : start');
+    try {
+      this.logger.log('Function remove : start');
 
-    // delete one user
-    const res = this.userModel.delete(id);
+      // delete one user
+      const res = await this.userModel.delete(id);
 
-    this.logger.log('Function remove : end');
-    return res;
+      this.logger.log('Function remove : end');
+      return res;
+    } catch (error) {
+      this.logger.log('Function remove : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 }
