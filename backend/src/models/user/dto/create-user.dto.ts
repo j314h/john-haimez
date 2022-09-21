@@ -1,4 +1,5 @@
-import { IsString, IsEmail } from 'class-validator';
+import { IsString, IsEmail, IsNumber } from 'class-validator';
+import { Role } from 'src/models/role/entities/role.entity';
 
 /**
  * Dto for create user
@@ -12,4 +13,9 @@ export class CreateUserDto {
 
   @IsString()
   password: string;
+
+  @IsNumber()
+  roleId: number;
+
+  role?: Role;
 }

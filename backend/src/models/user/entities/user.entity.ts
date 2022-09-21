@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from 'src/models/role/entities/role.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class User {
@@ -14,7 +15,6 @@ export class User {
   @Column()
   password: string;
 
-  constructor(partial: Partial<User>) {
-    Object.assign(this, partial);
-  }
+  @ManyToOne(() => Role, (role) => role.users)
+  role: Role;
 }

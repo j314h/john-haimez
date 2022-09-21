@@ -20,4 +20,5 @@ export interface IConfig {
     statusCode: number;
     message: string;
   };
+  errorForbidden: (message: string) => { statusCode: number; message: string };
 }

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { config } from './config/config';
 import { AuthModule } from './models/auth/auth.module';
+import { RoleModule } from './models/role/role.module';
 import { UserModule } from './models/user/user.module';
 
 @Module({
@@ -20,6 +21,7 @@ import { UserModule } from './models/user/user.module';
     // module
     UserModule,
     AuthModule,
+    RoleModule,
   ],
   controllers: [],
   providers: [],

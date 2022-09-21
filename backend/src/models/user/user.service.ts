@@ -1,19 +1,19 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import * as bcrypt from 'bcrypt';
 import { BadRequestException } from '@nestjs/common/exceptions';
-import { IUser } from './entities/user.interface';
 import { config } from 'src/config/config';
+import { UserProvider } from './user.provider';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userModel: Repository<User>,
+    private userProvider: UserProvider,
   ) {}
 
   // log
@@ -24,21 +24,24 @@ export class UserService {
    * @param createUserDto User
    * @returns Promise User
    */
-  async create(createUserDto: CreateUserDto): Promise<IUser> {
+  async create(createUserDto: CreateUserDto) {
     try {
       this.logger.log('Function create : start');
 
-      // create salt
-      const salt = await bcrypt.genSalt();
-      // hash password
-      const hash = await bcrypt.hash(createUserDto.password, salt);
-      // replace password by hash
-      createUserDto.password = hash;
+      // add hash password in createUserDto
+      createUserDto.password = await this.userProvider.hash(
+        createUserDto.password,
+      );
 
-      // create in database
+      // add role in createUserDto
+      createUserDto.role = await this.userProvider.getRoleForUser(
+        createUserDto.roleId,
+      );
+
+      // create
       const user = await this.userModel.save(createUserDto);
-      // delete password on entity
-      const { password, ...newUser } = user;
+      // delete password and roleId on entity
+      const { password, roleId, ...newUser } = user;
 
       this.logger.log('Function create : end');
       return newUser;
@@ -52,13 +55,13 @@ export class UserService {
    * get all user
    * @returns Promise User[]
    */
-  async findAll(): Promise<IUser[]> {
+  async findAll() {
     try {
       this.logger.log('Function findAll : start');
 
-      // get all user
-      const users = await this.userModel.find();
-      // delete password on entity
+      // get all
+      const users = await this.userModel.find({ relations: { role: true } });
+      // delete password on entity on all user
       const allUsers = users.map((user) => {
         const { password, ...newUser } = user;
         return newUser;
@@ -77,12 +80,16 @@ export class UserService {
    * @param id number
    * @returns Promise User
    */
-  async findOne(id: number): Promise<IUser> {
+  async findOne(id: number) {
     try {
       this.logger.log('Function findOne : start');
 
-      // get one user
-      const user = await this.userModel.findOne({ where: { id: id } });
+      // get one
+      const user = await this.userModel.findOne({
+        where: { id: id },
+        relations: { role: true },
+      });
+      // delete password on user
       const { password, ...newUser } = user;
 
       this.logger.log('Function findOne : end');
@@ -99,12 +106,17 @@ export class UserService {
    * @param email string
    * @returns Promise<User>
    */
-  async findWithEmail(email: string): Promise<User> {
+  async findWithEmail(email: string) {
     try {
       this.logger.log('Function findWithEmail : start');
 
       // get user with email
-      const user = await this.userModel.findOne({ where: { email: email } });
+      const user = await this.userModel.findOne({
+        where: { email: email },
+        relations: { role: true },
+      });
+
+      // ! voir pourquoi on retourne password
 
       this.logger.log('Function findWithEmail : end');
       return user;
@@ -120,15 +132,19 @@ export class UserService {
    * @param updateUserDto updateUserDto
    * @returns Promise UpdateResult
    */
-  async update(
-    id: number,
-    updateUserDto: UpdateUserDto,
-  ): Promise<UpdateResult> {
+  async update(id: number, updateUserDto: UpdateUserDto) {
     try {
       this.logger.log('Function update : start');
 
-      // update user
-      const res = await this.userModel.update(id, updateUserDto);
+      // add role in updateUserDto
+      updateUserDto.role = await this.userProvider.getRoleForUser(
+        updateUserDto.roleId,
+      );
+      // delete roleId on updateUserDto
+      const { roleId, ...updateUser } = updateUserDto;
+
+      // update
+      const res = await this.userModel.update(id, updateUser);
 
       this.logger.log('Function update : end');
       return res;
@@ -143,11 +159,11 @@ export class UserService {
    * @param id number
    * @returns Promise<DeleteResult>
    */
-  async remove(id: number): Promise<DeleteResult> {
+  async remove(id: number) {
     try {
       this.logger.log('Function remove : start');
 
-      // delete one user
+      // delete
       const res = await this.userModel.delete(id);
 
       this.logger.log('Function remove : end');
