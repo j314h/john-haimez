@@ -1,10 +1,28 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { typeormConfig } from './services/data/typeorm-config';
+import { config } from './config/config';
+import { AuthModule } from './models/auth/auth.module';
+import { RoleModule } from './models/role/role.module';
+import { UserModule } from './models/user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeormConfig)],
+  imports: [
+    // define conf .env
+    ConfigModule.forRoot({
+      envFilePath: config.selectPathEnv(process.env.ENVIRONMENT),
+      isGlobal: true,
+    }),
+
+    // orm
+    TypeOrmModule.forRoot(config.database()),
+
+    // module
+    UserModule,
+    AuthModule,
+    RoleModule,
+  ],
   controllers: [],
   providers: [],
 })
