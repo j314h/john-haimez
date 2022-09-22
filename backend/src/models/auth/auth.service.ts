@@ -74,8 +74,13 @@ export class AuthService {
       // get user
       const user = await this.userService.findWithEmail(email);
 
+      // test token exist
+      const auths = await this.authModel.find({
+        where: { user: user.id as any },
+      });
+
       // if true return user without password
-      if (user) {
+      if (user && auths.length > 0) {
         const { password, ...userTested } = user;
         return userTested;
       }

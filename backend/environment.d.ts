@@ -1,5 +1,5 @@
 declare namespace NodeJS {
-  // type de la variable d'environment "environment" => pour spécifier notre type d'environement
+  // type of environment
   export type Environment = 'PROD' | 'DEV' | 'TEST';
 
   // interface du .env
