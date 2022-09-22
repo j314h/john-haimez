@@ -8,10 +8,15 @@ import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { config } from 'src/config/config';
+import { Auth } from './entities/auth.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @InjectRepository(Auth)
+    private authModel: Repository<Auth>,
     private userService: UserService,
     private jwtService: JwtService,
   ) {}
@@ -31,8 +36,15 @@ export class AuthService {
 
       // get user with email
       const user = await this.userService.findWithEmail(email);
+      if (!user) {
+        throw new Error('Impossible de vous connecter, veuillez réessayer.');
+      }
+
       // check password
       const isMatchPw = await bcrypt.compare(pw, user.password);
+      if (!isMatchPw) {
+        throw new Error('Impossible de vous connecter, veuillez réessayer.');
+      }
 
       // if true return user without password
       if (user && isMatchPw) {
@@ -88,13 +100,50 @@ export class AuthService {
       // construct data for in token
       const payload = { userEmail: user.email, userId: user.id };
 
+      // create token and create token in database and add id in user
+      const token = this.jwtService.sign(payload);
+      await this.authModel.save({ token: token, user: user });
+
       this.logger.log('Function login : end');
       return {
         connected: true,
-        access_token: this.jwtService.sign(payload),
+        access_token: token,
       };
     } catch (error) {
       this.logger.log('Function login : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
+  }
+
+  /**
+   * delete token relation with user current
+   * @param user any
+   * @returns disconnect true
+   */
+  async logout(user: any) {
+    try {
+      this.logger.log('Function logout : start');
+
+      // get all token for user current
+      const auths = await this.authModel.find({ where: { user: user.id } });
+      // delete all token
+      const res = auths.map(async (auth) => {
+        await this.authModel.delete(auth.id);
+      });
+
+      // if token is not exist return disconnect
+      // else throw error
+      if ((await res[0]) === undefined) {
+        this.logger.log('Function logout : end');
+        return {
+          disconnect: true,
+        };
+      } else {
+        this.logger.log('Function logout : end error if');
+        throw new Error('Une erreur est survenue');
+      }
+    } catch (error) {
+      this.logger.log('Function logout : error');
       throw new BadRequestException(config.errorBad(error.message));
     }
   }

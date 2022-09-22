@@ -7,6 +7,14 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 export type TEnvironment = 'PROD' | 'DEV' | 'TEST';
 
 /**
+ * type for error exception
+ */
+type TError = {
+  message: string;
+  statusCode: number;
+};
+
+/**
  * interface for object config for app
  */
 export interface IConfig {
@@ -15,10 +23,7 @@ export interface IConfig {
   logInfoStartServer: () => void;
   secretJwt: string;
   jwtConfig: () => JwtModuleOptions;
-  errorBad: (message: string) => { statusCode: number; message: string };
-  errorUnauthorized: (message: string) => {
-    statusCode: number;
-    message: string;
-  };
-  errorForbidden: (message: string) => { statusCode: number; message: string };
+  errorBad: (message: string) => TError;
+  errorUnauthorized: (message: string) => TError;
+  errorForbidden: (message: string) => TError;
 }

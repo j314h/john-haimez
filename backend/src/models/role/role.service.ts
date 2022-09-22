@@ -21,6 +21,11 @@ export class RoleService {
   // log
   private logger: Logger = new Logger('Role Service');
 
+  /**
+   * create role
+   * @param createRoleDto CreateRoleDto
+   * @returns role
+   */
   create(createRoleDto: CreateRoleDto) {
     try {
       this.logger.log('Function create : start');
@@ -36,6 +41,10 @@ export class RoleService {
     }
   }
 
+  /**
+   * get all role
+   * @returns role[]
+   */
   async findAll() {
     try {
       this.logger.log('Function findAll : start');
@@ -51,6 +60,11 @@ export class RoleService {
     }
   }
 
+  /**
+   * get one role
+   * @param id number
+   * @returns role
+   */
   async findOne(id: number) {
     try {
       this.logger.log('Function findOne : start');
@@ -66,6 +80,11 @@ export class RoleService {
     }
   }
 
+  /**
+   * get role with libelle
+   * @param libelle string
+   * @returns role
+   */
   async findByLibelle(libelle: string) {
     try {
       this.logger.log('Function findByLibelle : start');
@@ -83,6 +102,12 @@ export class RoleService {
     }
   }
 
+  /**
+   * update role
+   * @param id number
+   * @param updateRoleDto UpdateRoleDto
+   * @returns affected: true
+   */
   async update(id: number, updateRoleDto: UpdateRoleDto) {
     try {
       this.logger.log('Function update : start');
@@ -98,6 +123,11 @@ export class RoleService {
     }
   }
 
+  /**
+   * delete role
+   * @param id number
+   * @returns affected: true
+   */
   async remove(id: number) {
     try {
       this.logger.log('Function remove : start');
@@ -107,7 +137,7 @@ export class RoleService {
 
       // if role has users not delete throw error
       if (role.users && role.users.length > 0) {
-        this.logger.log('Function remove : end not delete');
+        this.logger.log('Function remove : end error if');
         throw new ForbiddenException(
           config.errorForbidden(
             'Impossible de supprimer le role, des utilisateurs sont assignés à ce role.',

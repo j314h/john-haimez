@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+import { Auth } from 'src/models/auth/entities/auth.entity';
 import { Role } from 'src/models/role/entities/role.entity';
 import { User } from 'src/models/user/entities/user.entity';
 import { IConfig, TEnvironment } from './config.type';
@@ -18,7 +19,7 @@ export const config: IConfig = {
       username: process.env.DB_USER,
       password: process.env.DB_PW,
       database: process.env.DB_NAME,
-      entities: [User, Role],
+      entities: [User, Role, Auth],
       synchronize: true,
       autoLoadEntities: true,
     };
@@ -93,9 +94,9 @@ export const config: IConfig = {
   },
 
   /**
-   * create object for errorForbidden
+   * create object for ForbiddenException
    * @param message string
-   * @returns object for errorForbidden
+   * @returns object for ForbiddenException
    */
   errorForbidden: (message: string) => {
     return {

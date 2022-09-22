@@ -1,7 +1,16 @@
-import { Controller, Post, UseGuards, Request, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseGuards,
+  Request,
+  Get,
+  Delete,
+} from '@nestjs/common';
+import { ERole } from '../role/entities/role.interface';
+import { RoleGuard } from '../role/guard/role.guard';
 import { AuthService } from './auth.service';
-import { JwtGuard } from './strategy/jwt.guard';
-import { LocalGuard } from './strategy/local.guard';
+import { JwtGuard } from './guard/jwt.guard';
+import { LocalGuard } from './guard/local.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +22,14 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  // ! delete this for product
+  @UseGuards(JwtGuard)
+  @Delete('/logout')
+  logout(@Request() req) {
+    return this.authService.logout(req.user);
+  }
+
+  // ! delete this for prod
+  @UseGuards(RoleGuard([ERole.ROOT]))
   @UseGuards(JwtGuard)
   @Get('/test-jwt')
   testJwt(@Request() req) {
