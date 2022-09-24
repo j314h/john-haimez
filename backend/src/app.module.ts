@@ -1,10 +1,31 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { config } from './config/config';
+import { AuthModule } from './models/auth/auth.module';
+import { RoleModule } from './models/role/role.module';
+import { UserModule } from './models/user/user.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    // define conf .env
+    ConfigModule.forRoot({
+      envFilePath: config.selectPathEnv(process.env.ENVIRONMENT),
+      isGlobal: true,
+    }),
+
+    // orm
+    TypeOrmModule.forRoot(config.database()),
+
+    // module
+    UserModule,
+    AuthModule,
+    RoleModule,
+  ],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}
