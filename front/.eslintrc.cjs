@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['xo', 'xo-react', 'xo-typescript', 'plugin:react/recommended'],
+  extends: ['xo', 'xo-react', 'plugin:react/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -12,14 +12,25 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  ignorePatterns: [
+    '*.json',
+    '*.css',
+    '.eslintrc.cjs',
+    'craco.config.js',
+    'postcss.config.js',
+    'tailwind.config.js',
+  ],
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    indent: 0,
     'object-curly-spacing': ['error', 'always'],
-    overrides: [
-      {
-        files: '*.json',
-        quotes: 'double',
-      },
+    '@typescript-eslint/indent': ['error', 2],
+    'react/jsx-indent': ['error', 2],
+    'react/jsx-tag-spacing': ['error', { beforeSelfClosing: 'always' }],
+    'react/jsx-indent-props': ['error', 2],
+    'react/jsx-closing-bracket-location': [
+      0,
+      { selfClosing: 'props-aligned', nonEmpty: 'after-props' },
     ],
   },
 };

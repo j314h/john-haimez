@@ -1,6 +1,7 @@
 {
   "space": 2,
   "rules": {
+    "object-curly-spacing": ["error", "always"],
     "unicorn/filename-case": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "import/extensions": "off",
