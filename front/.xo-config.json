@@ -8,6 +8,7 @@
     "@typescript-eslint/object-curly-spacing": "off",
     "@typescript-eslint/triple-slash-reference": "off",
     "import/no-unassigned-import": "off",
-    "capitalized-comments": "off"
+    "capitalized-comments": "off",
+    "unicorn/prefer-module": "off"
   }
 }
