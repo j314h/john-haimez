@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './pages/App';
+import { httpInterceptor } from '@shared-app/http/http.interceptor';
+import { store } from '@store/store';
+import './styles/index.css';
+import App from './pages/app';
 import reportWebVitals from './reportWebVitals';
+
+httpInterceptor.request();
+httpInterceptor.response();
+store.darkmode.startCheckDarkMode();
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!);
 root.render(

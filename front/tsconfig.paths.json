@@ -6,7 +6,7 @@
       "@molecules/*": ["./components/molecules/*"],
       "@organisms/*": ["./components/organisms/*"],
       "@templates/*": ["./components/templates/*"],
-      "@config-app/*": ["./config/*"],
+      "@shared-app/*": ["./shared/*"],
       "@pages/*": ["./pages/*"],
       "@store/*": ["./store/*"],
       "@types-app/*": ["./types/*"]

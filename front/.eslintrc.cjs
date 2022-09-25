@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['xo', 'xo-react', 'plugin:react/recommended'],
+  extends: ['xo', 'xo-react', 'prettier', 'plugin:react/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -20,9 +20,11 @@ module.exports = {
     'postcss.config.js',
     'tailwind.config.js',
   ],
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     indent: 0,
+    'capitalized-comments': 0,
+    'no-unused-vars': 1,
     'object-curly-spacing': ['error', 'always'],
     '@typescript-eslint/indent': ['error', 2],
     'react/jsx-indent': ['error', 2],
@@ -32,5 +34,7 @@ module.exports = {
       0,
       { selfClosing: 'props-aligned', nonEmpty: 'after-props' },
     ],
+    'object-shorthand': ['error', 'always'],
+    'no-undef': 0,
   },
 };

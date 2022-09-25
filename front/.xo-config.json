@@ -1,6 +1,7 @@
 {
   "space": 2,
   "rules": {
+    "n/prefer-global/process": "off",
     "object-curly-spacing": ["error", "always"],
     "unicorn/filename-case": "off",
     "@typescript-eslint/no-floating-promises": "off",
@@ -10,6 +11,11 @@
     "@typescript-eslint/triple-slash-reference": "off",
     "import/no-unassigned-import": "off",
     "capitalized-comments": "off",
-    "unicorn/prefer-module": "off"
+    "unicorn/prefer-module": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "unicorn/no-useless-promise-resolve-reject": "off",
+    "@typescript-eslint/no-implicit-any-catch": "off"
   }
 }
