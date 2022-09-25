@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { httpInterceptor } from '@shared-app/http/http.interceptor';
 import { store } from '@store/store';
+import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css';
 import App from './pages/app';
 import reportWebVitals from './reportWebVitals';
@@ -13,7 +14,9 @@ store.darkmode.startCheckDarkMode();
 const root = ReactDOM.createRoot(document.querySelector('#root')!);
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
 );
 
