@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Ticon } from '@types-app/icon.type';
+import React from 'react'
+import type { Ticon } from '@types-app/icon.type'
 
 /**
  * Moon
@@ -22,5 +22,5 @@ export function MoonIcon({ color, size }: Ticon) {
         clipRule='evenodd'
       />
     </svg>
-  );
+  )
 }

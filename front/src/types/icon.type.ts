@@ -2,6 +2,6 @@
  * type for icon
  */
 export type Ticon = {
-  color?: string;
-  size?: string;
-};
+  color?: string
+  size?: string
+}

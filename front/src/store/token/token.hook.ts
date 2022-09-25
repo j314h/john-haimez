@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { tokenStore } from './token.store';
+import { useEffect, useState } from 'react'
+import { tokenStore } from './token.store'
 
 export const tokenHook = {
   /**
@@ -7,14 +7,14 @@ export const tokenHook = {
    * @returns
    */
   useTokenUserCurrent() {
-    const [tokenUserCurrent, setTokenUserCurrent] = useState('');
+    const [tokenUserCurrent, setTokenUserCurrent] = useState('')
 
     useEffect(() => {
       tokenStore.token$.subscribe((value: string) => {
-        setTokenUserCurrent(value);
-      });
-    }, []);
+        setTokenUserCurrent(value)
+      })
+    }, [])
 
-    return tokenUserCurrent;
-  },
-};
+    return tokenUserCurrent
+  }
+}

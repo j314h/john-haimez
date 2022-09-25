@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { darkModeStore } from './darkmode.store';
+import { useEffect, useState } from 'react'
+import { darkModeStore } from './darkmode.store'
 
 export const darkModeHook = {
   /**
@@ -7,14 +7,14 @@ export const darkModeHook = {
    * @return boolean
    */
   useDarkModeActivate() {
-    const [darkModeActivate, setDarkModeActivate] = useState(false);
+    const [darkModeActivate, setDarkModeActivate] = useState(false)
 
     useEffect(() => {
       darkModeStore.darkModeActivate$.subscribe((value: boolean) => {
-        setDarkModeActivate(value);
-      });
-    }, []);
+        setDarkModeActivate(value)
+      })
+    }, [])
 
-    return darkModeActivate;
+    return darkModeActivate
   },
-};
+}

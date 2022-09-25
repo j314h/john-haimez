@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import axios from 'axios';
+import axios from 'axios'
 
 /**
  * create a new instance axios
@@ -10,4 +10,4 @@ export const http = axios.create({
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
-});
+})

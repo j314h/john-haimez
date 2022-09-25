@@ -1,4 +1,4 @@
-import { darkModeStore } from './darkmode.store';
+import { darkModeStore } from './darkmode.store'
 
 export const darkModeService = {
   /**
@@ -8,9 +8,9 @@ export const darkModeService = {
    */
   startCheckDarkMode() {
     if (localStorage.getItem('color-theme') === 'dark') {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('dark')
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('dark')
     }
   },
 
@@ -18,15 +18,15 @@ export const darkModeService = {
    * active or disable dark mode
    */
   switchDarkMode(value: boolean) {
-    const newDarkMode = !value;
+    const newDarkMode = !value
     if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('color-theme', 'dark');
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('color-theme', 'dark')
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('color-theme', 'light');
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('color-theme', 'light')
     }
 
-    darkModeStore.darkModeActivate$.next(newDarkMode);
+    darkModeStore.darkModeActivate$.next(newDarkMode)
   },
-};
+}

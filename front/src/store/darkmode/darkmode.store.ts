@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs'
 
 export const darkModeStore = {
   /**
@@ -8,4 +8,4 @@ export const darkModeStore = {
   darkModeActivate$: new BehaviorSubject(
     localStorage.getItem('color-theme') === 'dark',
   ),
-};
+}

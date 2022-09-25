@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Tbtn } from '@types-app/btn.type';
+import React from 'react'
+import type { Tbtn } from '@types-app/btn.type'
 
 export function BtnIcon({
   children,
@@ -26,5 +26,5 @@ export function BtnIcon({
       onClick={click}>
       {children}
     </button>
-  );
+  )
 }

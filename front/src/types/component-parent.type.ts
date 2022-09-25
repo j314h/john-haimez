@@ -1,3 +1,3 @@
 export type TcomponentParent = {
-  children: JSX.Element | JSX.Element[] | string;
-};
+  children: JSX.Element | JSX.Element[] | string
+}

@@ -1,5 +1,5 @@
-import { http } from '@shared-app/http/http.instance';
-import { tokenStore } from './token.store';
+import { http } from '@shared-app/http/http.instance'
+import { tokenStore } from './token.store'
 
 export const tokenService = {
   /**
@@ -10,16 +10,16 @@ export const tokenService = {
       .get('auth/verified')
       .then(response => {
         if (response.data.authenticated) {
-          tokenService.setToken(localStorage.getItem('nekto')!);
+          tokenService.setToken(localStorage.getItem('nekto')!)
           // UserService.setUserCurrent(res.data.user);
         } else {
-          tokenService.removeTokenAndStorage();
+          tokenService.removeTokenAndStorage()
           // UserService.removeUserCurrent();
         }
       })
       .catch(() => {
-        tokenService.removeTokenAndStorage();
-      });
+        tokenService.removeTokenAndStorage()
+      })
   },
 
   /**
@@ -35,12 +35,12 @@ export const tokenService = {
    */
   checkStorageForConnected() {
     if (localStorage.getItem('nekto')) {
-      tokenService.setToken(localStorage.getItem('nekto')!);
-      return localStorage.getItem('nekto')!;
+      tokenService.setToken(localStorage.getItem('nekto')!)
+      return localStorage.getItem('nekto')!
     }
 
-    tokenService.removeTokenAndStorage();
-    return null;
+    tokenService.removeTokenAndStorage()
+    return null
   },
 
   /**
@@ -48,7 +48,7 @@ export const tokenService = {
    * @param token string
    */
   setToken(token: string) {
-    tokenStore.token$.next(token);
+    tokenStore.token$.next(token)
   },
 
   /**
@@ -56,15 +56,15 @@ export const tokenService = {
    * @param token string
    */
   setTokenWithSetStorage(token: string) {
-    localStorage.setItem('nekto', token);
-    tokenStore.token$.next(token);
+    localStorage.setItem('nekto', token)
+    tokenStore.token$.next(token)
   },
 
   /**
    * remove token in storage and reset token$
    */
   removeTokenAndStorage() {
-    localStorage.removeItem('nekto');
-    tokenStore.token$.next('');
-  },
-};
+    localStorage.removeItem('nekto')
+    tokenStore.token$.next('')
+  }
+}
