@@ -18,3 +18,10 @@ export type Tbtn = TcomponentParent & {
 export type TbtnForm = TcomponentParent & {
   loading?: boolean
 }
+
+/**
+ * type for btn mobile
+ */
+export type TbtnMenuMobile = {
+  hidden?: string
+}

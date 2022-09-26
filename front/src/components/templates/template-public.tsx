@@ -1,10 +1,12 @@
+import { Footer } from '@organisms/footer'
+import { Header } from '@organisms/header'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 export function TemplatePublic() {
   return (
     <>
-      <header>header</header>
+      <Header />
       <main
         className='
         flex-1 px-4 py-8
@@ -12,7 +14,7 @@ export function TemplatePublic() {
         text-black dark:text-white'>
         <Outlet />
       </main>
-      <footer>footer</footer>
+      <Footer />
     </>
   )
 }
