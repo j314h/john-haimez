@@ -4,6 +4,9 @@ import { appStore } from './app/app.store'
 import { darkModeHook } from './darkmode/darkmode.hook'
 import { darkModeService } from './darkmode/darkmode.service'
 import { darkModeStore } from './darkmode/darkmode.store'
+import { outsideClickHook } from './outside-click/outside-click.hook'
+import { outsideClickService } from './outside-click/outside-click.service'
+import { outsideClickStore } from './outside-click/outside-click.store'
 import { tokenHook } from './token/token.hook'
 import { tokenService } from './token/token.service'
 import { tokenStore } from './token/token.store'
@@ -23,5 +26,10 @@ export const store = {
     ...appStore,
     ...appService,
     ...appHook,
+  },
+  outsideClick: {
+    ...outsideClickStore,
+    ...outsideClickService,
+    ...outsideClickHook,
   },
 }

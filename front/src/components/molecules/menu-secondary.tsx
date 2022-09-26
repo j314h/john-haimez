@@ -1,12 +1,15 @@
 import { LinkTertiary } from '@atoms/links/link-tertiary'
+import { store } from '@store/store'
 import React from 'react'
 
 /**
  * nev menu secondary default in footer
  */
 export function NavSecondary() {
+  const { myRef } = store.outsideClick.useOutSideClick()
+
   return (
-    <nav>
+    <nav ref={myRef}>
       <ul>
         <li>
           <LinkTertiary link='/'>Accueil</LinkTertiary>
