@@ -1,5 +1,8 @@
 import type { TcomponentParent } from './component-parent.type'
 
+/**
+ * type of global btn
+ */
 export type Tbtn = TcomponentParent & {
   click?: () => void
   submit?: boolean
@@ -7,4 +10,11 @@ export type Tbtn = TcomponentParent & {
   textColor?: string
   padding?: string
   hoverBg?: string
+}
+
+/**
+ * type for btn form
+ */
+export type TbtnForm = TcomponentParent & {
+  loading?: boolean
 }
