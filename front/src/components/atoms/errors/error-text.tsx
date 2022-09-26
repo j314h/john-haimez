@@ -6,11 +6,14 @@ import React from 'react'
  * @param param0 children?: string | JSX.Element | JSX.Element[] | string[] | undefined;
  * @returns
  */
-export function ErrorText({ children }: Terror) {
+export function ErrorText({ children, position }: Terror) {
   return (
     <div>
-      {children ? (
-        <p className='text-xs text-red-500 text-center p-2 font-medium'>
+      {children !== '' ? (
+        <p
+          className={`text-xs text-red-500 ${
+            position ?? 'text-center'
+          } p-2 font-medium`}>
           {children}
         </p>
       ) : null}

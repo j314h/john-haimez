@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios'
+import { BehaviorSubject } from 'rxjs'
 import { appStore } from './app.store'
 
 export const appService = {
@@ -20,5 +22,24 @@ export const appService = {
    */
   menuPrimaryMobileActivateSetTrue: () => {
     appStore.menuPrimaryMobileActivate$.next(true)
+  },
+
+  /**
+   * create error for all observable
+   * @param observable BehaviorSubject<string>
+   * @param error any
+   * @param value? string
+   */
+  errorMessage: (
+    observable: BehaviorSubject<string>,
+    error: any,
+    value?: string,
+  ) => {
+    if (error instanceof AxiosError) {
+      const { message, statusCode } = error.response?.data
+      if (statusCode !== 200 || statusCode !== 201) {
+        observable.next(value ?? message)
+      }
+    }
   },
 }

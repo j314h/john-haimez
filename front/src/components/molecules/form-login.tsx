@@ -2,6 +2,7 @@ import { ErrorText } from '@atoms/errors/error-text'
 import { LockIcon } from '@atoms/icons/lock-icon'
 import { UserIcon } from '@atoms/icons/user-icon'
 import { LinkText } from '@atoms/links/link-text'
+import { store } from '@store/store'
 import React, { useState } from 'react'
 import { BtnForm } from './btn-form'
 import InputFull from './input-full'
@@ -14,8 +15,21 @@ export function FormLogin() {
   const [valueEmail, setValueEmail] = useState('')
   const [valuePassword, setValuePassword] = useState('')
 
+  // hook user
+  const error = store.user.useLoginError()
+  const loginLoader = store.user.useLoginLoader()
+
+  /**
+   * connexion user
+   * @param e React.FormEvent
+   */
+  const handlerSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await store.user.login(valueEmail, valuePassword)
+  }
+
   return (
-    <form>
+    <form onSubmit={handlerSubmit}>
       {/* input email */}
       <InputFull
         placeholder='Votre identifiant'
@@ -40,18 +54,18 @@ export function FormLogin() {
       />
 
       {/* link forgot password */}
-      <div className='flex justify-end mt-2 mb-8'>
+      <div className='flex justify-end mt-2 mb-2'>
         <LinkText addClass='text-xs' link='/forgot-password'>
           Mot de passe oublié
         </LinkText>
       </div>
 
       {/* error text */}
-      <ErrorText />
+      <ErrorText position='text-center sm:text-left'>{error}</ErrorText>
 
       {/* btn form */}
       <div className='flex justify-end mt-4'>
-        <BtnForm>Se connecter</BtnForm>
+        <BtnForm loading={loginLoader}>Se connecter</BtnForm>
       </div>
     </form>
   )

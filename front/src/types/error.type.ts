@@ -3,4 +3,5 @@
  */
 export type Terror = {
   children?: JSX.Element | JSX.Element[] | string | string[]
+  position?: string
 }

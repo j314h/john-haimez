@@ -15,6 +15,7 @@ module.exports = {
   ignorePatterns: ['*.json', '*.css'],
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'no-unused-vars': 0,
     indent: 0,
     'multiline-ternary': 0,
     'no-undef': 0,
