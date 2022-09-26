@@ -3,7 +3,7 @@ import { appService } from '@store/app/app.service'
 import { tokenService } from '@store/token/token.service'
 import { Eerror } from '@types-app/error.type'
 import { Ijwt } from '@types-app/models/jwt.model'
-import { Iuser } from '@types-app/models/user.model'
+import { Iuser, IuserLogout } from '@types-app/models/user.model'
 import { Eroute } from '@types-app/route.type'
 import { userStore } from './user.store'
 
@@ -60,5 +60,23 @@ export const userService = {
   /**
    * disconnect user
    */
-  logout: () => {},
+  logout: async () => {
+    try {
+      userStore.logoutLoading$.next(true)
+      // logout
+      const res = await http.delete<IuserLogout>(`${Eroute.AUTH_LOGOUT_DELETE}`)
+
+      // if disconnect remove token remove usercurrent
+      if (res.data.disconnect) {
+        tokenService.removeTokenAndStorage()
+        userService.removeUserCurrent()
+      }
+
+      userStore.logoutLoading$.next(false)
+    } catch (error) {
+      tokenService.removeTokenAndStorage()
+      userService.removeUserCurrent()
+      userStore.logoutLoading$.next(false)
+    }
+  },
 }

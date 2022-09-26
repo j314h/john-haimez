@@ -37,4 +37,17 @@ export const userHook = {
 
     return loader
   },
+
+  /**
+   * hook for logout in progress
+   */
+  useLogoutLoader: () => {
+    const [loader, setLoader] = useState(false)
+
+    useEffect(() => {
+      userStore.logoutLoading$.subscribe(value => setLoader(value))
+    }, [])
+
+    return loader
+  },
 }

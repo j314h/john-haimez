@@ -10,6 +10,7 @@ rounded-full
 
 const classNoActive = `
 hover:bg-action-bg-hover
+dark:hover:bg-action-bg-dark-hover
 hover:text-action
 `
 

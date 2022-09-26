@@ -24,11 +24,9 @@ export function BtnTextSecondary({
       className={`
         ${addClass}
         ${textColor}
-        flex items-center justify-center
-        px-2 pb-1
+        flex items-center
+        py-2 px-2 pl-4
         md:px-4
-        text-base
-        leading-1
         rounded-full
         hover:bg-action-bg-hover
         dark:hover:bg-action-bg-dark-hover

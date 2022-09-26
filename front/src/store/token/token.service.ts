@@ -9,21 +9,26 @@ export const tokenService = {
    * verified token in api
    */
   verifiedConnected() {
-    http
-      .get<IjwtVerified>(`${Eroute.AUTH_VERIFIED}`)
-      .then(res => {
-        if (res.data.connected) {
-          tokenService.setToken(localStorage.getItem('nekto')!)
-          userService.setUserCurrent(res.data.userCurrent)
-        } else {
+    if (localStorage.getItem('nekto')) {
+      http
+        .get<IjwtVerified>(`${Eroute.AUTH_VERIFIED}`)
+        .then(res => {
+          if (res.data.connected) {
+            tokenService.setToken(localStorage.getItem('nekto')!)
+            userService.setUserCurrent(res.data.userCurrent)
+          } else {
+            tokenService.removeTokenAndStorage()
+            userService.removeUserCurrent()
+          }
+        })
+        .catch(() => {
           tokenService.removeTokenAndStorage()
           userService.removeUserCurrent()
-        }
-      })
-      .catch(() => {
-        tokenService.removeTokenAndStorage()
-        userService.removeUserCurrent()
-      })
+        })
+    } else {
+      tokenService.removeTokenAndStorage()
+      userService.removeUserCurrent()
+    }
   },
 
   /**

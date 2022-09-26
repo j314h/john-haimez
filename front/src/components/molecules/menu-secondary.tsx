@@ -7,6 +7,7 @@ import React from 'react'
  */
 export function NavSecondary() {
   const { myRef } = store.outsideClick.useOutSideClick()
+  const token = store.token.useTokenUserCurrent()
 
   return (
     <nav ref={myRef}>
@@ -20,9 +21,11 @@ export function NavSecondary() {
         <li>
           <LinkTertiary link='/contact'>Contact</LinkTertiary>
         </li>
-        <li>
-          <LinkTertiary link='/login'>Connexion</LinkTertiary>
-        </li>
+        {token !== '' ? null : (
+          <li>
+            <LinkTertiary link='/login'>Connexion</LinkTertiary>
+          </li>
+        )}
         <li>
           <LinkTertiary link='/conditions-generales'>
             Conditions générales

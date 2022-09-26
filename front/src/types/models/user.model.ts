@@ -10,3 +10,10 @@ export interface Iuser {
   roleId?: number
   role: Irole
 }
+
+/**
+ * interface logout user current
+ */
+export interface IuserLogout {
+  disconnect?: boolean
+}

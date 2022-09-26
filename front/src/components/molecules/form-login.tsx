@@ -4,6 +4,7 @@ import { UserIcon } from '@atoms/icons/user-icon'
 import { LinkText } from '@atoms/links/link-text'
 import { store } from '@store/store'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BtnForm } from './btn-form'
 import InputFull from './input-full'
 
@@ -15,9 +16,10 @@ export function FormLogin() {
   const [valueEmail, setValueEmail] = useState('')
   const [valuePassword, setValuePassword] = useState('')
 
-  // hook user
+  // hook
   const error = store.user.useLoginError()
   const loginLoader = store.user.useLoginLoader()
+  const navigate = useNavigate()
 
   /**
    * connexion user
@@ -26,6 +28,7 @@ export function FormLogin() {
   const handlerSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     await store.user.login(valueEmail, valuePassword)
+    navigate('/dashboard')
   }
 
   return (
