@@ -59,6 +59,13 @@ w-full md:max-w-6xl
 ${paddingLarge}
 `
 
+/**
+ * container or card or box
+ * @param children: string | JSX.Element | JSX.Element[]
+ * @param addClass?: string | undefined;
+ * @param model: EmodelContainer
+ * @returns
+ */
 export default function Container({ children, model, addClass }: Tcontainer) {
   return (
     <section

@@ -10,6 +10,9 @@ import { outsideClickStore } from './outside-click/outside-click.store'
 import { tokenHook } from './token/token.hook'
 import { tokenService } from './token/token.service'
 import { tokenStore } from './token/token.store'
+import { userHook } from './user/user.hook'
+import { userService } from './user/user.service'
+import { userStore } from './user/user.store'
 
 export const store = {
   token: {
@@ -31,5 +34,10 @@ export const store = {
     ...outsideClickStore,
     ...outsideClickService,
     ...outsideClickHook,
+  },
+  user: {
+    ...userStore,
+    ...userService,
+    ...userHook,
   },
 }

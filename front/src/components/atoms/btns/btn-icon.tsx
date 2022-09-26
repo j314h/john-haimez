@@ -1,6 +1,16 @@
 import React from 'react'
 import type { Tbtn } from '@types-app/btn.type'
 
+/**
+ * btn sample for icon
+ * @param children: string | JSX.Element | JSX.Element[]
+ * @param submit?: boolean | undefined;
+ * @param addClass?: string | undefined;
+ * @param textColor?: string | undefined;
+ * @param padding?: string | undefined;
+ * @param hoverBg?: string | undefined;
+ * @returns
+ */
 export function BtnIcon({
   children,
   submit,

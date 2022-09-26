@@ -19,7 +19,7 @@ bg-high
 `
 
 /**
- * link text 2
+ * link text secondary
  * @param children JSX.Element | JSX.Element[] | string | string[]
  * @param link string;
  * @param click? (() => void) | undefined;

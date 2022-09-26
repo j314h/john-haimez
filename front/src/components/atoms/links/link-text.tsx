@@ -3,7 +3,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 /**
- * link text 3
+ * link text
  * @param children JSX.Element | JSX.Element[] | string | string[]
  * @param link string;
  * @param click? (() => void) | undefined;

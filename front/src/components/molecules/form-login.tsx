@@ -1,3 +1,4 @@
+import { ErrorText } from '@atoms/errors/error-text'
 import { LockIcon } from '@atoms/icons/lock-icon'
 import { UserIcon } from '@atoms/icons/user-icon'
 import { LinkText } from '@atoms/links/link-text'
@@ -5,6 +6,9 @@ import React, { useState } from 'react'
 import { BtnForm } from './btn-form'
 import InputFull from './input-full'
 
+/**
+ * form connexion user
+ */
 export function FormLogin() {
   // state for input
   const [valueEmail, setValueEmail] = useState('')
@@ -41,6 +45,9 @@ export function FormLogin() {
           Mot de passe oublié
         </LinkText>
       </div>
+
+      {/* error text */}
+      <ErrorText />
 
       {/* btn form */}
       <div className='flex justify-end mt-4'>

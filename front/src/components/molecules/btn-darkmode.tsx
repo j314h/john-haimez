@@ -4,6 +4,9 @@ import { SunIcon } from '@atoms/icons/sun-icon'
 import { store } from '@store/store'
 import React from 'react'
 
+/**
+ * btn dark mode
+ */
 export function BtnDarkMode() {
   const darkModeActivate = store.darkmode.useDarkModeActivate()
 

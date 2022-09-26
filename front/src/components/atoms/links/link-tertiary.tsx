@@ -16,7 +16,7 @@ text-high
 `
 
 /**
- * link text 4
+ * link text tertiary
  * @param children JSX.Element | JSX.Element[] | string | string[]
  * @param link string;
  * @param click? (() => void) | undefined;

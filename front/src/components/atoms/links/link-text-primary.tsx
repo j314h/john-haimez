@@ -28,7 +28,7 @@ md:bg-transparent
 `
 
 /**
- * link text
+ * link text primary
  * @param children JSX.Element | JSX.Element[] | string | string[]
  * @param link string;
  * @param click? (() => void) | undefined;

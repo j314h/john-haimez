@@ -4,7 +4,6 @@ import { T2 } from '@atoms/titles/t2'
 
 /**
  * brand for footer display initial's brand and sub title
- * @returns
  */
 export function BrandFooter() {
   return (

@@ -2,7 +2,7 @@ import { Tbtn } from '@types-app/btn.type'
 import React from 'react'
 
 /**
- * btn text 2
+ * btn text secondary
  * @param children JSX.Element | JSX.Element[] | string | string[]
  * @param addClass? string | undefined;
  * @param click? (() => void) | undefined;
