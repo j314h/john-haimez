@@ -1,58 +1,62 @@
 import { EmodelContainer, Tcontainer } from '@types-app/container.type'
 import React from 'react'
 
+const paddingSmall = 'px-4 py-5 sm:px-8 md:px-12 md:py-8'
+const paddingBasic = 'px-4 py-5 sm:px-8 md:px-12 md:py-8'
+const paddingLarge = 'px-4 py-5 sm:px-8 md:px-12 md:py-8'
+
 const fit = `
 w-fit px-2 py-5 
 rounded-2xl md:rounded-3xl`
 
 const xs = `
-w-full md:max-w-xs 
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+w-full sm:max-w-xs 
+${paddingSmall}
 `
 
 const s = `
-w-full md:max-w-sm
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+w-full sm:max-w-sm
+${paddingSmall}
 `
 
 const m = `
-w-full md:max-w-md
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+w-full sm:max-w-md
+${paddingBasic}
 `
 
 const l = `
-w-full md:max-w-lg
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+w-full sm:max-w-lg
+${paddingBasic}
 `
 
 const xl = `
 w-full md:max-w-xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingBasic}
 `
 
 const xxl = `
 w-full md:max-w-2xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingLarge}
 `
 
 const xxxl = `
 w-full md:max-w-3xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingLarge}
 `
 
 const xxxxl = `
 w-full md:max-w-4xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingLarge}
 `
 
 const xxxxxl = `
 w-full md:max-w-5xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingLarge}
 `
 
 const xxxxxxl = `
 w-full md:max-w-6xl
-px-2 py-5 sm:px-4 md:px-8 md:py-8
+${paddingLarge}
 `
 
 export default function Container({ children, model, addClass }: Tcontainer) {
@@ -75,7 +79,7 @@ export default function Container({ children, model, addClass }: Tcontainer) {
           model === EmodelContainer.fit
             ? 'rounded-2xl md:rounded-3xl'
             : `
-            rounded-none
+            rounded-2xl
             sm:rounded-2xl
             md:rounded-3xl`
         }

@@ -13,7 +13,7 @@ export function BtnForm({ children, loading }: TbtnForm) {
   return (
     <BtnText submit>
       {loading ? <SpinnerCircle size='w-3 h-3 md:w-5 md:h-5' /> : <div />}
-      <span className='ml-2'>{children}</span>
+      <span className={`${loading ? 'ml-2' : ''}`}>{children}</span>
     </BtnText>
   )
 }

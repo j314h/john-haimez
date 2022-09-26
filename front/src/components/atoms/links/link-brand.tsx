@@ -31,6 +31,7 @@ export function LinkBrand({ children, link, addClass, click }: Tlink) {
     <NavLink
       to={link}
       onClick={click}
+      end
       className={({ isActive }) =>
         isActive
           ? `${addClass} ${classBasic} ${classActive}`

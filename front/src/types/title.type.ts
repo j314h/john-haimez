@@ -5,4 +5,5 @@ import { TcomponentParent } from './component-parent.type'
  */
 export type Ttitle = TcomponentParent & {
   color?: string
+  addClass?: string
 }

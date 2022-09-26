@@ -30,6 +30,7 @@ export function LinkTextSecondary({ children, link, addClass, click }: Tlink) {
   return (
     <NavLink
       to={link}
+      end
       onClick={click}
       className={({ isActive }) =>
         isActive

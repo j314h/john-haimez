@@ -6,9 +6,14 @@ import React from 'react'
  * @param children JSX.Element | JSX.Element[] | string | string[];
  * @returns
  */
-export function T5({ children }: Ttitle) {
+export function T5({ children, color, addClass }: Ttitle) {
   return (
-    <h5 className='text-thin md:text-normal lg:text-bold text-lg md:text-lg lg:text-xl'>
+    <h5
+      className={`
+      text-thin 
+      ${color} ${addClass} 
+      md:text-normal lg:text-bold 
+      text-lg md:text-lg lg:text-xl`}>
       {children}
     </h5>
   )
