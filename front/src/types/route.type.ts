@@ -14,4 +14,5 @@ export enum Eroute {
   AUTH_LOGIN_POST = 'auth/login',
   AUTH_LOGOUT_DELETE = 'auth/logout',
   AUTH_TEST_GET = 'auth/test-jwt',
+  AUTH_VERIFIED = 'auth/verified',
 }

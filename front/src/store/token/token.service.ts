@@ -1,4 +1,7 @@
 import { http } from '@shared-app/http/http.instance'
+import { userService } from '@store/user/user.service'
+import { IjwtVerified } from '@types-app/models/jwt.model'
+import { Eroute } from '@types-app/route.type'
 import { tokenStore } from './token.store'
 
 export const tokenService = {
@@ -7,18 +10,19 @@ export const tokenService = {
    */
   verifiedConnected() {
     http
-      .get('auth/verified')
-      .then(response => {
-        if (response.data.authenticated) {
+      .get<IjwtVerified>(`${Eroute.AUTH_VERIFIED}`)
+      .then(res => {
+        if (res.data.connected) {
           tokenService.setToken(localStorage.getItem('nekto')!)
-          // UserService.setUserCurrent(res.data.user);
+          userService.setUserCurrent(res.data.userCurrent)
         } else {
           tokenService.removeTokenAndStorage()
-          // UserService.removeUserCurrent();
+          userService.removeUserCurrent()
         }
       })
       .catch(() => {
         tokenService.removeTokenAndStorage()
+        userService.removeUserCurrent()
       })
   },
 
@@ -30,25 +34,17 @@ export const tokenService = {
 
   /**
    * if token exist in storage
-   * add token intoken$
+   * add token in token$
    * else remove token in storage and reset token$
    */
   checkStorageForConnected() {
     if (localStorage.getItem('nekto')) {
       tokenService.setToken(localStorage.getItem('nekto')!)
-      return localStorage.getItem('nekto')!
+      return localStorage.getItem('nekto')
     }
 
     tokenService.removeTokenAndStorage()
     return null
-  },
-
-  /**
-   * set token in token$
-   * @param token string
-   */
-  setToken(token: string) {
-    tokenStore.token$.next(token)
   },
 
   /**
@@ -66,5 +62,13 @@ export const tokenService = {
   removeTokenAndStorage() {
     localStorage.removeItem('nekto')
     tokenStore.token$.next('')
-  }
+  },
+
+  /**
+   * set token in token$
+   * @param token string
+   */
+  setToken(token: string) {
+    tokenStore.token$.next(token)
+  },
 }

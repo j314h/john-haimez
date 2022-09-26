@@ -39,10 +39,10 @@ export const userService = {
     try {
       userStore.loginLoading$.next(true)
       // login
-      const res = await http.post<Ijwt>(
-        `${process.env.REACT_APP_URL_API}${Eroute.AUTH_LOGIN_POST}`,
-        { email, password },
-      )
+      const res = await http.post<Ijwt>(`${Eroute.AUTH_LOGIN_POST}`, {
+        email,
+        password,
+      })
 
       // is connected add token add userCurrent
       if (res.data.connected) {

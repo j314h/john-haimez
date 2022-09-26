@@ -8,3 +8,11 @@ export interface Ijwt {
   access_token: string
   userCurrent: Iuser
 }
+
+/**
+ * interface for verified token
+ */
+export interface IjwtVerified {
+  connected: string
+  userCurrent: Iuser
+}
