@@ -1,6 +1,7 @@
 import { http } from '@shared-app/http/http.instance'
 import { appService } from '@store/app/app.service'
 import { tokenService } from '@store/token/token.service'
+import { Eerror } from '@types-app/error.type'
 import { Ijwt } from '@types-app/models/jwt.model'
 import { Iuser } from '@types-app/models/user.model'
 import { Eroute } from '@types-app/route.type'
@@ -20,6 +21,13 @@ export const userService = {
    */
   removeUserCurrent: () => {
     userStore.userCurrent$.next({} as Iuser)
+  },
+
+  /**
+   * reset all error related to user
+   */
+  resetError: () => {
+    userStore.loginError$.next('')
   },
 
   /**
@@ -44,11 +52,7 @@ export const userService = {
 
       userStore.loginLoading$.next(false)
     } catch (error) {
-      appService.errorMessage(
-        userStore.loginError$,
-        error,
-        'Erreur de connexion',
-      )
+      appService.errorMessage(userStore.loginError$, error, Eerror.LOGIN)
       userStore.loginLoading$.next(false)
     }
   },

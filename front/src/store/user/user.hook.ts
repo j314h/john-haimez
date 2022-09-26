@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { userService } from './user.service'
 import { userStore } from './user.store'
 
 export const userHook = {
@@ -10,7 +11,15 @@ export const userHook = {
     const [error, setError] = useState('')
 
     useEffect(() => {
+      // reset error didmountcomponent
+      function cleanError() {
+        userService.resetError()
+      }
+
+      // sub error observable
       userStore.loginError$.subscribe(value => setError(value))
+
+      return cleanError()
     }, [])
 
     return error
