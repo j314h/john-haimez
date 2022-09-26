@@ -15,7 +15,7 @@ export function NavSecondary() {
           <LinkTertiary link='/'>Accueil</LinkTertiary>
         </li>
         <li>
-          <LinkTertiary link='/projets'>Projets</LinkTertiary>
+          <LinkTertiary link='/projects'>Projets</LinkTertiary>
         </li>
         <li>
           <LinkTertiary link='/contact'>Contact</LinkTertiary>

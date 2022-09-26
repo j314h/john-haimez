@@ -30,7 +30,7 @@ export function NavPrimary() {
       <ul className='flex flex-col md:flex-row'>
         <li>
           <LinkTextPrimary
-            link='/projets'
+            link='/projects'
             click={store.app.menuPrimaryMobileActivateSetFalse}>
             Projets
           </LinkTextPrimary>
