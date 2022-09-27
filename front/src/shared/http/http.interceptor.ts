@@ -33,7 +33,7 @@ export const httpInterceptor = {
       response => {
         if (response.status === 401) {
           store.token.removeTokenAndStorage()
-          // store.user.removeUserCurrent();
+          store.user.removeUserCurrent()
         }
 
         console.log('response Interceptor', response)
