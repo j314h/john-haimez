@@ -1,9 +1,10 @@
 import { AuthGuard } from '@shared-app/guard/auth-guard'
 import { LoginGuard } from '@shared-app/guard/login-guard'
+import { store } from '@store/store'
 import TemplatePrivate from '@templates/template-private'
 import { TemplatePublic } from '@templates/template-public'
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import './app.css'
 import { DashboardPage } from './private/dashboard-page'
 import { ContactPage } from './public/contact-page'
@@ -13,6 +14,14 @@ import { LoginPage } from './public/login-page'
 import { ProjectsPage } from './public/projects-page'
 
 export function App() {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (store.token.verifiedConnected()) {
+      navigate('/login')
+    }
+  }, [])
+
   return (
     <Routes>
       <Route element={<TemplatePublic />}>

@@ -10,7 +10,6 @@ import reportWebVitals from './reportWebVitals'
 httpInterceptor.request()
 httpInterceptor.response()
 store.darkmode.startCheckDarkMode()
-store.token.verifiedConnected()
 
 const root = ReactDOM.createRoot(document.querySelector('#root')!)
 root.render(

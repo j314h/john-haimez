@@ -8,7 +8,7 @@ export const tokenService = {
   /**
    * verified token in api
    */
-  verifiedConnected() {
+  verifiedConnected(): boolean {
     if (localStorage.getItem('nekto')) {
       http
         .get<IjwtVerified>(`${Eroute.AUTH_VERIFIED}`)
@@ -16,19 +16,24 @@ export const tokenService = {
           if (res.data.connected) {
             tokenService.setToken(localStorage.getItem('nekto')!)
             userService.setUserCurrent(res.data.userCurrent)
+            return true
           } else {
             tokenService.removeTokenAndStorage()
             userService.removeUserCurrent()
+            return false
           }
         })
         .catch(() => {
           tokenService.removeTokenAndStorage()
           userService.removeUserCurrent()
+          return false
         })
     } else {
       tokenService.removeTokenAndStorage()
       userService.removeUserCurrent()
+      return false
     }
+    return false
   },
 
   /**
