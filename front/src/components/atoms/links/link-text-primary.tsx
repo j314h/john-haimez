@@ -18,6 +18,8 @@ md:pl-2 md:py-4 md:px-6
 const classNoActive = `
 hover:bg-action-bg-hover
 dark:hover:bg-action-bg-dark-hover
+md:hover:bg-transparent
+md:dark:hover:bg-transparent
 hover:text-action
 `
 
