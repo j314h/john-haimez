@@ -4,7 +4,7 @@ import { httpInterceptor } from '@shared-app/http/http.interceptor'
 import { store } from '@store/store'
 import { BrowserRouter } from 'react-router-dom'
 import './styles/index.css'
-import { App } from './pages/app'
+import { App } from './pages/App'
 import reportWebVitals from './reportWebVitals'
 
 httpInterceptor.request()
