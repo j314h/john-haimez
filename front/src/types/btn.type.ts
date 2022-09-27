@@ -25,3 +25,10 @@ export type TbtnForm = TcomponentParent & {
 export type TbtnMenuMobile = {
   hidden?: string
 }
+
+/**
+ * type for btn user avatar
+ */
+export type TbtnUserAvatar = {
+  open?: boolean
+}

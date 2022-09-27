@@ -2,9 +2,11 @@ import { BtnDarkMode } from '@molecules/btn-darkmode'
 import { BtnMenuMobile } from '@molecules/btn-menu-mobile'
 import { LinkBrandHeader } from '@molecules/link-brand-header'
 import { NavPrimary } from '@molecules/menu-primary'
+import MenuUserCurrent from '@molecules/menu-user-current'
 import React from 'react'
 
 export function Header() {
+  // ! if user see to btn avatar
   return (
     <header
       className='
@@ -18,10 +20,11 @@ export function Header() {
       {/* brand */}
       <LinkBrandHeader addClass='flex-1' />
 
-      {/* menu avatar if user connected */}
-
       {/* btn dark mode */}
       <BtnDarkMode />
+
+      {/* menu avatar if user connected */}
+      <MenuUserCurrent />
 
       {/* btn menu mobile */}
       <BtnMenuMobile />
