@@ -35,4 +35,10 @@ export class AuthController {
   testJwt(@Request() req) {
     return { jwt: true, payload: req.user };
   }
+
+  @UseGuards(JwtGuard)
+  @Get('/verified')
+  verifed(@Request() req) {
+    return { connected: true, userCurrent: req.user };
+  }
 }

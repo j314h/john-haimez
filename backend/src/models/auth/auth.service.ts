@@ -111,6 +111,7 @@ export class AuthService {
 
       this.logger.log('Function login : end');
       return {
+        userCurrent: user,
         connected: true,
         access_token: token,
       };
