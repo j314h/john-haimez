@@ -6,15 +6,21 @@ import { EmodelContainer } from '@types-app/container.type'
 import { Divisor } from '@atoms/divisors/divisor'
 import { BtnUserAvatar } from './btn-user-avatar'
 import { InfoUserMenuAvatar } from './info-user-menu-avatar'
+import { store } from '@store/store'
 
 export default function MenuUserCurrent() {
+  const stateMenuUserAvatar = store.app.useMenuUserAvatarActivate()
+
   return (
     <section className='relative ml-2'>
       {/* btn menu user avatar */}
       <BtnUserAvatar />
 
       {/* menu float */}
-      <div className='absolute top-14 right-0 z-50'>
+      <div
+        className={`absolute top-14 -right-6 sm:right-0 z-50 ${
+          stateMenuUserAvatar ? '' : 'hidden'
+        }`}>
         <Container model={EmodelContainer.fit}>
           {/* info user */}
           <InfoUserMenuAvatar />
@@ -26,7 +32,10 @@ export default function MenuUserCurrent() {
             <ul>
               {/* go to dashboard */}
               <li>
-                <LinkTextSecondary link='/dashboard'>
+                <LinkTextSecondary
+                  addClass='mb-3'
+                  link='/dashboard'
+                  click={store.app.menuUserAvatarActivateSetFalse}>
                   Tableau de bord
                 </LinkTextSecondary>
               </li>

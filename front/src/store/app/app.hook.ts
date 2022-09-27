@@ -17,4 +17,20 @@ export const appHook = {
 
     return menuPrimaryMobileActivate
   },
+
+  /**
+   * hook for look menu avatar is activate or not
+   * @returns boolean
+   */
+  useMenuUserAvatarActivate: () => {
+    const [menuUserAvatarActivate, setMenuUserAvatarActivate] = useState(false)
+
+    useEffect(() => {
+      appStore.menuUserAvatarActivate$.subscribe(value =>
+        setMenuUserAvatarActivate(value),
+      )
+    }, [])
+
+    return menuUserAvatarActivate
+  },
 }

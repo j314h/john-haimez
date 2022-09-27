@@ -3,10 +3,12 @@ import { BtnMenuMobile } from '@molecules/btn-menu-mobile'
 import { LinkBrandHeader } from '@molecules/link-brand-header'
 import { NavPrimary } from '@molecules/menu-primary'
 import MenuUserCurrent from '@molecules/menu-user-current'
+import { store } from '@store/store'
 import React from 'react'
 
 export function Header() {
-  // ! if user see to btn avatar
+  const userCurrent = store.user.useUserCurrent()
+
   return (
     <header
       className='
@@ -24,7 +26,7 @@ export function Header() {
       <BtnDarkMode />
 
       {/* menu avatar if user connected */}
-      <MenuUserCurrent />
+      {userCurrent.id ? <MenuUserCurrent /> : null}
 
       {/* btn menu mobile */}
       <BtnMenuMobile />

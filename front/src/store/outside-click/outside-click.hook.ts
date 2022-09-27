@@ -1,4 +1,4 @@
-import { appStore } from '@store/app/app.store'
+import { appService } from '@store/app/app.service'
 import { useEffect, useRef } from 'react'
 
 export const outsideClickHook = {
@@ -12,7 +12,8 @@ export const outsideClickHook = {
     // if click in main balise set observable toggleMenuMobile$
     const handleClickOutside = (e: { target: any }) => {
       if (myRef.current!.contains(e.target)) {
-        appStore.menuPrimaryMobileActivate$.next(false)
+        appService.menuPrimaryMobileActivateSetFalse()
+        appService.menuUserAvatarActivateSetFalse()
       }
     }
 

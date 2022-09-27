@@ -9,11 +9,13 @@ import React from 'react'
  * @returns
  */
 export function LinkBrandHeader({ addClass }: TlinkBrandHeader) {
+  const handlerClickLinkBrand = () => {
+    store.app.menuPrimaryMobileActivateSetFalse()
+    store.app.menuUserAvatarActivateSetFalse()
+  }
+
   return (
-    <LinkBrand
-      addClass={addClass}
-      link='/'
-      click={store.app.menuPrimaryMobileActivateSetFalse}>
+    <LinkBrand addClass={addClass} link='/' click={handlerClickLinkBrand}>
       <span>JH</span>
     </LinkBrand>
   )

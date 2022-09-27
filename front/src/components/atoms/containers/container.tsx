@@ -66,7 +66,12 @@ ${paddingLarge}
  * @param model: EmodelContainer
  * @returns
  */
-export default function Container({ children, model, addClass }: Tcontainer) {
+export default function Container({
+  children,
+  model,
+  addClass,
+  boxClass,
+}: Tcontainer) {
   return (
     <section
       className={`
@@ -82,6 +87,13 @@ export default function Container({ children, model, addClass }: Tcontainer) {
         ${model === EmodelContainer.xxxxxl ? xxxxxl : null}
         ${model === EmodelContainer.xxxxxxl ? xxxxxxl : null}
         ${addClass}
+        ${
+          boxClass ??
+          `drop-shadow-md
+          dark:drop-shadow-none
+          dark:border-2
+          dark:border-zinc-900`
+        }
         ${
           model === EmodelContainer.fit
             ? 'rounded-2xl md:rounded-3xl'

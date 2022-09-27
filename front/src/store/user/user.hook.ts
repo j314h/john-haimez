@@ -1,3 +1,4 @@
+import { Iuser } from '@types-app/models/user.model'
 import { useEffect, useState } from 'react'
 import { userService } from './user.service'
 import { userStore } from './user.store'
@@ -49,5 +50,19 @@ export const userHook = {
     }, [])
 
     return loader
+  },
+
+  /**
+   * hook for userCurrent
+   * @returns user
+   */
+  useUserCurrent: () => {
+    const [userCurrent, setUserCurrent] = useState({} as Iuser)
+
+    useEffect(() => {
+      userStore.userCurrent$.subscribe(value => setUserCurrent(value))
+    }, [])
+
+    return userCurrent
   },
 }

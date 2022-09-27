@@ -13,12 +13,13 @@ import React from 'react'
 export function BtnMenuMobile({ hidden }: TbtnMenuMobile) {
   const menuPrimaryMobileActivate = store.app.useMenuPrimaryMobileActivate()
 
+  const handlerClickBtnIcon = () => {
+    store.app.switchMenuPrimaryMobileActivate(menuPrimaryMobileActivate)
+    store.app.menuUserAvatarActivateSetFalse()
+  }
+
   return (
-    <BtnIcon
-      addClass={hidden ?? 'md:hidden'}
-      click={() =>
-        store.app.switchMenuPrimaryMobileActivate(menuPrimaryMobileActivate)
-      }>
+    <BtnIcon addClass={hidden ?? 'md:hidden'} click={handlerClickBtnIcon}>
       {menuPrimaryMobileActivate ? (
         <CrossIcon color='text-red-500' />
       ) : (

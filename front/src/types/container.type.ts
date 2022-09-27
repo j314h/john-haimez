@@ -24,4 +24,5 @@ export enum EmodelContainer {
 export type Tcontainer = TcomponentParent & {
   addClass?: string
   model: EmodelContainer
+  boxClass?: string
 }

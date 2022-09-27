@@ -15,6 +15,7 @@ export function BtnLogout({ children }: TcomponentParent) {
    */
   const handlerDisconnect = async () => {
     await store.user.logout()
+    store.app.menuUserAvatarActivateSetFalse()
     navigate('/login')
   }
 

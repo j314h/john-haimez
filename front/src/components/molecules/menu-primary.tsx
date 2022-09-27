@@ -8,15 +8,26 @@ import React from 'react'
 export function NavPrimary() {
   const menuPrimaryMobileActivate = store.app.useMenuPrimaryMobileActivate()
 
+  const handlerCLickLink = () => {
+    store.app.menuPrimaryMobileActivateSetFalse()
+    store.app.menuUserAvatarActivateSetFalse()
+  }
+
   return (
     <nav
       className={`
       ${menuPrimaryMobileActivate ? 'absolute' : 'hidden'}
       z-50
       top-16
-      py-10 px-4
+      py-6 px-4
       rounded-3xl
       w-11/12 mx-auto
+      md:drop-shadow-none
+      md:border-none
+      drop-shadow-md
+      dark:drop-shadow-none
+      dark:border-2
+      dark:border-zinc-900
       bg-fond2_claire
       dark:bg-fond2_dark
       md:block
@@ -29,9 +40,7 @@ export function NavPrimary() {
       `}>
       <ul className='flex flex-col md:flex-row'>
         <li>
-          <LinkTextPrimary
-            link='/projects'
-            click={store.app.menuPrimaryMobileActivateSetFalse}>
+          <LinkTextPrimary link='/projects' click={handlerCLickLink}>
             Projets
           </LinkTextPrimary>
         </li>
@@ -39,7 +48,7 @@ export function NavPrimary() {
           <LinkTextPrimary
             addClass='mt-4 md:mt-0'
             link='/contact'
-            click={store.app.menuPrimaryMobileActivateSetFalse}>
+            click={handlerCLickLink}>
             Contact
           </LinkTextPrimary>
         </li>

@@ -25,6 +25,28 @@ export const appService = {
   },
 
   /**
+   * toggle menu avatar
+   * @param value boolean
+   */
+  switchMenuUserAvatarActivate: (value: boolean) => {
+    appStore.menuUserAvatarActivate$.next(!value)
+  },
+
+  /**
+   * close menu avatar
+   */
+  menuUserAvatarActivateSetFalse: () => {
+    appStore.menuUserAvatarActivate$.next(false)
+  },
+
+  /**
+   * open menu avatar
+   */
+  menuUserAvatarActivateSetTrue: () => {
+    appStore.menuUserAvatarActivate$.next(true)
+  },
+
+  /**
    * create error for all observable
    * @param observable BehaviorSubject<string>
    * @param error any
