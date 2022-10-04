@@ -1,0 +1,25 @@
+.section-menu-side-open {
+  @apply md:w-64 w-16 fixed h-full
+  /* margin */
+  py-4 px-2
+
+  /* border */
+  rounded-tr-2xl
+
+  /* color */
+  bg-secondary
+  dark:bg-secondary-dark;
+}
+
+.section-menu-side-close {
+  @apply w-16 flex flex-col items-center fixed h-full
+    /* margin */
+    py-4 px-2
+
+    /* border */
+    rounded-tr-2xl
+  
+    /* color */
+    bg-secondary
+    dark:bg-secondary-dark;
+}

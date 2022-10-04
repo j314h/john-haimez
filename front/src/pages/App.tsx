@@ -6,7 +6,10 @@ import { TemplatePublic } from '@templates/template-public'
 import React, { useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import './App.css'
+import { CompetencePage } from './private/competence-page'
 import { DashboardPage } from './private/dashboard-page'
+import { ProfilePage } from './private/profile-page'
+import { SocialPage } from './private/social-page'
 import { ContactPage } from './public/contact-page'
 import ForgotPasswordPage from './public/forgot-password-page'
 import { HomePage } from './public/home-page'
@@ -36,6 +39,10 @@ export function App() {
       <Route element={<AuthGuard />}>
         <Route element={<TemplatePrivate />}>
           <Route path='/dashboard' element={<DashboardPage />} />
+          <Route path='/dashboard/profile' element={<ProfilePage />} />
+          <Route path='/dashboard/competence' element={<CompetencePage />} />
+          <Route path='/dashboard/project' element={<ProjectsPage />} />
+          <Route path='/dashboard/social' element={<SocialPage />} />
         </Route>
       </Route>
     </Routes>

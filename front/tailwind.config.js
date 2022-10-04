@@ -39,7 +39,7 @@ module.exports = {
         // input primary
         'input-primary-first': '1rem', // mobile
         'input-primary-second': '1rem', // tablette
-        'input-primary-third': '1.2rem', // pc
+        'input-primary-third': '1.1rem', // pc
 
         // btn primary
         'btn-primary-first': '1rem', // mobile

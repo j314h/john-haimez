@@ -37,9 +37,9 @@ export function LinkPrimary({
         case ElinkModel.ICON:
           return 'link-icon'
         case ElinkModel.PRI:
-          return 'link-primary'
+          return 'link-primary-app'
         case ElinkModel.SEC:
-          return 'link-secondary'
+          return 'link-secondary-app'
         case ElinkModel.TER:
           return 'link-tertiary'
         default:
