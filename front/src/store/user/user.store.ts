@@ -1,4 +1,4 @@
-import { Iuser } from '@types-app/models/user.model'
+import { Iuser } from '@store/user/user.model'
 import { BehaviorSubject } from 'rxjs'
 
 export const userStore = {

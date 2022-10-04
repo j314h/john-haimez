@@ -1,12 +1,13 @@
-import { ErrorText } from '@atoms/errors/error-text'
+import { ErrorText } from '@atoms/errors/error-text/error-text'
 import { LockIcon } from '@atoms/icons/lock-icon'
 import { UserIcon } from '@atoms/icons/user-icon'
-import { LinkText } from '@atoms/links/link-text'
+import { LinkPrimary } from '@atoms/links/link-primary/link-primary'
+import { ElinkModel } from '@atoms/links/link-primary/link-primary.type'
 import { store } from '@store/store'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { BtnForm } from './btn-form'
-import InputFull from './input-full'
+import { BtnForm } from './btn-form/btn-form'
+import { InputFull } from './input-full/input-full'
 
 /**
  * form connexion user
@@ -58,9 +59,12 @@ export function FormLogin() {
 
       {/* link forgot password */}
       <div className='flex justify-end mt-2 mb-2'>
-        <LinkText addClass='text-xs' link='/forgot-password'>
+        <LinkPrimary
+          model={ElinkModel.BASIC}
+          addClass='text-xs'
+          link='/forgot-password'>
           Mot de passe oublié
-        </LinkText>
+        </LinkPrimary>
       </div>
 
       {/* error text */}

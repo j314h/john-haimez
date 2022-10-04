@@ -1,4 +1,4 @@
-import { Iuser } from '@types-app/models/user.model'
+import { Iuser } from '@store/user/user.model'
 import { useEffect, useState } from 'react'
 import { userService } from './user.service'
 import { userStore } from './user.store'

@@ -1,4 +1,4 @@
-import { Ticon } from '@types-app/icon.type'
+import { Ticon } from './icon.type'
 import React from 'react'
 
 /**

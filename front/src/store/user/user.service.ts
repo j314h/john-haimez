@@ -1,9 +1,9 @@
+import { Eerror } from '@atoms/errors/error-text/error.type'
 import { http } from '@shared-app/http/http.instance'
 import { appService } from '@store/app/app.service'
 import { tokenService } from '@store/token/token.service'
-import { Eerror } from '@types-app/error.type'
-import { Ijwt } from '@types-app/models/jwt.model'
-import { Iuser, IuserLogout } from '@types-app/models/user.model'
+import { Ijwt } from '@store/jwt/jwt.model'
+import { Iuser, IuserLogout } from '@store/user/user.model'
 import { Eroute } from '@types-app/route.type'
 import { userStore } from './user.store'
 

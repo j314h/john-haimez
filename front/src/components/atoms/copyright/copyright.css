@@ -1,0 +1,10 @@
+.copyright {
+  @apply /* padding */
+    pt-4 pb-2 
+
+    /* text */
+    font-thin 
+    text-xs  
+    md:text-sm
+    text-center;
+}

@@ -1,4 +1,5 @@
-import { LinkTertiary } from '@atoms/links/link-tertiary'
+import { LinkPrimary } from '@atoms/links/link-primary/link-primary'
+import { ElinkModel } from '@atoms/links/link-primary/link-primary.type'
 import { store } from '@store/store'
 import React from 'react'
 
@@ -13,23 +14,31 @@ export function NavSecondary() {
     <nav ref={myRef}>
       <ul>
         <li>
-          <LinkTertiary link='/'>Accueil</LinkTertiary>
+          <LinkPrimary model={ElinkModel.TER} link='/'>
+            Accueil
+          </LinkPrimary>
         </li>
         <li>
-          <LinkTertiary link='/projects'>Projets</LinkTertiary>
+          <LinkPrimary model={ElinkModel.TER} link='/projects'>
+            Projets
+          </LinkPrimary>
         </li>
         <li>
-          <LinkTertiary link='/contact'>Contact</LinkTertiary>
+          <LinkPrimary model={ElinkModel.TER} link='/contact'>
+            Contact
+          </LinkPrimary>
         </li>
         {token !== '' ? null : (
           <li>
-            <LinkTertiary link='/login'>Connexion</LinkTertiary>
+            <LinkPrimary model={ElinkModel.TER} link='/login'>
+              Connexion
+            </LinkPrimary>
           </li>
         )}
         <li>
-          <LinkTertiary link='/conditions-generales'>
+          <LinkPrimary model={ElinkModel.TER} link='/conditions-generales'>
             Conditions générales
-          </LinkTertiary>
+          </LinkPrimary>
         </li>
       </ul>
     </nav>
