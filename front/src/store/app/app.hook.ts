@@ -33,4 +33,18 @@ export const appHook = {
 
     return menuUserAvatarActivate
   },
+
+  /**
+   * hook for state of menu side
+   * @returns boolean
+   */
+  useMenuSideActivate: () => {
+    const [menuSideActivate, setMenuSideActivate] = useState(false)
+
+    useEffect(() => {
+      appStore.menuSideActive$.subscribe(value => setMenuSideActivate(value))
+    })
+
+    return menuSideActivate
+  },
 }

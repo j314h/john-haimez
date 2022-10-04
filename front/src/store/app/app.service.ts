@@ -47,6 +47,27 @@ export const appService = {
   },
 
   /**
+   * switch toggle menu side
+   */
+  switchMenuSideActivate: (value: boolean) => {
+    appStore.menuSideActive$.next(!value)
+  },
+
+  /**
+   * close menu side
+   */
+  menuSideActivateFalse: () => {
+    appStore.menuSideActive$.next(false)
+  },
+
+  /**
+   * open menu side
+   */
+  menuSideActivateTrue: () => {
+    appStore.menuSideActive$.next(true)
+  },
+
+  /**
    * create error for all observable
    * @param observable BehaviorSubject<string>
    * @param error any

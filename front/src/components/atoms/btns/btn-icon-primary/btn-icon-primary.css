@@ -13,7 +13,7 @@
 }
 
 .btn-icon-primary-input-full {
-  @apply absolute right-3 top-2.5 md:top-3.5
+  @apply absolute right-3 top-2.5 md:top-3
   /* padding */
   p-0
 
