@@ -1,4 +1,4 @@
-import { Ttitle } from '@types-app/title.type'
+import { Ttitle } from './title.type'
 import React from 'react'
 
 /**

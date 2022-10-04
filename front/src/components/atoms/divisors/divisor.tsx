@@ -1,5 +1,6 @@
-import { Tdivisor } from '@types-app/divisor.type'
+import { EdivisorSize, Tdivisor } from './divisor.type'
 import React from 'react'
+import './divisor.css'
 
 /**
  * divisor
@@ -7,12 +8,14 @@ import React from 'react'
  * @param marginY defaultProps string;
  * @returns
  */
-export function Divisor({ color, marginY }: Tdivisor) {
+export function Divisor({ sizeModel = EdivisorSize.M }: Tdivisor) {
   return (
     <div
-      className={`h-0.5 
-        ${marginY ?? 'mt-2 mb-2'} mx-auto 
-        ${color ?? 'bg-divisor-bg'} w-11/12`}
+      className={`
+      ${sizeModel === EdivisorSize.S ? 'divisor-small' : null}
+      ${sizeModel === EdivisorSize.M ? 'divisor-normal' : null}
+      ${sizeModel === EdivisorSize.L ? 'divisor-large' : null}
+      `}
     />
   )
 }

@@ -9,37 +9,57 @@ module.exports = {
         styling: ['Rubik Distressed', 'cursive'],
       },
       colors: {
-        fond_claire: '#F5F5F5',
-        fond2_claire: '#ffffff',
-        fond_dark: '#141414',
-        fond2_dark: '#000000',
-        high: '#F54B02',
+        primary: '#F5F5F5',
+        'primary-dark': '#141414',
+        secondary: '#ffffff',
+        'secondary-dark': '#000000',
+        // tertiary: '#000000',
+        // 'tertiary-dark': '#000000',
         action: '#19A7FF',
-        'action-hover': '#0096F3',
-        'action-bg-hover': '#DDDDDD',
-        'action-bg-dark-hover': '#2F2F2F',
-        warning: '#FFB300',
+        'action-dark': '#19A7FF',
+        'action-move': '#0096F3',
+        // 'action-move-dark': '#000',
+        // 'action-secondary': '#DDDDDD',
+        // 'action-secondary-dark': '#2F2F2F',
+        'action-move-secondary': '#DDDDDD',
+        'action-move-secondary-dark': '#2F2F2F',
+        high: '#F54B02',
+        'high-dark': '#F54B02',
+        'high-move': '#F54B02',
+        'high-move-dark': '#F54B02',
         error: '#DF0000',
-
-        // divisor
+        'error-dark': '#DF0000',
+        success: '#0BD600',
+        'success-dark': '#0BD600',
+        warning: '#FFB300',
+        'warning-dark': '#FFB300',
         'divisor-bg': '#848484',
-
-        // input
-        'input-bg': '#F5F5F5',
-        'input-dark-bg': '#141414',
-        'input-border-focus': '#70C3FF',
-        'input-color-text': '#000000',
-        'input-dark-color-text': '#ffffff',
-        'input-icon-color': '#F54B02',
-        'input-icon-dark-color': '#F54B02',
-        'btn-reset-input-color': '#000000',
-        'btn-reset-input-dark-color': '#ffffff',
-        'btn-reset-input-hover-color': '#EB0000',
-        'btn-reset-input-hover-dark-color': '#EB0000',
       },
       fontSize: {
-        // input
-        'input-size-text': '1rem',
+        // input primary
+        'input-primary-first': '1rem', // mobile
+        'input-primary-second': '1rem', // tablette
+        'input-primary-third': '1.2rem', // pc
+
+        // btn primary
+        'btn-primary-first': '1rem', // mobile
+        'btn-primary-second': '1rem', // tablette
+        'btn-primary-third': '1.2rem', // pc
+
+        // btn text primary
+        'btn-text-primary-first': '1rem', // mobile
+        'btn-text-primary-second': '1rem', // tablette
+        'btn-text-primary-third': '1rem', // pc
+
+        // link text primary
+        'link-text-primary-first': '1rem', // mobile
+        'link-text-primary-second': '1rem', // tablette
+        'link-text-primary-third': '1rem', // pc
+
+        // link primary
+        'link-primary-first': '1rem', // mobile
+        'link-primary-second': '1rem', // tablette
+        'link-primary-third': '1rem', // pc
       },
     },
   },

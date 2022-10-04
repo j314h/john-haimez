@@ -1,4 +1,5 @@
-import { LinkTextPrimary } from '@atoms/links/link-text-primary'
+import { LinkPrimary } from '@atoms/links/link-primary/link-primary'
+import { ElinkModel } from '@atoms/links/link-primary/link-primary.type'
 import { store } from '@store/store'
 import React from 'react'
 
@@ -28,8 +29,8 @@ export function NavPrimary() {
       dark:drop-shadow-none
       dark:border-2
       dark:border-zinc-900
-      bg-fond2_claire
-      dark:bg-fond2_dark
+      bg-secondary
+      dark:bg-secondary-dark
       md:block
       md:static
       md:rounded-none
@@ -40,17 +41,21 @@ export function NavPrimary() {
       `}>
       <ul className='flex flex-col md:flex-row'>
         <li>
-          <LinkTextPrimary link='/projects' click={handlerCLickLink}>
+          <LinkPrimary
+            model={ElinkModel.PRI}
+            link='/projects'
+            click={handlerCLickLink}>
             Projets
-          </LinkTextPrimary>
+          </LinkPrimary>
         </li>
         <li>
-          <LinkTextPrimary
+          <LinkPrimary
+            model={ElinkModel.PRI}
             addClass='mt-4 md:mt-0'
             link='/contact'
             click={handlerCLickLink}>
             Contact
-          </LinkTextPrimary>
+          </LinkPrimary>
         </li>
       </ul>
     </nav>

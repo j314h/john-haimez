@@ -1,4 +1,4 @@
-import { BtnIcon } from '@atoms/btns/btn-icon'
+import { BtnIconPrimary } from '@atoms/btns/btn-icon-primary/btn-icon-primary'
 import { CrossIcon } from '@atoms/icons/cross-icon'
 import { store } from '@store/store'
 import React from 'react'
@@ -12,7 +12,7 @@ export function BtnUserAvatar() {
   }
 
   return (
-    <BtnIcon click={handlerClickBtnIcon}>
+    <BtnIconPrimary click={handlerClickBtnIcon}>
       {stateMenuAvatar ? (
         <CrossIcon size='w-7 h-7' color='text-error' />
       ) : (
@@ -22,6 +22,6 @@ export function BtnUserAvatar() {
           src='https://ui-avatars.com/api/?bold=true&rounded=true&uppercase=true&name=A&font-size=0.5&background=19A7FF&color=ffffff'
         />
       )}
-    </BtnIcon>
+    </BtnIconPrimary>
   )
 }

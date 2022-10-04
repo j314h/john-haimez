@@ -1,5 +1,5 @@
 import React from 'react'
-import { Ticon } from '@types-app/icon.type'
+import { Ticon } from './icon.type'
 
 /**
  * pencil

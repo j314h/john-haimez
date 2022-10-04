@@ -1,4 +1,4 @@
-import { Header } from '@organisms/header'
+import { Header } from '@organisms/header/header'
 import { store } from '@store/store'
 import React from 'react'
 import { Outlet } from 'react-router-dom'

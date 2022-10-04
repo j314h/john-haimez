@@ -1,4 +1,4 @@
-import { BtnIcon } from '@atoms/btns/btn-icon'
+import { BtnIconPrimary } from '@atoms/btns/btn-icon-primary/btn-icon-primary'
 import { MoonIcon } from '@atoms/icons/moon-icon'
 import { SunIcon } from '@atoms/icons/sun-icon'
 import { store } from '@store/store'
@@ -11,11 +11,11 @@ export function BtnDarkMode() {
   const darkModeActivate = store.darkmode.useDarkModeActivate()
 
   return (
-    <BtnIcon
+    <BtnIconPrimary
       click={() => {
         store.darkmode.switchDarkMode(darkModeActivate)
       }}>
       {darkModeActivate ? <SunIcon /> : <MoonIcon />}
-    </BtnIcon>
+    </BtnIconPrimary>
   )
 }
