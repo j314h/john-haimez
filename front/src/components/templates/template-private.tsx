@@ -13,7 +13,7 @@ export default function TemplatePrivate() {
         ref={myRef}
         className='
         flex-1 px-4 py-8
-        bg-fond_claire dark:bg-fond_dark
+        bg-primary dark:bg-primary-dark
         text-black dark:text-white'>
         <Outlet />
       </main>

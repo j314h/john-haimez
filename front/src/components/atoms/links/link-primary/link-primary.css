@@ -1,4 +1,4 @@
-.link-primary {
+.link-primary-app {
   @apply flex items-center
     py-2 px-2 pl-4
     rounded-full
@@ -75,7 +75,7 @@
     py-2
     text-high;
 }
-.link-secondary {
+.link-secondary-app {
   @apply flex items-center
     py-2 px-2 pl-4
     rounded-full
