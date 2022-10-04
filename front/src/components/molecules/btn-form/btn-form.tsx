@@ -12,7 +12,7 @@ import { TbtnForm } from './btn-form.type'
 export function BtnForm({ children, loading }: TbtnForm) {
   return (
     <BtnPrimary submit>
-      {loading ? <SpinnerCircle size='w-3 h-3 md:w-5 md:h-5 mr-2' /> : <div />}
+      {loading ? <SpinnerCircle size='w-3 h-3 md:w-4 md:h-4 mr-2' /> : <div />}
       <span>{children}</span>
     </BtnPrimary>
   )
