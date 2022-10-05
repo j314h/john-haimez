@@ -7,6 +7,9 @@ import { darkModeStore } from './darkmode/darkmode.store'
 import { outsideClickHook } from './outside-click/outside-click.hook'
 import { outsideClickService } from './outside-click/outside-click.service'
 import { outsideClickStore } from './outside-click/outside-click.store'
+import { settingHook } from './setting/setting.hook'
+import { settingService } from './setting/setting.service'
+import { settingStore } from './setting/setting.store'
 import { tokenHook } from './token/token.hook'
 import { tokenService } from './token/token.service'
 import { tokenStore } from './token/token.store'
@@ -39,5 +42,10 @@ export const store = {
     ...userStore,
     ...userService,
     ...userHook,
+  },
+  setting: {
+    ...settingStore,
+    ...settingService,
+    ...settingHook,
   },
 }

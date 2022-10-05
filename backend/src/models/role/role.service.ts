@@ -26,12 +26,12 @@ export class RoleService {
    * @param createRoleDto CreateRoleDto
    * @returns role
    */
-  create(createRoleDto: CreateRoleDto) {
+  async create(createRoleDto: CreateRoleDto) {
     try {
       this.logger.log('Function create : start');
 
       // create role
-      const role = this.roleModel.save(createRoleDto);
+      const role = await this.roleModel.save(createRoleDto);
 
       this.logger.log('Function create : end');
       return role;
