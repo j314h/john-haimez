@@ -2,6 +2,13 @@
  * interface for model setting
  */
 export interface Isetting {
-  id?: string
+  id?: number
   copyright: string
+}
+
+/**
+ * type for response get setting
+ */
+export type TsettingResponse = {
+  data: Isetting
 }

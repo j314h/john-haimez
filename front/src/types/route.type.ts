@@ -2,7 +2,6 @@
  * enum has all route of app
  */
 export enum Eroute {
-  URL_EVENT = 'http://localhost:5000/api/v1/',
   // user
   USER_GET_POST = 'user',
   USER_GET_PATCH_DELETE = 'user/',
@@ -18,7 +17,14 @@ export enum Eroute {
   AUTH_VERIFIED = 'auth/verified',
 
   // setting
-  SETTING_SSE = 'setting/first/sse',
-  SETTING_GET = 'setting/first',
-  SETTING_POS_PAT_DEL = 'setting/',
+  SETTING_POS_PAT_DEL = 'setting',
+}
+
+/**
+ * interface for call api for model has a SSE
+ */
+export interface IresponseCallApi {
+  created?: boolean
+  updated?: boolean
+  deleted?: boolean
 }
