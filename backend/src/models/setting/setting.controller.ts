@@ -1,49 +1,53 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
-  Sse,
-  MessageEvent,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
 } from '@nestjs/common';
-import { SettingService } from './setting.service';
+import { JwtGuard } from '../auth/guard/jwt.guard';
 import { CreateSettingDto } from './dto/create-setting.dto';
 import { UpdateSettingDto } from './dto/update-setting.dto';
-import { BehaviorSubject, interval, map, Observable } from 'rxjs';
-import { Setting } from './entities/setting.entity';
+import { SettingGateway } from './setting.gateway';
+import { SettingService } from './setting.service';
 
 @Controller('setting')
 export class SettingController {
-  constructor(private readonly settingService: SettingService) {}
+  constructor(
+    private readonly settingService: SettingService,
+    private readonly settingGateway: SettingGateway,
+  ) {}
 
-  // SSE
-  @Sse('first/sse')
-  findFirstSse(): Observable<MessageEvent> {
-    return this.settingService
-      .subSetting()
-      .pipe(map((value) => ({ data: { ...value } } as MessageEvent)));
+  @Get('')
+  async findFirst() {
+    const setting = await this.settingService.findFirst();
+    this.settingGateway.server.emit('settingServer', { ...setting });
   }
 
-  @Get('first')
-  findFirst() {
-    this.settingService.findFirst();
+  @UseGuards(JwtGuard)
+  @Post('')
+  async create(@Body() createSettingDto: CreateSettingDto) {
+    const setting = await this.settingService.create(createSettingDto);
+    this.settingGateway.server.emit('settingServer', { ...setting });
   }
 
-  @Post()
-  create(@Body() createSettingDto: CreateSettingDto) {
-    return this.settingService.create(createSettingDto);
-  }
-
+  @UseGuards(JwtGuard)
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateSettingDto: UpdateSettingDto) {
-    this.settingService.update(id, updateSettingDto);
+  async update(
+    @Param('id') id: number,
+    @Body() updateSettingDto: UpdateSettingDto,
+  ) {
+    const setting = await this.settingService.update(id, updateSettingDto);
+    this.settingGateway.server.emit('settingServer', { ...setting });
   }
 
+  @UseGuards(JwtGuard)
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    this.settingService.remove(id);
+  async remove(@Param('id') id: number) {
+    const setting = await this.settingService.remove(id);
+    this.settingGateway.server.emit('settingServer', setting);
   }
 }

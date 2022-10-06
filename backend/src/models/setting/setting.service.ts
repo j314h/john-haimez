@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BehaviorSubject, map } from 'rxjs';
 import { config } from 'src/config/config';
 import { Repository } from 'typeorm';
 import { CreateSettingDto } from './dto/create-setting.dto';
@@ -14,43 +13,71 @@ export class SettingService {
     private settingModel: Repository<Setting>,
   ) {}
 
-  public setting$ = new BehaviorSubject<Setting>({} as Setting);
-
-  subSetting() {
-    return this.setting$;
-  }
+  // log
+  private logger: Logger = new Logger('Setting Service');
 
   async findFirst() {
-    const settings = await this.settingModel.find();
-    this.setting$.next({ ...settings[0] });
+    try {
+      this.logger.log('Function findFirst : start');
+      const settings = await this.settingModel.find();
+      this.logger.log('Function findFirst : end');
+      return settings[0];
+    } catch (error) {
+      this.logger.log('Function findFirst : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
   }
 
   async create(createSettingDto: CreateSettingDto) {
-    const settings = await this.settingModel.find();
-    if (settings.length === 0) {
-      const setting = await this.settingModel.save(createSettingDto);
-      this.setting$.next({ ...setting });
-      return { created: true };
+    try {
+      this.logger.log('Function create : start');
+      const res = await this.settingModel.save(createSettingDto);
+      if (!res) {
+        this.logger.log('Function create : error try');
+        throw new Error('Erreur de création');
+      }
+      const settings = await this.settingModel.find();
+      this.logger.log('Function create : end');
+      return settings[0];
+    } catch (error) {
+      this.logger.log('Function create : error');
+      throw new BadRequestException(config.errorBad(error.message));
     }
-    return { created: false };
   }
 
   async update(id: number, updateSettingDto: UpdateSettingDto) {
-    const res = await this.settingModel.update(id, updateSettingDto);
-    if (res) {
-      const setting = await this.settingModel.findOne({ where: { id: id } });
-      this.setting$.next({ ...setting });
-      return { updated: true };
+    try {
+      this.logger.log('Function update : start');
+      const res = await this.settingModel.update(id, updateSettingDto);
+      if (!res) {
+        this.logger.log('Function update : error try');
+        throw new Error('Erreur de modification');
+      }
+      const settings = await this.settingModel.find();
+      this.logger.log('Function update : end');
+      return settings[0];
+    } catch (error) {
+      this.logger.log('Function update : error');
+      throw new BadRequestException(config.errorBad(error.message));
     }
-    return { updated: false };
   }
 
   async remove(id: number) {
-    const res = await this.settingModel.delete(id);
-    if (res) {
-      this.setting$.next({} as Setting);
-      return { delete: true };
+    try {
+      this.logger.log('Function remove : start');
+      const res = await this.settingModel.delete(id);
+      if (!res) {
+        this.logger.log('Function remove : error try');
+        throw new Error('Erreur de suppression');
+      }
+      const settings = await this.settingModel.find();
+      if (settings.length === 0) {
+        this.logger.log('Function remove : end');
+        return null;
+      }
+    } catch (error) {
+      this.logger.log('Function remove : error');
+      throw new BadRequestException(config.errorBad(error.message));
     }
-    return { delete: false };
   }
 }
