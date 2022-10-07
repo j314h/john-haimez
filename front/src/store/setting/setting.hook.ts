@@ -21,7 +21,7 @@ export const settingHook = {
       }
 
       socket.on('settingServer', (setting: Isetting) => {
-        console.log('ON', setting)
+        console.log('ON Setting', setting)
         if (setting.id) {
           setSetting({ ...setting })
           setValueCopyright(setting.copyright)

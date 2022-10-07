@@ -4,11 +4,6 @@ import { Isetting } from './setting.model'
 
 export const settingStore = {
   /**
-   * observable for model one setting
-   */
-  setting$: new BehaviorSubject({} as Isetting),
-
-  /**
    * load for get setting
    */
   settingLoading$: new BehaviorSubject<boolean>(false),

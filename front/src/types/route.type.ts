@@ -17,13 +17,16 @@ export enum Eroute {
   AUTH_VERIFIED = 'auth/verified',
 
   // setting
-  SETTING_POS_PAT_DEL = 'setting',
+  SETTING_GET_POS_PAT_DEL = 'setting',
 }
 
 /**
  * interface for call api for model has a SSE
  */
 export interface IresponseCallApi {
+  findFirst: boolean
+  findAll: boolean
+  findOne: boolean
   created?: boolean
   updated?: boolean
   deleted?: boolean

@@ -31,6 +31,10 @@ export class SettingService {
   async create(createSettingDto: CreateSettingDto) {
     try {
       this.logger.log('Function create : start');
+      const settingsAll = await this.settingModel.find();
+      if (settingsAll.length > 0) {
+        throw new Error('Erreur de creation des règlages');
+      }
       const res = await this.settingModel.save(createSettingDto);
       if (!res) {
         this.logger.log('Function create : error try');

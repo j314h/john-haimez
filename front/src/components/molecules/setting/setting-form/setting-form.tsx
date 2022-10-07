@@ -6,23 +6,31 @@ import { T4 } from '@atoms/titles/t4'
 import { BtnForm } from '@molecules/btn-form/btn-form'
 import { InputFull } from '@molecules/input-full/input-full'
 import { store } from '@store/store'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 export function SettingForm() {
   const { setting, error, loading, valueCopyright, setValueCopyright } =
     store.setting.useSetting()
 
+  /**
+   * create or update setting
+   * @param e event
+   */
   const handlerFormSetting = async (e: React.FormEvent) => {
+    store.setting.activeLoading()
     e.preventDefault()
     if (setting.id) {
       await store.setting.update(setting.id!, { copyright: valueCopyright })
     } else {
       await store.setting.create({ copyright: valueCopyright })
     }
+    store.setting.disabledLoading()
   }
 
   const handlerClickDeleteSetting = async () => {
+    store.setting.activeLoading()
     await store.setting.delete(setting.id!)
+    store.setting.disabledLoading()
   }
 
   return (
@@ -56,7 +64,7 @@ export function SettingForm() {
         </div>
 
         {/* error form */}
-        <ErrorText position='text-center sm:text-left'>
+        <ErrorText position='text-center sm:text-left mb-4'>
           {error.message}
         </ErrorText>
 

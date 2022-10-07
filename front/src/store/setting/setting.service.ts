@@ -6,9 +6,17 @@ import { Isetting } from './setting.model'
 import { settingStore } from './setting.store'
 
 export const settingService = {
+  /**
+   * get one first setting
+   */
   findFirst: async () => {
     try {
-      await http.get(Eroute.SETTING_POS_PAT_DEL)
+      const res = await http.get<IresponseCallApi>(
+        Eroute.SETTING_GET_POS_PAT_DEL,
+      )
+      if (res.data.findFirst) {
+        // * action other not obligatory
+      }
     } catch (error) {
       appService.errorMessage(
         settingStore.settingError$,
@@ -19,14 +27,19 @@ export const settingService = {
       settingStore.settingLoading$.next(false)
     }
   },
+
   /**
    * create setting
    */
   create: async (data: Isetting) => {
     try {
-      settingStore.settingLoading$.next(true)
-      await http.post<IresponseCallApi>(Eroute.SETTING_POS_PAT_DEL, data)
-      settingStore.settingLoading$.next(false)
+      const res = await http.post<IresponseCallApi>(
+        Eroute.SETTING_GET_POS_PAT_DEL,
+        data,
+      )
+      if (res.data.created) {
+        // ! add toastify
+      }
     } catch (error) {
       appService.errorMessage(
         settingStore.settingError$,
@@ -43,9 +56,13 @@ export const settingService = {
    */
   update: async (id: number, data: Isetting) => {
     try {
-      settingStore.settingLoading$.next(true)
-      await http.patch(`${Eroute.SETTING_POS_PAT_DEL}/${id}`, data)
-      settingStore.settingLoading$.next(false)
+      const res = await http.patch<IresponseCallApi>(
+        `${Eroute.SETTING_GET_POS_PAT_DEL}/${id}`,
+        data,
+      )
+      if (res.data.updated) {
+        // ! add toastify
+      }
     } catch (error) {
       appService.errorMessage(
         settingStore.settingError$,
@@ -62,9 +79,12 @@ export const settingService = {
    */
   delete: async (id: number) => {
     try {
-      settingStore.settingLoading$.next(true)
-      await http.delete(`${Eroute.SETTING_POS_PAT_DEL}/${id}`)
-      settingStore.settingLoading$.next(false)
+      const res = await http.delete<IresponseCallApi>(
+        `${Eroute.SETTING_GET_POS_PAT_DEL}/${id}`,
+      )
+      if (res.data.deleted) {
+        // ! add toastify
+      }
     } catch (error) {
       appService.errorMessage(
         settingStore.settingError$,
@@ -74,6 +94,20 @@ export const settingService = {
       )
       settingStore.settingLoading$.next(false)
     }
+  },
+
+  /**
+   * active loading for create update setting
+   */
+  activeLoading: () => {
+    settingStore.settingLoading$.next(true)
+  },
+
+  /**
+   * disabled loading for create update setting
+   */
+  disabledLoading: () => {
+    settingStore.settingLoading$.next(false)
   },
 
   /**
