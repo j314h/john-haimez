@@ -1,0 +1,23 @@
+.btn-icon-primary {
+  @apply flex items-center justify-center
+
+    /* border */
+    rounded-full
+
+    /* padding */
+    p-2
+
+    /* color */
+    hover:bg-action-move-secondary
+    dark:hover:bg-action-move-secondary-dark;
+}
+
+.btn-icon-primary-input-full {
+  @apply absolute right-3 top-2.5 md:top-3
+  /* padding */
+  p-0
+
+  /* color */
+  hover:bg-transparent
+  dark:hover:bg-transparent;
+}

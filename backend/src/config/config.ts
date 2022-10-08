@@ -1,6 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { Auth } from 'src/models/auth/entities/auth.entity';
 import { Role } from 'src/models/role/entities/role.entity';
+import { Setting } from 'src/models/setting/entities/setting.entity';
 import { User } from 'src/models/user/entities/user.entity';
 import { IConfig, TEnvironment } from './config.type';
 
@@ -19,7 +20,7 @@ export const config: IConfig = {
       username: process.env.DB_USER,
       password: process.env.DB_PW,
       database: process.env.DB_NAME,
-      entities: [User, Role, Auth],
+      entities: [User, Role, Auth, Setting],
       synchronize: true,
       autoLoadEntities: true,
     };

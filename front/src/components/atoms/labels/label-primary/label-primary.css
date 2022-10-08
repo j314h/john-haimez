@@ -1,0 +1,10 @@
+.label-primary {
+  @apply block 
+    /* margin */
+    mb-2
+
+    /* text */
+    text-sm 
+    md:text-lg
+    font-medium;
+}

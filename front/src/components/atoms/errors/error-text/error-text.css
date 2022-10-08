@@ -1,0 +1,11 @@
+.error-text {
+  @apply /* padding */
+    p-2 
+    
+    /* text */
+    font-medium
+    text-xs 
+    
+    /* color */
+    text-error;
+}

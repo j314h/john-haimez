@@ -1,0 +1,8 @@
+.header-app {
+  @apply flex flex-nowrap md:justify-between items-center
+    mx-auto w-full
+    px-4 py-4 md:px-20 md:py-8
+    text-black dark:text-white
+    bg-primary
+    dark:bg-primary-dark;
+}
