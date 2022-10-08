@@ -3,6 +3,7 @@ import { ErrorText } from '@atoms/errors/error-text/error-text'
 import { TrashIcon } from '@atoms/icons/trash-icon'
 import { LabelPrimary } from '@atoms/labels/label-primary/label-primary'
 import { T4 } from '@atoms/titles/t4'
+import { T5 } from '@atoms/titles/t5'
 import { BtnForm } from '@molecules/btn-form/btn-form'
 import { InputFull } from '@molecules/input-full/input-full'
 import { store } from '@store/store'
@@ -36,8 +37,10 @@ export function SettingForm() {
   return (
     <section>
       {/* title */}
-      <T4 addClass='flex items-center'>
-        <span className='mr-2'>Créer - Modifier settings</span>
+      <T5 addClass='flex items-center'>
+        <span className='mr-2'>
+          {setting ? `${setting.id ? 'Modifier' : 'Créer'} vos règlages` : null}
+        </span>
         {setting.id ? (
           <BtnIconPrimary click={handlerClickDeleteSetting}>
             <TrashIcon size='w-5 h-5' color='text-error' />
@@ -45,7 +48,7 @@ export function SettingForm() {
         ) : (
           <div></div>
         )}
-      </T4>
+      </T5>
 
       {/* form */}
       <form onSubmit={handlerFormSetting}>

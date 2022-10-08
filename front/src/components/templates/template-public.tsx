@@ -3,6 +3,8 @@ import { Header } from '@organisms/header/header'
 import { store } from '@store/store'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export function TemplatePublic() {
   const { myRef } = store.outsideClick.useOutSideClick()
@@ -19,6 +21,7 @@ export function TemplatePublic() {
         <Outlet />
       </main>
       <Footer />
+      <ToastContainer />
     </>
   )
 }

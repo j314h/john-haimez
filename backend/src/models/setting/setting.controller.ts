@@ -57,6 +57,6 @@ export class SettingController {
   async remove(@Param('id') id: number) {
     const setting = await this.settingService.remove(id);
     this.settingGateway.server.emit('settingServer', {});
-    return { delete: true };
+    return { deleted: true };
   }
 }

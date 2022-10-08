@@ -2,6 +2,8 @@ import { Eerror, Terror } from '@atoms/errors/error-text/error.type'
 import { http } from '@shared-app/http/http.instance'
 import { appService } from '@store/app/app.service'
 import { Eroute, IresponseCallApi } from '@types-app/route.type'
+import { Etoast } from '@types-app/toast.type'
+import { toast } from 'react-toastify'
 import { Isetting } from './setting.model'
 import { settingStore } from './setting.store'
 
@@ -38,7 +40,7 @@ export const settingService = {
         data,
       )
       if (res.data.created) {
-        // ! add toastify
+        toast.success(Etoast.SETTING_CREATE_SUCCESS)
       }
     } catch (error) {
       appService.errorMessage(
@@ -61,7 +63,7 @@ export const settingService = {
         data,
       )
       if (res.data.updated) {
-        // ! add toastify
+        toast.success(Etoast.SETTING_UPDATE_SUCCESS)
       }
     } catch (error) {
       appService.errorMessage(
@@ -83,7 +85,7 @@ export const settingService = {
         `${Eroute.SETTING_GET_POS_PAT_DEL}/${id}`,
       )
       if (res.data.deleted) {
-        // ! add toastify
+        toast.success(Etoast.SETTING_DELETE_SUCCESS)
       }
     } catch (error) {
       appService.errorMessage(
