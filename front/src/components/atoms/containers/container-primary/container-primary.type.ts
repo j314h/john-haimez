@@ -16,7 +16,7 @@ export enum EmodelContainer {
 }
 
 export type TcontainerPrimary = {
-  children: JSX.Element | JSX.Element[] | string | string[]
+  children: any
   model: EmodelContainer
   addClass?: string
   boxClass?: string

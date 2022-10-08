@@ -28,8 +28,8 @@ export function FormLogin() {
    */
   const handlerSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await store.user.login(valueEmail, valuePassword)
-    navigate('/dashboard')
+    const res = await store.user.login(valueEmail, valuePassword)
+    if (res) navigate('/dashboard')
   }
 
   return (
@@ -71,7 +71,7 @@ export function FormLogin() {
       <ErrorText position='text-center sm:text-left'>{error}</ErrorText>
 
       {/* btn form */}
-      <div className='flex justify-end mt-4'>
+      <div className='flex justify-end mt-8'>
         <BtnForm loading={loginLoader}>Se connecter</BtnForm>
       </div>
     </form>

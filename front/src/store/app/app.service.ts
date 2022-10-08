@@ -74,14 +74,18 @@ export const appService = {
    * @param value? string
    */
   errorMessage: (
-    observable: BehaviorSubject<string>,
+    observable: BehaviorSubject<any>,
     error: any,
     value?: string,
+    nameInput?: string[],
   ) => {
     if (error instanceof AxiosError) {
       const { message, statusCode } = error.response?.data
       if (statusCode !== 200 || statusCode !== 201) {
-        observable.next(value ?? message)
+        observable.next({
+          message: value ?? message,
+          nameInput: nameInput ?? [],
+        })
       }
     }
   },

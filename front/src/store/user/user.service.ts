@@ -51,9 +51,11 @@ export const userService = {
       }
 
       userStore.loginLoading$.next(false)
+      return true
     } catch (error) {
       appService.errorMessage(userStore.loginError$, error, Eerror.LOGIN)
       userStore.loginLoading$.next(false)
+      return false
     }
   },
 

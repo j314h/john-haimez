@@ -102,7 +102,7 @@ export function InputFull({
             ? 'pr-12 py-2 pl-4'
             : icon
             ? 'pr-4 py-2 pl-12'
-            : ''
+            : 'pr-4 py-2 pl-4'
         }
       />
     </div>
