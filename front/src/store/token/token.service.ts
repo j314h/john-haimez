@@ -1,6 +1,6 @@
 import { http } from '@shared-app/http/http.instance'
 import { userService } from '@store/user/user.service'
-import { IjwtVerified } from '@store/jwt/jwt.model'
+import { IjwtVerified } from '@types-app/jwt.model'
 import { Eroute } from '@types-app/route.type'
 import { tokenStore } from './token.store'
 

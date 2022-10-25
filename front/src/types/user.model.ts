@@ -1,4 +1,4 @@
-import { Irole } from '../role/role.model'
+import { Irole } from './role.model'
 
 /**
  * interface for user
@@ -8,7 +8,7 @@ export interface Iuser {
   name?: string
   email?: string
   roleId?: number
-  role: Irole
+  role?: Irole
 }
 
 /**

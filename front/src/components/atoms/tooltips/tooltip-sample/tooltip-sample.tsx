@@ -12,10 +12,11 @@ export function TooltipBasic({
   children,
   dataTip,
   positionTip,
+  addClass,
 }: TtooltipSample) {
   return (
     <div
-      className={`${dataTip ? `tooltip ${positionTip}` : null}`}
+      className={`${dataTip ? `tooltip ${positionTip} ${addClass}` : null}`}
       data-tip={dataTip}>
       {children}
     </div>

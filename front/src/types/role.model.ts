@@ -1,4 +1,4 @@
-import { Iuser } from '../user/user.model'
+import { Iuser } from './user.model'
 
 /**
  * intreface for role

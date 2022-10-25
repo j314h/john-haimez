@@ -1,3 +1,6 @@
+import { profilUserHook } from '@store/profil-user/profil-user.hook'
+import { profilUserService } from '@store/profil-user/profil-user.service'
+import { profilUserStore } from '@store/profil-user/profil-user.store'
 import { appHook } from './app/app.hook'
 import { appService } from './app/app.service'
 import { appStore } from './app/app.store'
@@ -47,5 +50,10 @@ export const store = {
     ...settingStore,
     ...settingService,
     ...settingHook,
+  },
+  profilUser: {
+    ...profilUserStore,
+    ...profilUserService,
+    ...profilUserHook,
   },
 }

@@ -11,6 +11,9 @@ import { config } from 'src/config/config';
 import { Auth } from './entities/auth.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { User } from '../user/entities/user.entity';
+import { UserUpdateDto } from './dto/auth-user-update.dto';
+import { UserPasswordUpdateDto } from './dto/auth-user-password-update.dto';
 
 @Injectable()
 export class AuthService {
@@ -150,6 +153,47 @@ export class AuthService {
       }
     } catch (error) {
       this.logger.log('Function logout : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
+  }
+
+  /**
+   * update name or email of user
+   * @param user User
+   * @param userUpdateDto UserUpdateDto
+   */
+  async updateUserCurrent(user: User, userUpdateDto: UserUpdateDto) {
+    try {
+      this.logger.log('Function updateUserCurrent : start');
+      const res = await this.userService.update(user.id, userUpdateDto);
+      if (res) {
+        const userUpdated = await this.userService.findOne(user.id);
+        this.logger.log('Function updateUserCurrent : end');
+        return userUpdated;
+      }
+      this.logger.log('Function updateUserCurrent : if error end');
+    } catch (error) {
+      this.logger.log('Function updateUserCurrent : error');
+      throw new BadRequestException(config.errorBad(error.message));
+    }
+  }
+
+  /**
+   * update password user current
+   */
+  async updatePasswordUserCurrent(
+    user: User,
+    userPasswordUpdateDto: UserPasswordUpdateDto,
+  ) {
+    try {
+      this.logger.log('Function updatePasswordUserCurrent : start');
+      // test if newpassword and confirmnewpassword
+      // test if password corresponding to password in database
+      // hash new password
+      // 
+      this.logger.log('Function updatePasswordUserCurrent : end');
+    } catch (error) {
+      this.logger.log('Function updatePasswordUserCurrent : error');
       throw new BadRequestException(config.errorBad(error.message));
     }
   }
