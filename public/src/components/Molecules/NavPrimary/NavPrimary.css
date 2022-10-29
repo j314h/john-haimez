@@ -1,13 +1,15 @@
 .nav-primary {
   @apply absolute sm:static
   top-16 left-0
-  w-full sm:w-fit
-  bg-sec dark:bg-sec-d sm:bg-transparent sm:dark:bg-transparent
-  px-2 py-4 sm:px-0 sm:py-0;
+  px-2 sm:px-0
+  w-full sm:w-fit;
 }
 
 .list-nav-primary {
   @apply flex flex-col justify-center
+  rounded-3xl sm:rounded-none
+  bg-sec dark:bg-sec-d sm:bg-transparent sm:dark:bg-transparent
+  px-2 py-4 sm:px-0 sm:py-0
   
   /* mode tablette - pc */
   sm:flex-row sm:items-center sm:justify-start;
