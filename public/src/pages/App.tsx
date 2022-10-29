@@ -4,6 +4,7 @@ import { TemplatePrivate } from '../templates/TemplatePrivate/TemplatePrivate'
 import { TemplatePublic } from '../templates/TemplatePublic/TemplatePublic'
 import { DashboardPage } from './private/Dashboard/DashboardPage'
 import { HomePage } from './public/HomePage/HomePage'
+import { LoginPage } from './public/LoginPage/LoginPage'
 
 export const App: Component = () => {
   return (
@@ -14,6 +15,7 @@ export const App: Component = () => {
         </Route>
         <Route path='/' component={TemplatePublic}>
           <Route path='/' component={HomePage} />
+          <Route path='/login' component={LoginPage} />
         </Route>
       </Routes>
     </>

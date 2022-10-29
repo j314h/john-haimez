@@ -1,17 +1,17 @@
-import { A } from '@solidjs/router'
 import { Component } from 'solid-js'
+import { LinkBrand } from '../../Atoms/Links/LinkBrand/LinkBrand'
+import './Header.css'
 
 export const Header: Component = () => {
   return (
-    <header>
+    <header class='header-public'>
       {/* link home brand */}
-      <div>
-        <A href='/'>JH</A>
-      </div>
+      <LinkBrand />
 
       {/* nav primary */}
 
-      {/* menu avatar or link page connexion user */}
+      {/* menu avatar or link page connexion user
+      and icon menu for mobile */}
     </header>
   )
 }
