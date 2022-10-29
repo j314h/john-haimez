@@ -7,5 +7,5 @@
 }
 
 .link-brand-inactive {
-  @apply text-black dark:text-white;
+  @apply hover:text-action;
 }
