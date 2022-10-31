@@ -1,0 +1,3 @@
+.nav-footer {
+  @apply text-center sm:text-left;
+}

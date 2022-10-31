@@ -2,6 +2,6 @@
  * interface for all link component
  */
 export interface IlinkComponent {
-  link?: string
+  link: string
   text?: string
 }

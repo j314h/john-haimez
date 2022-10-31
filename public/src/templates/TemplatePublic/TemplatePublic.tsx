@@ -3,6 +3,7 @@ import { Outlet } from '@solidjs/router'
 import { Header } from '../../components/Organisms/Header/Header'
 import './TemplatePublic.css'
 import { refMenus } from '../../store/app/app.store'
+import { Footer } from '../../components/Organisms/Footer/footer'
 
 export const TemplatePublic: Component = () => {
   return (
@@ -11,6 +12,7 @@ export const TemplatePublic: Component = () => {
       <main class='template-public' ref={refMenus}>
         <Outlet />
       </main>
+      <Footer />
     </>
   )
 }
