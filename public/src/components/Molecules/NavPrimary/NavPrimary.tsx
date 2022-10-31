@@ -1,11 +1,12 @@
 import { Component } from 'solid-js'
-import { appStore } from '../../../store/app/app.store'
+import { appStore, refMenus } from '../../../store/app/app.store'
 import { LinkMenuPrimary } from '../../Atoms/Links/LinkMenuPrimary/LinkMenuPrimary'
 import './NavPrimary.css'
 
 export const NavPrimary: Component = () => {
   return (
     <nav
+      ref={refMenus}
       class='nav-primary'
       classList={{
         'invisible sm:visible': !appStore.activeMenuMobile,
