@@ -2,7 +2,7 @@
   @apply absolute sm:static
   top-16 left-0
   px-2 sm:px-0
-  w-full sm:w-fit;
+  w-full sm:w-fit z-50;
 }
 
 .list-nav-primary {

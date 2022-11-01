@@ -1,0 +1,6 @@
+.input-atom {
+  @apply text-black dark:text-white dark:bg-prim-d 
+  outline-none border-2 border-transparent focus:border-action
+  py-2 rounded-xl  
+  w-full text-s3;
+}

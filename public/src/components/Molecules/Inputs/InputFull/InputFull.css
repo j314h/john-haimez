@@ -1,0 +1,11 @@
+.input-full-div {
+  @apply relative;
+}
+
+.input-full-position-icon-front {
+  @apply absolute top-2 left-4;
+}
+
+.input-full-position-icon-back {
+  @apply absolute top-2 right-4;
+}
