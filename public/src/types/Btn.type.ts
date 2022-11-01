@@ -1,9 +1,14 @@
+import { JSX } from 'solid-js'
+
 /**
  * interface for all btn component
  */
 export interface IbtnComponent {
-  children?: Element
+  children?: JSX.Element | JSX.Element[] | string
+  text?: string
   func?: () => void
+  type?: 'button' | 'submit' | 'reset' | undefined
+  addClass?: string
 }
 
 /**

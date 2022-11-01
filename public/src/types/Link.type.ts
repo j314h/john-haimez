@@ -4,4 +4,5 @@
 export interface IlinkComponent {
   link: string
   text?: string
+  addClass?: string
 }
