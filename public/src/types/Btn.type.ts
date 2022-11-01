@@ -17,3 +17,11 @@ export interface IbtnComponent {
 export interface IbtnMenuMobile {
   active?: boolean
 }
+
+/**
+ * interface for btn formulaire
+ */
+export interface IbtnForm {
+  children?: JSX.Element | JSX.Element[] | string
+  loading?: boolean
+}

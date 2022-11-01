@@ -5,6 +5,7 @@ import { EinputType } from '../../../../types/Input.type'
 import { BtnPrimary } from '../../../Atoms/Btns/BtnPrimary/BtnPrimary'
 import { ContainerPrimary } from '../../../Atoms/Containers/ContainerPrimary/ContainerPrimary'
 import { LinkForgotPassword } from '../../../Atoms/Links/LinkForgotPassword/LinkForgotPassword'
+import { BtnForm } from '../../Btns/BtnForm/BtnForm'
 import { InputFull } from '../../Inputs/InputFull/InputFull'
 
 export const FormLogin: Component<{}> = props => {
@@ -45,7 +46,7 @@ export const FormLogin: Component<{}> = props => {
 
         {/* btn form */}
         <div class='flex justify-end'>
-          <BtnPrimary type='submit'>Se connecter</BtnPrimary>
+          <BtnForm loading={false}>Se connecter</BtnForm>
         </div>
       </form>
     </ContainerPrimary>
