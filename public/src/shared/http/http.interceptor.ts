@@ -14,7 +14,7 @@ export const httpInterceptor = {
             'nekto',
           )}`
         } else {
-          config.headers!.Authorization = ``
+          config.headers
         }
         console.log('request Interceptor', config)
         return config
@@ -39,6 +39,9 @@ export const httpInterceptor = {
         return response
       },
       async error => {
+        if (error.response.status === 401) {
+          authAction.deleteToken()
+        }
         console.log('Error response Interceptor', error)
         return Promise.reject(error)
       },

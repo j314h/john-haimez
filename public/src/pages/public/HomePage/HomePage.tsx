@@ -1,5 +1,11 @@
 import type { Component } from 'solid-js'
+import { SectionProfilePublic } from '../../../components/Organisms/SectionProfilePublic/SectionProfilePublic'
 
 export const HomePage: Component = () => {
-  return <section>coucou home</section>
+  return (
+    <section>
+      {/* profile */}
+      <SectionProfilePublic />
+    </section>
+  )
 }

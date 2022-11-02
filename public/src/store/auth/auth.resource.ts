@@ -3,6 +3,11 @@ import { ItokenResponse } from '../../types/Token.type'
 import { authAction } from './auth.action'
 
 export const authResource = {
+  /**
+   * connexion user
+   * @param email string
+   * @param password string
+   */
   async login(email: string, password: string) {
     try {
       authAction.activeLoading()
@@ -23,5 +28,8 @@ export const authResource = {
     }
   },
 
+  /**
+   * disconnect user
+   */
   async logout() {},
 }
