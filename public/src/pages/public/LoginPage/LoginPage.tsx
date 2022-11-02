@@ -1,5 +1,6 @@
 import { Component } from 'solid-js'
 import { FormLogin } from '../../../components/Molecules/Forms/FormLogin/FormLogin'
+import { SectionLogin } from '../../../components/Organisms/SectionLogin/SectionLogin'
 
 export const LoginPage: Component = () => {
   return (
@@ -9,8 +10,8 @@ export const LoginPage: Component = () => {
         Connexion
       </h2>
 
-      {/* form connexion */}
-      <FormLogin />
+      {/* connexion */}
+      <SectionLogin />
     </section>
   )
 }

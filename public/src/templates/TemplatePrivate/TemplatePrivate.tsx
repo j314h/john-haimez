@@ -1,12 +1,14 @@
 import { Component } from 'solid-js'
 import { Outlet } from '@solidjs/router'
 import './TemplatePrivate.css'
+import { Header } from '../../components/Organisms/Header/Header'
+import { refMenus } from '../../store/app/app.store'
 
 export const TemplatePrivate: Component = () => {
   return (
     <>
-      <h1>Je suis le title private</h1>
-      <main>
+      <Header />
+      <main class='template-private' ref={refMenus}>
         <Outlet />
       </main>
     </>
