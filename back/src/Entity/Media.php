@@ -6,49 +6,68 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MediaRepository;
 use ApiPlatform\Metadata\ApiResource;
+use App\ApiResource\Media\MediaUploadApiResource;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: MediaRepository::class)]
 #[ApiResource(
-    normalizationContext: ['groups' => ['read:media']]
+    normalizationContext: ['groups' => ['read:media']],
+    operations: [
+        new MediaUploadApiResource()
+    ]
 )]
 class Media
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
     private ?int $id = null;
 
+    #[Vich\UploadableField(mapping: "media", fileNameProperty: "path")]
     #[Assert\NotNull]
     public ?File $file = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: false)]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media'])]
     private ?string $slugMedia = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media'])]
+    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+    }
+
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    public function setFile($file): self
+    {
+        $this->file = $file;
+
+        return $this;
     }
 
     public function getId(): ?int

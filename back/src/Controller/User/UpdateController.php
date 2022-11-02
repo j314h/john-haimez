@@ -5,8 +5,10 @@ namespace App\Controller\User;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[AsController]
 class UpdateController extends AbstractController
 {
     public function __construct(private UserRepository $userRepository)
