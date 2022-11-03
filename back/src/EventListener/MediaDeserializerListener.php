@@ -13,29 +13,30 @@ class MediaDeserializerListener
 {
 
     public function __construct(
-        private DeserializeListener $deserialize_listener,
-        private SerializerContextBuilderInterface $serializer_context,
+        private DeserializeListener $deserializeListener,
+        private SerializerContextBuilderInterface $serializerContext,
         private DenormalizerInterface $denormalizer,
     ) {
     }
 
     public function onKernelRequest(RequestEvent $event)
     {
+
         // if request is get or delete, switch deserialize
-        $request = $event->getRequest();
+        $req = $event->getRequest();
         if (
-            $request->isMethodCacheable() ||
-            $request->isMethod(Request::METHOD_DELETE)
+            $req->isMethodCacheable() ||
+            $req->isMethod(Request::METHOD_DELETE)
         ) {
             return;
         }
 
         // if request type is multipart deserialize custom
         // else continue deserialize apiplatform
-        if ($request->getContentType() === 'form') {
-            $this->deserializeRequest($request);
+        if ($req->getContentType() === 'form') {
+            $this->deserializeRequest($req);
         } else {
-            $this->deserialize_listener->onKernelRequest($event);
+            $this->deserializeListener->onKernelRequest($event);
         }
     }
 
@@ -54,13 +55,14 @@ class MediaDeserializerListener
         }
 
         // create context request
-        $context = $this->serializer_context->createFromRequest($req, false, $attributes);
+        $context = $this->serializerContext->createFromRequest($req, false, $attributes);
 
         // add other properties to request
         $populate = $req->attributes->get('data');
         if ($populate !== null) {
             $context['object_to_populate'] = $populate;
         }
+
 
         // create and denormalize object with data and files
         $data = $req->request->all();

@@ -2,6 +2,7 @@
 
 namespace App\Serializer\Denormalizer;
 
+use App\Entity\Profile;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 

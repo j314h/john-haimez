@@ -10,7 +10,7 @@ class UpdateApiResource extends HttpOperation
     public function __construct()
     {
         Parent::__construct(
-            //securityPostDenormalize: "is_granted('ROLE_ROOT')",
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
             method: 'PUT',
             uriTemplate: '/users/{id}',
             controller: UpdateController::class,
@@ -18,7 +18,7 @@ class UpdateApiResource extends HttpOperation
 
             // openapi config
             openapiContext: [
-                'summary' => 'update user, must be authenticated with role root for access'
+                'summary' => 'Update user, must be authenticated with role root for access'
             ]
         );
     }

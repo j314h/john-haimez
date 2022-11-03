@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MediaRepository;
 use ApiPlatform\Metadata\ApiResource;
+use App\ApiResource\Media\MediaUpdateApiResource;
 use App\ApiResource\Media\MediaUploadApiResource;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -17,7 +18,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     normalizationContext: ['groups' => ['read:media']],
     operations: [
-        new MediaUploadApiResource()
+        new MediaUploadApiResource(),
+        new MediaUpdateApiResource(),
     ]
 )]
 class Media
@@ -32,16 +34,16 @@ class Media
     #[Assert\NotNull]
     public ?File $file = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media'])]
+    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
     private ?string $slugMedia = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media'])]
+    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
@@ -80,7 +82,7 @@ class Media
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath(?string $path): self
     {
         $this->path = $path;
 

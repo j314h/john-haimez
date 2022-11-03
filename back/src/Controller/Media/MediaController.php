@@ -8,6 +8,7 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
+// **** is test for upload or update file in one controller ****
 #[AsController]
 class MediaController extends AbstractController
 {
@@ -16,22 +17,22 @@ class MediaController extends AbstractController
     {
         // if $data exist or not (exist if updated media)
         if (!$data) {
-            $uploaded_file = $req->files->get('file');
-            if (!$uploaded_file) {
+            $uploadedFile = $req->files->get('file');
+            if (!$uploadedFile) {
                 throw new BadRequestHttpException('"file" is required');
             }
 
             $media = new Media();
-            $media->setFile($uploaded_file);
+            $media->setFile($uploadedFile);
             $media->setSlugMedia($req->request->get('slugMedia'));
 
             return $media;
         } else {
-            $uploaded_file = $req->files->get('file');
-            if (!$uploaded_file) {
+            $uploadedFile = $req->files->get('file');
+            if (!$uploadedFile) {
                 throw new BadRequestHttpException('"file" is required');
             }
-            $data->setFile($uploaded_file);
+            $data->setFile($uploadedFile);
             $data->setUpdatedAt(new \DateTime());
             return $data;
         }

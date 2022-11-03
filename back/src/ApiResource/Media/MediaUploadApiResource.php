@@ -10,9 +10,9 @@ class MediaUploadApiResource extends HttpOperation
     public function __construct()
     {
         Parent::__construct(
-            // securityPostDenormalize: "is_granted('ROLE_ROOT')",
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
             method: 'POST',
-            uriTemplate: 'api/media',
+            uriTemplate: '/media',
             validationContext: ['groups' => ['create:media']],
             controller: MediaController::class,
 

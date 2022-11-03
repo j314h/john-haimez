@@ -1,23 +1,25 @@
 <?php
 
-namespace App\ApiResource\Profile;
+namespace App\ApiResource\Media;
 
 use ApiPlatform\Metadata\HttpOperation;
-use App\Controller\Media\MediaProfileController;
+use App\Controller\Media\MediaUpdateController;
 
-class ProfileMediaUploadApiResource extends HttpOperation
+class MediaUpdateApiResource extends HttpOperation
 {
     public function __construct()
     {
         Parent::__construct(
             securityPostDenormalize: "is_granted('ROLE_ROOT')",
             method: 'POST',
-            uriTemplate: '/media/profile/{id}',
-            controller: MediaProfileController::class,
+            uriTemplate: '/media/{id}',
+            validationContext: ['groups' => ['update:media']],
+            controller: MediaUpdateController::class,
+            deserialize: false,
 
             // openapi config
             openapiContext: [
-                'summary' => 'Upload or update file for profile, must be connected and with role root',
+                'summary' => 'Update file, must be connected and with role root',
                 'requestBody' => [
                     'content' => [
                         'multipart/form-data' => [

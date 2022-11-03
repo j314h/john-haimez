@@ -10,25 +10,40 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class MediaProfileController extends AbstractController
 {
-    public function __invoke(Profile $profile, Request $req)
+    public function __construct()
     {
-        if ($profile->getMedia()) {
+    }
+
+    public function __invoke(Profile $data, Request $req)
+    {
+        if ($data->getMedia()) {
             // updated media
-            return $profile;
+            $uploadedFile = $req->files->get('file');
+            if (!$uploadedFile) {
+                throw new BadRequestHttpException('"file" is required');
+            }
+
+            $media = $data->getMedia();
+            $media->setFile($uploadedFile);
+            $media->setUpdatedAt(new \DateTime());
+
+            $data->setMedia($media);
+
+            return $data;
         } else {
             // created media
-            $uploaded_file = $req->files->get('file');
-            if (!$uploaded_file) {
+            $uploadedFile = $req->files->get('file');
+            if (!$uploadedFile) {
                 throw new BadRequestHttpException('"file" is required');
             }
 
             $media = new Media();
-            $media->setFile($uploaded_file);
+            $media->setFile($uploadedFile);
             $media->setName($req->request->get('name'));
             $media->setSlugMedia($req->request->get('slugMedia'));
 
-            $profile->setMedia($media);
-            return $profile;
+            $data->setMedia($media);
+            return $data;
         }
     }
 }

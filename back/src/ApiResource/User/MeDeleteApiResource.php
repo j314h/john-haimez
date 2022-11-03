@@ -18,7 +18,7 @@ class MeDeleteApiResource extends HttpOperation
 
             // openapi config
             openapiContext: [
-                'summary' => 'Delete me account, is connected for access'
+                'summary' => 'Delete account user current, is connected for access'
             ]
         );
     }

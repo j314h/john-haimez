@@ -10,15 +10,15 @@ class MeUpdateEmailApiResource extends HttpOperation
     public function __construct()
     {
         Parent::__construct(
+            securityPostDenormalize: "is_granted('IS_AUTHENTICATED_FULLY')",
             method: 'PUT',
             uriTemplate: '/me/update/email',
             controller: MeUpdateEmailController::class,
-            securityPostDenormalize: "is_granted('IS_AUTHENTICATED_FULLY')",
             denormalizationContext: ['groups' => ['write:me:put:email']],
 
             // openapi config
             openapiContext: [
-                'summary' => 'update email user connected, must be authenticated for access'
+                'summary' => 'Update email user connected, must be authenticated for access'
             ]
         );
     }
