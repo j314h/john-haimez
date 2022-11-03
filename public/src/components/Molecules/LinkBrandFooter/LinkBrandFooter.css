@@ -1,0 +1,8 @@
+.link-brand-footer {
+  @apply text-center sm:text-left mt-8 sm:mt-0;
+}
+
+.sub-title-footer {
+  @apply text-high font-styling 
+    text-s2 sm:text-s5 md:text-s8;
+}

@@ -1,7 +1,7 @@
 import { Terror } from '@atoms/errors/error-text/error.type'
 import { socket } from '@shared-app/http/http.instance'
 import { useEffect, useState } from 'react'
-import { Isetting } from './setting.model'
+import { Isetting } from '../../types/setting.model'
 import { settingService } from './setting.service'
 import { settingStore } from './setting.store'
 

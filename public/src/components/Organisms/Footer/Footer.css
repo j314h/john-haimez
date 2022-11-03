@@ -1,0 +1,9 @@
+.footer-public {
+  @apply px-4 md:px-24 lg:px-52 pt-8 pb-2 sm:pt-16 sm:pb-4
+  bg-sec dark:bg-sec-d 
+  text-black dark:text-white;
+}
+
+.footer-public .link-footer {
+  @apply flex flex-col-reverse sm:flex-row sm:justify-between;
+}

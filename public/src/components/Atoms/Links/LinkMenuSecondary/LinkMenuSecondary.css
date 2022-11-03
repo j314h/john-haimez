@@ -1,0 +1,11 @@
+.link-menu-secondary {
+  @apply block text-s2 sm:text-s3 py-1;
+}
+
+.link-menu-secondary-active {
+  @apply text-high;
+}
+
+.link-menu-secondary-inactive {
+  @apply hover:text-action;
+}

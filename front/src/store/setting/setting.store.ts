@@ -1,6 +1,6 @@
 import { Terror } from '@atoms/errors/error-text/error.type'
 import { BehaviorSubject } from 'rxjs'
-import { Isetting } from './setting.model'
+import { Isetting } from '../../types/setting.model'
 
 export const settingStore = {
   /**

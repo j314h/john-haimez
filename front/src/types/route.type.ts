@@ -15,6 +15,8 @@ export enum Eroute {
   AUTH_LOGOUT_DELETE = 'auth/logout',
   AUTH_TEST_GET = 'auth/test-jwt',
   AUTH_VERIFIED = 'auth/verified',
+  AUTH_UPDATE_USER_CURRENT = 'auth/update-user-current',
+  AUTH_UPDATE_PASSWORD_USER_CURRENT = 'auth/update-password-user-current',
 
   // setting
   SETTING_GET_POS_PAT_DEL = 'setting',

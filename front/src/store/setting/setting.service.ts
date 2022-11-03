@@ -4,7 +4,7 @@ import { appService } from '@store/app/app.service'
 import { Eroute, IresponseCallApi } from '@types-app/route.type'
 import { Etoast } from '@types-app/toast.type'
 import { toast } from 'react-toastify'
-import { Isetting } from './setting.model'
+import { Isetting } from '../../types/setting.model'
 import { settingStore } from './setting.store'
 
 export const settingService = {
