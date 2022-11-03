@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MediaRepository;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use App\ApiResource\Media\MediaUpdateApiResource;
 use App\ApiResource\Media\MediaUploadApiResource;
 use Symfony\Component\HttpFoundation\File\File;
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new MediaUploadApiResource(),
         new MediaUpdateApiResource(),
+        new Delete()
     ]
 )]
 class Media
