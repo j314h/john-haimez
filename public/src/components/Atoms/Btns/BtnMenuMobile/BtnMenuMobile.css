@@ -1,0 +1,43 @@
+.btn-menu-mobile {
+  @apply w-7 h-10 relative sm:hidden;
+}
+
+.btn-menu-mobile-active {
+  @apply w-7 h-10 relative sm:hidden;
+}
+
+.btn-menu-mobile div {
+  @apply absolute bg-white w-full h-0.5;
+}
+
+.btn-menu-mobile:hover div {
+  @apply bg-action;
+}
+
+.btn-menu-mobile-active div {
+  @apply absolute bg-error w-full h-0.5;
+}
+
+.btn-menu-mobile :nth-child(1) {
+  @apply top-3 transition-all delay-100;
+}
+
+.btn-menu-mobile :nth-child(2) {
+  @apply top-5 transition-all delay-100;
+}
+
+.btn-menu-mobile :nth-child(3) {
+  @apply top-7 transition-all delay-100;
+}
+
+.btn-menu-mobile-active :nth-child(1) {
+  @apply top-5 transform rotate-45 transition-all delay-100;
+}
+
+.btn-menu-mobile-active :nth-child(2) {
+  @apply top-5 opacity-0 transition-all delay-100;
+}
+
+.btn-menu-mobile-active :nth-child(3) {
+  @apply top-5 transform -rotate-45 transition-all delay-100;
+}
