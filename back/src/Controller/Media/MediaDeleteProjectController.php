@@ -2,19 +2,19 @@
 
 namespace App\Controller\Media;
 
-use App\Entity\Profile;
+use App\Entity\Project;
 use App\Repository\MediaRepository;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[AsController]
-class MediaDeleteProfileController extends AbstractController
+class MediaDeleteProjectController extends AbstractController
 {
     public function __construct(private MediaRepository $mediaRepo)
     {
     }
 
-    public function __invoke(Profile $data)
+    public function __invoke(Project $data)
     {
         // media set with null
         $media = $data->getMedia();

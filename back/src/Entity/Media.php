@@ -29,7 +29,12 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media'
+    ])]
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: "media", fileNameProperty: "path")]
@@ -37,23 +42,52 @@ class Media
     public ?File $file = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media'
+    ])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'create:media',
+        'read:profile:media',
+        'update:media',
+        'read:project:media',
+    ])]
     private ?string $slugMedia = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'create:media',
+        'read:profile:media',
+        'update:media',
+        'read:project:media'
+    ])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media'
+    ])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media'
+    ])]
     private ?\DateTimeInterface $updatedAt = null;
 
     public function __construct()
