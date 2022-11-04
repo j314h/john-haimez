@@ -21,7 +21,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new MediaUploadApiResource(),
         new MediaUpdateApiResource(),
-        new Delete()
+        new Delete(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        )
     ]
 )]
 class Media
