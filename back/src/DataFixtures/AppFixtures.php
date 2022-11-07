@@ -7,10 +7,37 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
+    public function __construct(private UserFixtures $userFixture)
+    {
+    }
+
     public function load(ObjectManager $manager): void
     {
         // $product = new Product();
         // $manager->persist($product);
+
+        // create a many user
+        $this->userFixture->generateManyUsers(10, $manager);
+
+        // create user root
+        $this->userFixture->generateUserRoot($manager);
+
+        // create other custom user
+        $this->userFixture->generateManualUser(
+            'useradmin',
+            'mynameadmin',
+            'useradmin@gmail.com',
+            ['ROLE_ADMIN'],
+            $manager
+        );
+
+        $this->userFixture->generateManualUser(
+            'userauth',
+            'mynameauth',
+            'userauth@gmail.com',
+            ['ROLE_AUTH'],
+            $manager
+        );
 
         $manager->flush();
     }
