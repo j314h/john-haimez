@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\DataFixtures\GenerateString;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -10,42 +11,12 @@ class UserFixtures
 {
 
     private UserPasswordHasherInterface $hasher;
-    private string $str = 'azertyuiopqsdfghjklmwxcvbn';
 
-    public function __construct(UserPasswordHasherInterface $hasher)
-    {
+    public function __construct(
+        UserPasswordHasherInterface $hasher,
+        private GenerateString $generator,
+    ) {
         $this->hasher = $hasher;
-    }
-
-    /**
-     * create un sample name faker
-     *
-     * @param integer $length
-     * @return string
-     */
-    private function generateName(int $length = 5)
-    {
-        $name = '';
-
-        for ($i = 0; $i < $length; $i++) {
-            $arrString = str_split($this->str);
-            $name .= $this->str[rand(0, count($arrString) - 1)];
-        }
-
-        return $name;
-    }
-
-    /**
-     * create a sample email faker
-     *
-     * @param integer $length
-     * @return string
-     */
-    private function generateEmail(int $length = 15)
-    {
-        $postEmail = $this->generateName($length);
-
-        return $postEmail . '@' . 'gmail.com';
     }
 
     /**
@@ -60,24 +31,21 @@ class UserFixtures
         $user = new User();
 
         // create fisrname
-        $user->setFirstName($this->generateName(7));
-
-        // create lastname
-        $user->setLastName($this->generateName(9));
-
-        // create email
-        $user->setEmail($this->generateEmail());
-
-        // create role basic 
-        $user->setRoles(['ROLE_AUTH']);
-
-        // create name with first name and lastname
-        $user->setName($user->getFirstName() . ' ' . $user->getLastName());
+        $user->setFirstName($this->generator->generateWord(7))
+            // create lastname
+            ->setLastName($this->generator->generateWord(9))
+            // create email
+            ->setEmail($this->generator->generateEmail())
+            // create role basic 
+            ->setRoles(['ROLE_AUTH'])
+            // create name with first name and lastname
+            ->setName($user->getFirstName() . ' ' . $user->getLastName());
 
         // create password
         $password = $this->hasher->hashPassword($user, 'password');
         $user->setPassword($password);
 
+        // save
         $manager->persist($user);
         $manager->flush();
     }
@@ -108,19 +76,15 @@ class UserFixtures
         $user = new User();
 
         // create fisrname
-        $user->setFirstName('john');
-
-        // create lastname
-        $user->setLastName('haimez');
-
-        // create email
-        $user->setEmail('haimezjohn@gmail.com');
-
-        // create role basic 
-        $user->setRoles(['ROLE_ROOT']);
-
-        // create name with first name and lastname
-        $user->setName($user->getFirstName() . ' ' . $user->getLastName());
+        $user->setFirstName('john')
+            // create lastname
+            ->setLastName('haimez')
+            // create email
+            ->setEmail('haimezjohn@gmail.com')
+            // create role basic 
+            ->setRoles(['ROLE_ROOT'])
+            // create name with first name and lastname
+            ->setName($user->getFirstName() . ' ' . $user->getLastName());
 
         // create password
         $password = $this->hasher->hashPassword($user, 'password');
@@ -147,19 +111,15 @@ class UserFixtures
         $user = new User();
 
         // create fisrname
-        $user->setFirstName($firstName);
-
-        // create lastname
-        $user->setLastName($lastName);
-
-        // create email
-        $user->setEmail($email);
-
-        // create role basic 
-        $user->setRoles($roles);
-
-        // create name with first name and lastname
-        $user->setName($user->getFirstName() . ' ' . $user->getLastName());
+        $user->setFirstName($firstName)
+            // create lastname
+            ->setLastName($lastName)
+            // create email
+            ->setEmail($email)
+            // create role basic 
+            ->setRoles($roles)
+            // create name with first name and lastname
+            ->setName($user->getFirstName() . ' ' . $user->getLastName());
 
         // create password
         $password = $this->hasher->hashPassword($user, 'password');

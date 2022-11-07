@@ -7,8 +7,10 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
-    public function __construct(private UserFixtures $userFixture)
-    {
+    public function __construct(
+        private UserFixtures $userFixture,
+        private CompetenceFixtures $competenceFixture
+    ) {
     }
 
     public function load(ObjectManager $manager): void
@@ -30,7 +32,6 @@ class AppFixtures extends Fixture
             ['ROLE_ADMIN'],
             $manager
         );
-
         $this->userFixture->generateManualUser(
             'userauth',
             'mynameauth',
@@ -38,6 +39,9 @@ class AppFixtures extends Fixture
             ['ROLE_AUTH'],
             $manager
         );
+
+        // create a 3 competences  
+        $this->competenceFixture->generateManyCompetence(3, $manager);
 
         $manager->flush();
     }
