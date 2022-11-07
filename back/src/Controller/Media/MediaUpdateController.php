@@ -3,9 +3,11 @@
 namespace App\Controller\Media;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
+#[AsController]
 class MediaUpdateController extends AbstractController
 {
     // update media with id

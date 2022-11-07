@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MediaRepository;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use App\ApiResource\Media\MediaUpdateApiResource;
 use App\ApiResource\Media\MediaUploadApiResource;
 use Symfony\Component\HttpFoundation\File\File;
@@ -20,6 +21,9 @@ use Symfony\Component\Validator\Constraints as Assert;
     operations: [
         new MediaUploadApiResource(),
         new MediaUpdateApiResource(),
+        new Delete(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        )
     ]
 )]
 class Media
@@ -27,7 +31,13 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?int $id = null;
 
     #[Vich\UploadableField(mapping: "media", fileNameProperty: "path")]
@@ -35,24 +45,61 @@ class Media
     public ?File $file = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?string $path = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'create:media',
+        'read:profile:media',
+        'update:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?string $slugMedia = null;
 
     #[ORM\Column(length: 255, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'create:media', 'read:profile:media', 'update:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'create:media',
+        'read:profile:media',
+        'update:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: false)]
-    #[Groups(['read:media', 'read:user:media', 'read:profile:media'])]
+    #[Groups([
+        'read:media',
+        'read:user:media',
+        'read:profile:media',
+        'read:project:media',
+        'read:competence:media'
+    ])]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    private ?Competence $competence = null;
 
     public function __construct()
     {
@@ -133,6 +180,18 @@ class Media
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCompetence(): ?Competence
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?Competence $competence): self
+    {
+        $this->competence = $competence;
 
         return $this;
     }

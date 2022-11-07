@@ -3,16 +3,16 @@
 namespace App\Controller\Media;
 
 use App\Entity\Media;
-use App\Entity\Profile;
+use App\Entity\Project;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 #[AsController]
-class MediaProfileController extends AbstractController
+class MediaProjectController extends AbstractController
 {
-    public function __invoke(Profile $data, Request $req)
+    public function __invoke(Project $data, Request $req)
     {
         if ($data->getMedia()) {
             // updated media

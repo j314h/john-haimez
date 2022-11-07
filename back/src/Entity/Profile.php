@@ -2,21 +2,39 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProfileRepository;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\HttpOperation;
-use App\ApiResource\Profile\ProfileMediaUploadApiResource;
+use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\ApiResource\Profile\ProfileMediaDeleteApiResource;
+use App\ApiResource\Profile\ProfileMediaUploadApiResource;
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 #[ApiResource(
     normalizationContext: ['groups' => ['read:profile', 'read:profile:media']],
     operations: [
-        new GetCollection(),
+        // only media profile
         new ProfileMediaUploadApiResource(),
+        new ProfileMediaDeleteApiResource(),
+
+        // only profile data
+        new GetCollection(),
+        new Post(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+            validationContext: ['groups' => ['create:profile']],
+        ),
+        new Delete(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Put(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+            validationContext: ['groups' => ['put:profile']],
+        ),
     ]
 )]
 class Profile
@@ -28,26 +46,26 @@ class Profile
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:profile'])]
+    #[Groups(['read:profile', 'put:profile', 'create:profile'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:profile'])]
+    #[Groups(['read:profile', 'put:profile', 'create:profile'])]
     private ?string $subTitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['read:profile'])]
+    #[Groups(['read:profile', 'put:profile', 'create:profile'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['read:profile'])]
+    #[Groups(['read:profile', 'put:profile', 'create:profile'])]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:profile'])]
+    #[Groups(['read:profile', 'put:profile', 'create:profile'])]
     private ?string $tel = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'],)]
     #[Groups(['read:profile'])]
     private ?Media $media = null;
 
