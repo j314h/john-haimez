@@ -35,7 +35,8 @@ class Media
         'read:media',
         'read:user:media',
         'read:profile:media',
-        'read:project:media'
+        'read:project:media',
+        'read:competence:media'
     ])]
     private ?int $id = null;
 
@@ -48,7 +49,8 @@ class Media
         'read:media',
         'read:user:media',
         'read:profile:media',
-        'read:project:media'
+        'read:project:media',
+        'read:competence:media'
     ])]
     private ?string $path = null;
 
@@ -60,6 +62,7 @@ class Media
         'read:profile:media',
         'update:media',
         'read:project:media',
+        'read:competence:media'
     ])]
     private ?string $slugMedia = null;
 
@@ -70,7 +73,8 @@ class Media
         'create:media',
         'read:profile:media',
         'update:media',
-        'read:project:media'
+        'read:project:media',
+        'read:competence:media'
     ])]
     private ?string $name = null;
 
@@ -79,7 +83,8 @@ class Media
         'read:media',
         'read:user:media',
         'read:profile:media',
-        'read:project:media'
+        'read:project:media',
+        'read:competence:media'
     ])]
     private ?\DateTimeInterface $createdAt = null;
 
@@ -88,9 +93,13 @@ class Media
         'read:media',
         'read:user:media',
         'read:profile:media',
-        'read:project:media'
+        'read:project:media',
+        'read:competence:media'
     ])]
     private ?\DateTimeInterface $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    private ?Competence $competence = null;
 
     public function __construct()
     {
@@ -171,6 +180,18 @@ class Media
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCompetence(): ?Competence
+    {
+        return $this->competence;
+    }
+
+    public function setCompetence(?Competence $competence): self
+    {
+        $this->competence = $competence;
 
         return $this;
     }
