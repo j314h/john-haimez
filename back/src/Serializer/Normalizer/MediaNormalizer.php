@@ -23,7 +23,7 @@ class MediaNormalizer implements NormalizerInterface, NormalizerAwareInterface
         $object,
         string $format = null,
         array $context = []
-    ) {
+    ): array|string|int|float|bool|\ArrayObject|null {
         $context[self::ALREADY_CALLED] = true;
         $object->setPath($this->storage->resolveUri($object, 'file'));
         return $this->normalizer->normalize($object, $format, $context);
