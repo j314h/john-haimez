@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Entities\Traits;
+namespace App\Tests\Traits;
 
 use App\Entity\Competence;
 
@@ -24,5 +24,19 @@ trait CompetenceTrait
             ->setDescription('je suis la description');
 
         return $competence;
+    }
+
+    /**
+     * create a array of competence object
+     *
+     * @param Competence $entity
+     * @return array
+     */
+    public function createArrayEntity(Competence $entity): array
+    {
+        return [
+            'title' => $entity->getTitle(),
+            'description' => $entity->getDescription(),
+        ];
     }
 }

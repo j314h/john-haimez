@@ -3,8 +3,8 @@
 namespace App\Tests\Entities;
 
 use App\Entity\Competence;
-use App\Tests\Entities\Traits\CompetenceTrait;
-use App\Tests\Entities\Traits\CompetenceTraitAssert;
+use App\Tests\Traits\CompetenceTrait;
+use App\Tests\Traits\CompetenceTraitAssert;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CompetenceTest extends KernelTestCase

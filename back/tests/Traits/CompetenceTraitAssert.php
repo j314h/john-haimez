@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Entities\Traits;
+namespace App\Tests\Traits;
 
 use App\Entity\Competence;
 use Symfony\Component\Validator\ConstraintViolation;
