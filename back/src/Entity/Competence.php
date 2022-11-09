@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\CompetenceRepository;
@@ -27,10 +28,18 @@ use App\ApiResource\Competence\CompetenceMediaUpdateApiResource;
 
         // only competence data
         new GetCollection(),
-        new Get(),
-        new Post(),
-        new Put(),
-        new Delete(),
+        new Get(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Post(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Put(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Delete(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
     ]
 )]
 class Competence
@@ -43,10 +52,12 @@ class Competence
 
     #[ORM\Column(length: 255)]
     #[Groups(['read:competence'])]
+    #[Assert\NotBlank()]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(['read:competence'])]
+    #[Assert\NotBlank()]
     private ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'competence', targetEntity: Media::class)]

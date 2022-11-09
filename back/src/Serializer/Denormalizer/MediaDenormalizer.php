@@ -8,13 +8,17 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 class MediaDenormalizer implements DenormalizerInterface
 {
-    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = [])
+    public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
         return $data;
     }
 
-    public function supportsDenormalization(mixed $data, string $type, ?string $format = null)
-    {
+    public function supportsDenormalization(
+        mixed $data,
+        string $type,
+        ?string $format = null,
+        array $context = []
+    ): bool {
         return $data instanceof File;
     }
 }

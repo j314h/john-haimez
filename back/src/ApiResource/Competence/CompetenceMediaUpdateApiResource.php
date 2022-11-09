@@ -10,6 +10,7 @@ class CompetenceMediaUpdateApiResource extends HttpOperation
     public function __construct()
     {
         Parent::__construct(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
             method: 'POST',
             uriTemplate: 'media/{idMedia}/competence/{idCompetence}',
             controller: MediaCompetenceUpdateController::class,
