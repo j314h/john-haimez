@@ -28,10 +28,18 @@ use App\ApiResource\Competence\CompetenceMediaUpdateApiResource;
 
         // only competence data
         new GetCollection(),
-        new Get(),
-        new Post(),
-        new Put(),
-        new Delete(),
+        new Get(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Post(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Put(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Delete(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
     ]
 )]
 class Competence
