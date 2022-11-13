@@ -13,6 +13,8 @@ use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\ApiResource\Profile\ProfileMediaDeleteApiResource;
 use App\ApiResource\Profile\ProfileMediaUploadApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 #[ApiResource(
@@ -47,14 +49,17 @@ class Profile
 
     #[ORM\Column(length: 255)]
     #[Groups(['read:profile', 'put:profile', 'create:profile'])]
+    #[Assert\NotBlank()]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['read:profile', 'put:profile', 'create:profile'])]
+    #[Assert\NotBlank()]
     private ?string $subTitle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Groups(['read:profile', 'put:profile', 'create:profile'])]
+    #[Assert\NotBlank()]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::TEXT)]
