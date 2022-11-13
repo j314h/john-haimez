@@ -46,7 +46,7 @@ class AppFixtures extends Fixture
          * create profile with media and lesss media
          */
         $this->profileFixture->generateManyProfile(10, $manager);
-        $this->profileFixture->generateManyProfile(10, $manager, false);
+        $this->profileFixture->generateManyProfile(10, $manager, true);
 
 
         $manager->flush();
