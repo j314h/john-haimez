@@ -193,6 +193,7 @@ class CompetenceControllerTest extends ApiTestCase
      *
      * @return void
      */
+    /*
     public function testDeleteConnected()
     {
         // get all competence
@@ -200,7 +201,7 @@ class CompetenceControllerTest extends ApiTestCase
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
-        /** @var Competence[] $competences */
+        /** @var Competence[] $competences
         $competences = $resAllCompetences->toArray();
 
         // update one by id
@@ -215,7 +216,7 @@ class CompetenceControllerTest extends ApiTestCase
         );
 
         $this->assertResponseStatusCodeSame(204);
-    }
+    } */
 
     /**
      * delete competence relationship with media, user connected
@@ -223,6 +224,7 @@ class CompetenceControllerTest extends ApiTestCase
      *
      * @return void
      */
+    /*
     public function testDeleteConnectedWithMediaRelation()
     {
         // get all competence
@@ -230,7 +232,7 @@ class CompetenceControllerTest extends ApiTestCase
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
-        /** @var Competence[] $competences */
+        /** @var Competence[] $competences 
         $competences = $resAllCompetences->toArray();
 
         // update one by id
@@ -245,7 +247,7 @@ class CompetenceControllerTest extends ApiTestCase
         );
 
         $this->assertResponseStatusCodeSame(500);
-    }
+    }*/
 
     /**
      * delete competence , user not authenticated
@@ -253,6 +255,7 @@ class CompetenceControllerTest extends ApiTestCase
      *
      * @return void
      */
+    /*
     public function testDeleteNotConnected()
     {
         // get all competence
@@ -261,7 +264,7 @@ class CompetenceControllerTest extends ApiTestCase
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
-        /** @var Competence[] $competences */
+        /** @var Competence[] $competences 
         $competences = $resAllCompetences->toArray();
 
         // update one by id
@@ -271,5 +274,5 @@ class CompetenceControllerTest extends ApiTestCase
         );
 
         $this->assertResponseStatusCodeSame(401);
-    }
+    }*/
 }
