@@ -3,6 +3,7 @@
 namespace App\Tests\Traits;
 
 use App\Entity\Profile;
+use ApiPlatform\Symfony\Bundle\Test\Client;
 
 trait ProfileTraitAssert
 {
@@ -27,5 +28,37 @@ trait ProfileTraitAssert
 
         // there should be zero errors
         $this->assertCount($numberOfError, $errors, implode(', ', $messagesError));
+    }
+
+    /**
+     * assert for test code for request
+     *
+     * @param Client $client
+     * @param string $method
+     * @param string $url
+     * @param mixed $data
+     * @param string|null $token
+     * @param integer $code
+     * @return void
+     */
+    public function assertStatusCode(
+        Client $client,
+        string $method,
+        string $url,
+        mixed $data,
+        string|null $token,
+        int $code,
+    ) {
+        $client->request(
+            $method,
+            $url,
+            [
+                'json' => $data,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $token ?: '',
+                ]
+            ]
+        );
+        $this->assertResponseStatusCodeSame($code);
     }
 }
