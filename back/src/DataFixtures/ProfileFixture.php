@@ -21,8 +21,10 @@ class ProfileFixture
      * @param ObjectManager $manager
      * @return void
      */
-    public function generateProfile(ObjectManager $manager)
-    {
+    public function generateProfile(
+        ObjectManager $manager,
+        bool $lessMedia = false
+    ) {
         // create profile
         $profile = new Profile();
         $profile->setTitle($this->generator->generateWord())
@@ -32,12 +34,14 @@ class ProfileFixture
             ->setAddress($this->generator->generateParagraph(5));
 
         // create media's profile
-        for ($i = 0; $i < 1; $i++) {
-            $media = $this->mediaFixture->generateMedia('profile', $manager);
-            // save media
-            $manager->persist($media);
-            // add media in profile
-            $profile->setMedia($media);
+        if ($lessMedia === false) {
+            for ($i = 0; $i < 1; $i++) {
+                $media = $this->mediaFixture->generateMedia('profile', $manager);
+                // save media
+                $manager->persist($media);
+                // add media in profile
+                $profile->setMedia($media);
+            }
         }
 
         // save profile
@@ -54,10 +58,11 @@ class ProfileFixture
      */
     public function generateManyProfile(
         int $numberOfProfile,
-        ObjectManager $manager
+        ObjectManager $manager,
+        bool $lessMedia = false,
     ) {
         for ($i = 0; $i < $numberOfProfile; $i++) {
-            $this->generateProfile($manager);
+            $this->generateProfile($manager, $lessMedia);
         }
     }
 }
