@@ -19,8 +19,10 @@ class CompetenceFixtures
      * @param ObjectManager $manager
      * @return void
      */
-    public function generateCompetence(ObjectManager $manager)
-    {
+    public function generateCompetence(
+        ObjectManager $manager,
+        bool $lessMedia = false
+    ) {
         // create competence
         $competence = new Competence();
 
@@ -30,12 +32,14 @@ class CompetenceFixtures
             ->setDescription($this->generator->generateParagraph(15));
 
         // create media's competence
-        for ($i = 0; $i < 1; $i++) {
-            $media = $this->mediaFixture->generateMedia('competence', $manager);
-            // save media
-            $manager->persist($media);
-            // add media in competence
-            $competence->addMedium($media);
+        if ($lessMedia === false) {
+            for ($i = 0; $i < 1; $i++) {
+                $media = $this->mediaFixture->generateMedia('competence', $manager);
+                // save media
+                $manager->persist($media);
+                // add media in competence
+                $competence->addMedium($media);
+            }
         }
 
         // save competence
@@ -52,10 +56,11 @@ class CompetenceFixtures
      */
     public function generateManyCompetence(
         int $numberOfCompetence,
-        ObjectManager $manager
+        ObjectManager $manager,
+        bool $lessMedia = false,
     ) {
         for ($i = 0; $i < $numberOfCompetence; $i++) {
-            $this->generateCompetence($manager);
+            $this->generateCompetence($manager, $lessMedia);
         }
     }
 }

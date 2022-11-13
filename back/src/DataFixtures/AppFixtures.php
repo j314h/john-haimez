@@ -9,7 +9,8 @@ class AppFixtures extends Fixture
 {
     public function __construct(
         private UserFixtures $userFixture,
-        private CompetenceFixtures $competenceFixture
+        private CompetenceFixtures $competenceFixture,
+        private ProfileFixture $profileFixture,
     ) {
     }
 
@@ -17,10 +18,8 @@ class AppFixtures extends Fixture
     {
         // create a many user
         $this->userFixture->generateManyUsers(10, $manager);
-
         // create user root
         $this->userFixture->generateUserRoot($manager);
-
         // create other custom user
         $this->userFixture->generateManualUser(
             'useradmin',
@@ -37,8 +36,18 @@ class AppFixtures extends Fixture
             $manager
         );
 
-        // create a 3 competences  
-        $this->competenceFixture->generateManyCompetence(3, $manager);
+        /**
+         * create competence with media and lesss media
+         */
+        $this->competenceFixture->generateManyCompetence(10, $manager);
+        $this->competenceFixture->generateManyCompetence(10, $manager, true);
+
+        /**
+         * create profile with media and lesss media
+         */
+        $this->profileFixture->generateManyProfile(10, $manager);
+        $this->profileFixture->generateManyProfile(10, $manager, false);
+
 
         $manager->flush();
     }
