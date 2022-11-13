@@ -12,6 +12,7 @@ class AppFixtures extends Fixture
         private CompetenceFixtures $competenceFixture,
         private ProfileFixture $profileFixture,
         private SocialFixture $socialFixture,
+        private ProjectFixture $projectFixture,
     ) {
     }
 
@@ -53,6 +54,12 @@ class AppFixtures extends Fixture
          * create many social
          */
         $this->socialFixture->generateManySocial(10, $manager);
+
+        /**
+         * create project with media and lesss media
+         */
+        $this->projectFixture->generateManyProject(10, $manager);
+        $this->projectFixture->generateManyProject(10, $manager, true);
 
 
         $manager->flush();
