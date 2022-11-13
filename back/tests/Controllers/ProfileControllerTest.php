@@ -121,12 +121,6 @@ class ProfileControllerTest extends ApiTestCase
         );
     }
 
-    /*public function testDeleteProfileWithMedia()
-    {
-        $client = static::createClient();
-        $idProfile = $this->getIdOfOneProfile($client);
-    }*/
-
     /**
      * delete a profile, user connected
      * status code is 204
