@@ -148,7 +148,7 @@ class CompetenceControllerTest extends ApiTestCase
                     'Authorization' => 'Bearer ' . $this->login($client),
                 ],
                 'body' => $this->createArrayEntity(
-                    $this->createEntity('hey, hey, hey')
+                    $this->createEntity()->setTitle('test title update')
                 )
             ]
         );
@@ -179,7 +179,7 @@ class CompetenceControllerTest extends ApiTestCase
             '/api/competences/' . $competences['hydra:member'][0]['id'],
             [
                 'body' => $this->createArrayEntity(
-                    $this->createEntity('hey, hey, hey')
+                    $this->createEntity()->setTitle('test title update')
                 )
             ]
         );
