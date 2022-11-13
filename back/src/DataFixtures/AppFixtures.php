@@ -11,6 +11,7 @@ class AppFixtures extends Fixture
         private UserFixtures $userFixture,
         private CompetenceFixtures $competenceFixture,
         private ProfileFixture $profileFixture,
+        private SocialFixture $socialFixture,
     ) {
     }
 
@@ -47,6 +48,11 @@ class AppFixtures extends Fixture
          */
         $this->profileFixture->generateManyProfile(10, $manager);
         $this->profileFixture->generateManyProfile(10, $manager, true);
+
+        /**
+         * create many social
+         */
+        $this->socialFixture->generateManySocial(10, $manager);
 
 
         $manager->flush();
