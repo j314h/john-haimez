@@ -25,7 +25,7 @@ class SocialFixture
         // create profile
         $profile = new Social();
         $profile->setName($this->generator->generateWord())
-            ->setLink('mylink.com')
+            ->setLink('https://google.fr')
             ->setIcon('Github');
 
         // save profile
