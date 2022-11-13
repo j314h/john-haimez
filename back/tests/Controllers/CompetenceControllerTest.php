@@ -4,13 +4,13 @@ namespace App\Tests\Controllers;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\Traits\CompetenceTrait;
-use ApiPlatform\Symfony\Bundle\Test\Client;
 use App\Entity\Competence;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\Traits\TestTrait;
 
 class CompetenceControllerTest extends ApiTestCase
 {
     use CompetenceTrait;
+    use TestTrait;
 
     /**
      * request create competence user connected
@@ -22,12 +22,6 @@ class CompetenceControllerTest extends ApiTestCase
     {
         $client = static::createClient();
 
-        // request connect user root
-        $response = $client->request('POST', '/api/user/login', ['json' => [
-            'email' => 'haimezjohn@gmail.com',
-            'password' => 'password',
-        ]]);
-
         // request create competence
         $client->request(
             'POST',
@@ -35,7 +29,7 @@ class CompetenceControllerTest extends ApiTestCase
             [
                 'json' => $this->createArrayEntity($this->createEntity()),
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $response->toArray()['token'],
+                    'Authorization' => 'Bearer ' . $this->login($client),
                 ]
             ]
         );
@@ -87,12 +81,6 @@ class CompetenceControllerTest extends ApiTestCase
         $client = static::createClient();
         $resAllCompetences = $client->request('GET', '/api/competences');
 
-        // request connect user root
-        $login = $client->request('POST', '/api/user/login', ['json' => [
-            'email' => 'haimezjohn@gmail.com',
-            'password' => 'password',
-        ]]);
-
         // recover array of competence
         /** @var Competence[] $competences */
         $competences = $resAllCompetences->toArray();
@@ -102,7 +90,7 @@ class CompetenceControllerTest extends ApiTestCase
             '/api/competences/' . $competences['hydra:member'][0]['id'],
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $login->toArray()['token'],
+                    'Authorization' => 'Bearer ' . $this->login($client),
                 ]
             ]
         );
@@ -145,13 +133,6 @@ class CompetenceControllerTest extends ApiTestCase
     {
         // get all competence
         $client = static::createClient();
-
-        // request connect user root
-        $login = $client->request('POST', '/api/user/login', ['json' => [
-            'email' => 'haimezjohn@gmail.com',
-            'password' => 'password',
-        ]]);
-
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
@@ -164,7 +145,7 @@ class CompetenceControllerTest extends ApiTestCase
             '/api/competences/' . $competences['hydra:member'][0]['id'],
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $login->toArray()['token'],
+                    'Authorization' => 'Bearer ' . $this->login($client),
                 ],
                 'body' => $this->createArrayEntity(
                     $this->createEntity('hey, hey, hey')
@@ -216,13 +197,6 @@ class CompetenceControllerTest extends ApiTestCase
     {
         // get all competence
         $client = static::createClient();
-
-        // request connect user root
-        $login = $client->request('POST', '/api/user/login', ['json' => [
-            'email' => 'haimezjohn@gmail.com',
-            'password' => 'password',
-        ]]);
-
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
@@ -235,7 +209,7 @@ class CompetenceControllerTest extends ApiTestCase
             '/api/competences/' . $competences['hydra:member'][25]['id'],
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $login->toArray()['token'],
+                    'Authorization' => 'Bearer ' . $this->login($client),
                 ],
             ]
         );
@@ -253,13 +227,6 @@ class CompetenceControllerTest extends ApiTestCase
     {
         // get all competence
         $client = static::createClient();
-
-        // request connect user root
-        $login = $client->request('POST', '/api/user/login', ['json' => [
-            'email' => 'haimezjohn@gmail.com',
-            'password' => 'password',
-        ]]);
-
         $resAllCompetences = $client->request('GET', '/api/competences');
 
         // recover array of competence
@@ -272,7 +239,7 @@ class CompetenceControllerTest extends ApiTestCase
             '/api/competences/' . $competences['hydra:member'][0]['id'],
             [
                 'headers' => [
-                    'Authorization' => 'Bearer ' . $login->toArray()['token'],
+                    'Authorization' => 'Bearer ' . $this->login($client),
                 ],
             ]
         );
