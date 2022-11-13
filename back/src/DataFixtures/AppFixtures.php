@@ -13,6 +13,7 @@ class AppFixtures extends Fixture
         private ProfileFixture $profileFixture,
         private SocialFixture $socialFixture,
         private ProjectFixture $projectFixture,
+        private SettingFixture $settingFixture,
     ) {
     }
 
@@ -39,13 +40,13 @@ class AppFixtures extends Fixture
         );
 
         /**
-         * create competence with media and lesss media
+         * create many competence with media and lesss media
          */
         $this->competenceFixture->generateManyCompetence(10, $manager);
         $this->competenceFixture->generateManyCompetence(10, $manager, true);
 
         /**
-         * create profile with media and lesss media
+         * create many profile with media and lesss media
          */
         $this->profileFixture->generateManyProfile(10, $manager);
         $this->profileFixture->generateManyProfile(10, $manager, true);
@@ -56,10 +57,15 @@ class AppFixtures extends Fixture
         $this->socialFixture->generateManySocial(10, $manager);
 
         /**
-         * create project with media and lesss media
+         * create many project with media and lesss media
          */
         $this->projectFixture->generateManyProject(10, $manager);
         $this->projectFixture->generateManyProject(10, $manager, true);
+
+        /**
+         * create a setting
+         */
+        $this->settingFixture->generateSetting($manager);
 
 
         $manager->flush();
