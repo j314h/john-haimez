@@ -22,14 +22,14 @@ class SocialFixture
     public function generateSocial(
         ObjectManager $manager
     ) {
-        // create profile
-        $profile = new Social();
-        $profile->setName($this->generator->generateWord())
+        // create social
+        $social = new Social();
+        $social->setName($this->generator->generateWord())
             ->setLink('https://google.fr')
             ->setIcon('Github');
 
-        // save profile
-        $manager->persist($profile);
+        // save social
+        $manager->persist($social);
         $manager->flush();
     }
 
