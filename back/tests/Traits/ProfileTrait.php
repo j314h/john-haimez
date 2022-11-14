@@ -62,7 +62,8 @@ trait ProfileTrait
 
         // recover array of profile
         /** @var Profile[] $profiles */
-        return $profilesResponse->toArray();
+        $profiles = $profilesResponse->toArray();
+        return $profiles;
     }
 
     /**
