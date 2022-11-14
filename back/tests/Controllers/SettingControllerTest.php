@@ -125,7 +125,7 @@ class SettingControllerTest extends ApiTestCase
      *
      * @return void
      */
-    public function testUpdateNoConnected()
+    /*public function testUpdateNoConnected()
     {
         $client = static::createClient();
         $idSetting = $this->getIdOfOneSetting($client);
@@ -147,7 +147,7 @@ class SettingControllerTest extends ApiTestCase
      * status code is 204
      *
      * @return void
-     */
+     
     public function testDeleteConnected()
     {
         $client = static::createClient();
@@ -169,7 +169,7 @@ class SettingControllerTest extends ApiTestCase
      * status code is 401
      *
      * @return void
-     */
+     
     public function testDeleteNoConnected()
     {
         $client = static::createClient();
@@ -184,5 +184,5 @@ class SettingControllerTest extends ApiTestCase
             null,
             401
         );
-    }
+    }*/
 }
