@@ -3,23 +3,23 @@
 namespace App\Tests\Controllers;
 
 use App\Tests\Traits\TestTrait;
+use App\Tests\Traits\SocialTrait;
+use App\Tests\Traits\SocialTraitAssert;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
-use App\Tests\Traits\SettingTrait;
-use App\Tests\Traits\SettingTraitAssert;
 
-class SettingControllerTest extends ApiTestCase
+class SocialControllerTest extends ApiTestCase
 {
     use TestTrait;
-    use SettingTrait;
-    use SettingTraitAssert;
+    use SocialTrait;
+    use SocialTraitAssert;
 
     /**
-     * create setting, user connected
+     * create social, user connected
      * status code is 201
      *
      * @return void
      */
-    public function testCreateSettingConnected()
+    public function testCreateConnected()
     {
         $client = static::createClient();
 
@@ -27,7 +27,7 @@ class SettingControllerTest extends ApiTestCase
         $this->assertStatusCode(
             $client,
             'POST',
-            '/api/settings',
+            '/api/socials',
             $this->createArrayEntity($this->createEntity()),
             $this->login($client),
             201
@@ -35,20 +35,20 @@ class SettingControllerTest extends ApiTestCase
     }
 
     /**
-     * create setting, user no connected
+     * create social, user no connected
      * status code is 401
      *
      * @return void
      */
-    public function testCreateSettingNoConnected()
+    public function testCreateNoConnected()
     {
         $client = static::createClient();
 
-        // request create setting
+        // request create profile
         $this->assertStatusCode(
             $client,
             'POST',
-            '/api/settings',
+            '/api/socials',
             $this->createArrayEntity($this->createEntity()),
             null,
             401
@@ -56,47 +56,7 @@ class SettingControllerTest extends ApiTestCase
     }
 
     /**
-     * get all setting
-     * status code is 200
-     *
-     * @return void
-     */
-    public function testGetAllSetting()
-    {
-        $client = static::createClient();
-
-        // request get all setting
-        $client->request(
-            'GET',
-            '/api/settings'
-        );
-        $this->assertResponseStatusCodeSame(200);
-    }
-
-    /**
-     * get one setting with id
-     * status code is 200
-     *
-     * @return void
-     */
-    public function testGetOneById()
-    {
-        $client = static::createClient();
-        $idSetting = $this->getIdOfOneSetting($client);
-
-        // request get one setting
-        $this->assertStatusCode(
-            $client,
-            'GET',
-            '/api/settings/' . $idSetting,
-            null,
-            null,
-            200
-        );
-    }
-
-    /**
-     * update one setting
+     * update social, user connected
      * status code is 200
      *
      * @return void
@@ -104,15 +64,14 @@ class SettingControllerTest extends ApiTestCase
     public function testUpdateConnected()
     {
         $client = static::createClient();
-        $idSetting = $this->getIdOfOneSetting($client);
+        $idSocial = $this->getIdOfOneSocial($client);
 
-        // request update setting
         $this->assertStatusCode(
             $client,
             'PUT',
-            '/api/settings/' . $idSetting,
+            '/api/socials/' . $idSocial,
             $this->createArrayEntity(
-                $this->createEntity()->setCopyright('bipboupbipboup')
+                $this->createEntity()->setLink('coucou link')
             ),
             $this->login($client),
             200
@@ -120,7 +79,7 @@ class SettingControllerTest extends ApiTestCase
     }
 
     /**
-     * update setting, user no connected
+     * update social, user no connected
      * status code is 401
      *
      * @return void
@@ -128,14 +87,14 @@ class SettingControllerTest extends ApiTestCase
     public function testUpdateNoConnected()
     {
         $client = static::createClient();
-        $idSetting = $this->getIdOfOneSetting($client);
+        $idSocial = $this->getIdOfOneSocial($client);
 
         $this->assertStatusCode(
             $client,
             'PUT',
-            '/api/settings/' . $idSetting,
+            '/api/socials/' . $idSocial,
             $this->createArrayEntity(
-                $this->createEntity()->setCopyright('coucou copyright')
+                $this->createEntity()->setLink('coucou link')
             ),
             null,
             401
@@ -143,7 +102,7 @@ class SettingControllerTest extends ApiTestCase
     }
 
     /**
-     * delete a setting, user connected
+     * delete a social, user connected
      * status code is 204
      *
      * @return void
@@ -151,13 +110,13 @@ class SettingControllerTest extends ApiTestCase
     public function testDeleteConnected()
     {
         $client = static::createClient();
-        $idSetting = $this->getIdOfOneSetting($client);
+        $idSocial = $this->getIdOfOneSocial($client);
 
         // request update profile
         $this->assertStatusCode(
             $client,
             'DELETE',
-            '/api/settings/' . $idSetting,
+            '/api/socials/' . $idSocial,
             null,
             $this->login($client),
             204
@@ -165,7 +124,7 @@ class SettingControllerTest extends ApiTestCase
     }
 
     /**
-     * delete setting, user no connected
+     * delete social, user no connected
      * status code is 401
      *
      * @return void
@@ -173,13 +132,13 @@ class SettingControllerTest extends ApiTestCase
     public function testDeleteNoConnected()
     {
         $client = static::createClient();
-        $idSetting = $this->getIdOfOneSetting($client);
+        $idSocial = $this->getIdOfOneSocial($client);
 
         // request update profile
         $this->assertStatusCode(
             $client,
             'DELETE',
-            '/api/settings/' . $idSetting,
+            '/api/socials/' . $idSocial,
             null,
             null,
             401

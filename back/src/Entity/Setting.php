@@ -23,7 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
             securityPostDenormalize: "is_granted('ROLE_ROOT')",
         ),
         new Delete(
-            status: 204,
             securityPostDenormalize: "is_granted('ROLE_ROOT')",
         ),
         new Put(
