@@ -2,22 +2,46 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Delete;
+use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\SettingRepository;
-use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\GetCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SettingRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    normalizationContext: ['groups' => ['read:setting']],
+    operations: [
+        new GetCollection(),
+        new Get(),
+        new Post(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Delete(
+            status: 204,
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+        new Put(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
+    ]
+)]
 class Setting
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:setting'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank()]
+    #[Groups(['read:setting'])]
     private ?string $copyright = null;
 
     public function getId(): ?int
