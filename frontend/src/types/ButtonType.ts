@@ -1,4 +1,22 @@
 /**
+ * type for button primary
+ */
+export type TbuttonPrimary = {
+  children: JSX.Element | string | null
+  typeButton?: 'button' | 'submit' | 'reset' | undefined
+  click?: () => void
+}
+
+/**
+ * type for button form
+ */
+export type TbuttonForm = {
+  text: string
+  click?: () => void
+  loadActive: boolean
+}
+
+/**
  * type for button icon
  */
 export type TbuttonIcon = {
