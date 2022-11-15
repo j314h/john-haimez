@@ -1,0 +1,24 @@
+.link-primary-app {
+  @apply font-medium 
+  flex py-2 items-center pl-4 
+  rounded-full
+
+  /* tablette pc */
+  sm:pl-0 sm:uppercase
+  md:text-s6 lg:text-s7  sm:rounded-none;
+}
+
+.link-primary-active {
+  @apply text-white bg-high 
+  
+  /* tablette pc */
+  sm:text-high sm:dark:text-high sm:bg-transparent;
+}
+
+.link-primary-noactive {
+  @apply text-black dark:text-white 
+  hover:text-action hover:bg-prim dark:hover:bg-prim-d
+  
+  /* tablette pc */
+  sm:hover:bg-transparent sm:dark:hover:bg-transparent;
+}
