@@ -1,0 +1,8 @@
+.button-primary-app {
+  @apply text-s3 font-medium px-4 py-2 
+  /* color */
+  text-white
+
+  /* form */
+  rounded-md;
+}
