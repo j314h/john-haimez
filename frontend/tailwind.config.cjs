@@ -4,6 +4,10 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        body: ['Roboto', 'sans-serif'],
+        styling: ['Rubik Distressed', 'cursive'],
+      },
       colors: {
         prim: '#F5F5F5',
         'prim-d': '#141414',
