@@ -1,14 +1,16 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { Footer } from '../../components/Organisms/Footer/Footer'
+import { Header } from '../../components/Organisms/Header/Header'
 
 export function TemplatePublic() {
   return (
     <>
-      <header>header</header>
+      <Header />
       <main>
         <Outlet />
       </main>
-      <footer>footer</footer>
+      <Footer />
     </>
   )
 }
