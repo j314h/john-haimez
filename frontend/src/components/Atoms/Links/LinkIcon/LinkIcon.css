@@ -1,0 +1,11 @@
+.link-icon-app {
+  @apply flex w-fit p-2 rounded-full;
+}
+
+.link-icon-app-active {
+  @apply text-high;
+}
+
+.link-icon-app-noactive {
+  @apply hover:text-action hover:bg-prim dark:hover:bg-prim-d;
+}

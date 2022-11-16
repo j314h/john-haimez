@@ -23,3 +23,12 @@ export type TlinkBrand = {
   children: JSX.Element | string
   link?: string
 }
+
+/**
+ * type for link icon
+ */
+export type TlinkIcon = {
+  children: JSX.Element | string | null
+  link: string
+  textSize?: string
+}
