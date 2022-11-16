@@ -8,6 +8,15 @@ export type TlinkPrimary = {
 }
 
 /**
+ * type for link secondary
+ */
+export type TlinkSecondary = {
+  children: JSX.Element | string | null
+  link: string
+  textSize?: string
+}
+
+/**
  * type for link of brand
  */
 export type TlinkBrand = {

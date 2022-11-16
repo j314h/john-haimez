@@ -1,0 +1,11 @@
+.link-secondary-app {
+  @apply flex text-s2 sm:text-s3 md:text-s4;
+}
+
+.link-secondary-active {
+  @apply text-high;
+}
+
+.link-secondary-noactive {
+  @apply hover:text-action;
+}
