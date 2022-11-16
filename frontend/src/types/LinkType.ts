@@ -32,3 +32,13 @@ export type TlinkIcon = {
   link: string
   textSize?: string
 }
+
+/**
+ * Type for link text
+ */
+export type TlinkText = {
+  children: JSX.Element | string | null
+  link: string
+  arrowD?: boolean
+  sizeArrow?: string
+}

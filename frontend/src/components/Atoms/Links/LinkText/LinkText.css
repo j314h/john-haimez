@@ -1,0 +1,3 @@
+.link-text {
+  @apply hover:underline text-action;
+}
