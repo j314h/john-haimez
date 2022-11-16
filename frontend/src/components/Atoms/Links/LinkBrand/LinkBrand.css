@@ -1,0 +1,11 @@
+.link-brand {
+  @apply w-fit block;
+}
+
+.link-brand-noactive {
+  @apply hover:text-action;
+}
+
+.link-brand-active {
+  @apply text-high;
+}

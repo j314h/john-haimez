@@ -6,3 +6,11 @@ export type TlinkPrimary = {
   link: string
   textSize?: string
 }
+
+/**
+ * type for link of brand
+ */
+export type TlinkBrand = {
+  children: JSX.Element | string
+  link?: string
+}
