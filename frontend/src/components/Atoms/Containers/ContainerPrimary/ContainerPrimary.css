@@ -1,0 +1,27 @@
+.container-primary {
+  @apply bg-sec dark:bg-sec-d rounded-3xl;
+}
+
+.container-primary-small-xl {
+  @apply px-2 py-4 w-full sm:max-w-xs;
+}
+
+.container-primary-small {
+  @apply px-4 py-4 w-full sm:max-w-sm;
+}
+
+.container-primary-medium-xl {
+  @apply px-8 py-8 w-full sm:max-w-md;
+}
+
+.container-primary-medium {
+  @apply px-8 py-8 w-full sm:max-w-lg;
+}
+
+.container-primary-large-xl {
+  @apply px-8 py-10 w-full sm:max-w-xl;
+}
+
+.container-primary-large {
+  @apply px-10 py-10 w-full sm:max-w-2xl;
+}
