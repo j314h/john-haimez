@@ -1,11 +1,7 @@
 import React from 'react'
+import { ButtonMenuAvatar } from '../../components/Atoms/Buttons/ButtonMenuAvatar/ButtonMenuAvatar'
 import { LinkPrimary } from '../../components/Atoms/Links/LinkPrimary/LinkPrimary'
 
 export function Home() {
-  return (
-    <section>
-      <LinkPrimary link='/'>Go to google</LinkPrimary>
-      <LinkPrimary link='/coucou'>Coucou</LinkPrimary>
-    </section>
-  )
+  return <section>Home</section>
 }
