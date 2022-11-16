@@ -1,0 +1,19 @@
+h1 {
+  @apply font-styling text-s12;
+}
+
+h2 {
+  @apply font-styling text-s10;
+}
+
+h3 {
+  @apply font-styling text-s8;
+}
+
+h4 {
+  @apply text-s10;
+}
+
+h5 {
+  @apply text-s8;
+}
