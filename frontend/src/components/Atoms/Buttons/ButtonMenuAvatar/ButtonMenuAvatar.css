@@ -1,0 +1,8 @@
+.button-menu-avatar {
+  @apply text-s4 uppercase p-2 rounded-full
+    bg-sec dark:bg-sec-d hover:text-action;
+}
+
+.button-menu-avatar-active {
+  @apply bg-sec dark:bg-sec-d hover:text-error hover:bg-prim p-2 rounded-full;
+}

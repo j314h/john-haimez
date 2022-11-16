@@ -77,3 +77,11 @@ export type TbuttonIconResetInput = {
   sizeIcon?: string
   seeOrNot: boolean
 }
+
+/**
+ * type for button menu avatar
+ */
+export type TbuttonMenuAvatar = {
+  open: boolean
+  click?: () => void
+}
