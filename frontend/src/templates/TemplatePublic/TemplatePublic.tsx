@@ -7,7 +7,11 @@ export function TemplatePublic() {
   return (
     <>
       <Header />
-      <main>
+      <main
+        className='
+        flex-1 px-4 py-8
+        bg-prim dark:bg-prim-d
+        text-black dark:text-white'>
         <Outlet />
       </main>
       <Footer />
