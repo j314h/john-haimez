@@ -62,6 +62,7 @@ export * from './Molecules/Buttons/ButtonIconClose/ButtonIconClose'
 export * from './Molecules/Buttons/ButtonIconDelete/ButtonIconDelete'
 export * from './Molecules/Buttons/ButtonIconEyePassword/ButtonIconEyePassword'
 export * from './Molecules/Buttons/ButtonIconResetInput/ButtonIconResetInput'
+export * from './Molecules/Buttons/ButtonModeDark/ButtonModeDark'
 
 /*******************
  **** ORGANISMS ****
