@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home } from './pages/Home/Home'
 import { TemplatePublic } from './templates/TemplatePublic/TemplatePublic'
+import { Home } from './_pages'
 
 export const router = createBrowserRouter([
   // public
