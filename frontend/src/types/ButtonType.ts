@@ -20,7 +20,8 @@ export type TbuttonForm = {
  * type for button icon
  */
 export type TbuttonIcon = {
-  children: JSX.Element | null
+  children: JSX.Element | JSX.Element[] | string | null
+  addClass?: string
   colorIcon?: string
   colorButton?: string
   click?: () => void
@@ -84,4 +85,18 @@ export type TbuttonIconResetInput = {
 export type TbuttonMenuAvatar = {
   open: boolean
   click?: () => void
+}
+
+/**
+ * type for button mode dark
+ */
+export type TbuttonModeDark = {
+  addClass?: string
+}
+
+/**
+ * type button menu mobile
+ */
+export type TbuttonMenuMobile = {
+  addClass?: string
 }
