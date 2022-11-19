@@ -4,7 +4,8 @@
   rounded-full
 
   /* tablette pc */
-  sm:pl-0 sm:uppercase
+  sm:uppercase
+  sm:pl-12
   md:text-s6 lg:text-s7  sm:rounded-none;
 }
 
@@ -12,12 +13,13 @@
   @apply text-white bg-high 
   
   /* tablette pc */
-  sm:text-high sm:dark:text-high sm:bg-transparent;
+  sm:text-high sm:dark:text-high sm:bg-transparent sm:dark:bg-transparent;
 }
 
 .link-primary-noactive {
   @apply text-black dark:text-white 
   hover:text-action hover:bg-prim dark:hover:bg-prim-d
+  dark:hover:text-action
   
   /* tablette pc */
   sm:hover:bg-transparent sm:dark:hover:bg-transparent;
