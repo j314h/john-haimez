@@ -8,7 +8,5 @@ import { ThemeStore } from './_store'
 ThemeStore.startCheckDarkMode()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+  <RouterProvider router={router} />,
 )
