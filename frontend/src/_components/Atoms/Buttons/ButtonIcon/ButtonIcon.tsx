@@ -6,11 +6,12 @@ export function ButtonIcon({
   children,
   colorIcon,
   colorButton,
+  addClass,
   click,
 }: TbuttonIcon) {
   return (
     <button
-      className={`button-icon ${colorIcon} ${colorButton}`}
+      className={`button-icon ${colorIcon} ${colorButton} ${addClass}`}
       onClick={click}
       type='button'>
       {children}
