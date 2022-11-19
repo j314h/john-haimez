@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { TemplatePublic } from './templates/TemplatePublic/TemplatePublic'
-import { Home } from './_pages'
+import { Home, Contact, Project } from './_pages'
 
 export const router = createBrowserRouter([
   // public
@@ -12,6 +12,14 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/projects',
+        element: <Project />,
+      },
+      {
+        path: '/contact',
+        element: <Contact />,
       },
     ],
   },
