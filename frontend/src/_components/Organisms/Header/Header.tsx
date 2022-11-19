@@ -1,11 +1,19 @@
-import React from 'react'
-import { ButtonModeDark } from '../../Molecules/Buttons/ButtonModeDark/ButtonModeDark'
+import React, { useEffect } from 'react'
+import { ButtonMenuMobile, ButtonModeDark, LinkBrand, MenuPrimary } from '../..'
+import './Header.css'
 
 export function Header() {
   return (
-    <header className='bg-sec dark:bg-sec-d text-black dark:text-white'>
-      Header
-      <ButtonModeDark />
+    <header className='header'>
+      <div>
+        <LinkBrand link='/'>JH</LinkBrand>
+        <ButtonModeDark addClass='ml-2 sm:ml-6' />
+      </div>
+
+      <div>
+        <MenuPrimary />
+        <ButtonMenuMobile />
+      </div>
     </header>
   )
 }
