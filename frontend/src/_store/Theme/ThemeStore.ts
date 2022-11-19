@@ -1,12 +1,12 @@
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject'
 import { createHook } from '../../shared/StoreService'
 
-const modeDark = new BehaviorSubject(
+const modeDark$ = new BehaviorSubject(
   localStorage.getItem('color-theme') === 'dark',
 )
 
 export const ThemeStore = {
-  useModeDark: createHook<boolean>(modeDark),
+  useModeDark: createHook<boolean>(modeDark$),
 
   /**
    * start, reload project
@@ -34,6 +34,6 @@ export const ThemeStore = {
       document.documentElement.classList.remove('dark')
       localStorage.setItem('color-theme', 'light')
     }
-    modeDark.next(newDarkMode)
+    modeDark$.next(newDarkMode)
   },
 }
