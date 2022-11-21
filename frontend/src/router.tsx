@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { TemplatePublic } from './templates/TemplatePublic/TemplatePublic'
-import { Home, Contact, Project } from './_pages'
+import { Home, Contact, Project, Connexion } from './_pages'
 
 export const router = createBrowserRouter([
   // public
@@ -20,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact />,
+      },
+      {
+        path: '/connexion',
+        element: <Connexion />,
       },
     ],
   },
