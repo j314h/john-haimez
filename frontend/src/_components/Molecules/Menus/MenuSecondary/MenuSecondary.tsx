@@ -5,7 +5,7 @@ import { TmenuSecondary } from '../../../../types'
 export function MenuSecondary({ addClass }: TmenuSecondary) {
   return (
     <nav className={`${addClass}`}>
-      <ul className='flex flex-col items-center'>
+      <ul className='flex flex-col items-center sm:items-end'>
         <li className='py-2'>
           <LinkSecondary link='/'>Accueil</LinkSecondary>
         </li>
