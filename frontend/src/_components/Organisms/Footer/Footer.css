@@ -1,0 +1,4 @@
+.footer {
+  @apply px-2 py-4
+  bg-sec dark:bg-sec-d text-black dark:text-white;
+}
