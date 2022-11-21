@@ -1,7 +1,7 @@
 import React from 'react'
+import { ButtonIcon } from '../../..'
 import { TbuttonMenuMobile } from '../../../../types'
 import { AppStore } from '../../../../_store'
-import { ButtonIcon } from '../../../Atoms/Buttons/ButtonIcon/ButtonIcon'
 import './ButtonMenuMobile.css'
 
 export function ButtonMenuMobile({}: TbuttonMenuMobile) {

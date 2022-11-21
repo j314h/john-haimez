@@ -1,6 +1,6 @@
 import React from 'react'
+import { LinkPrimary } from '../../..'
 import { AppStore } from '../../../../_store'
-import { LinkPrimary } from '../../../Atoms/Links/LinkPrimary/LinkPrimary'
 import './MenuPrimary.css'
 
 export function MenuPrimary() {

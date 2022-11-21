@@ -1,9 +1,7 @@
 import React from 'react'
+import { ButtonIcon, MoonIcon, SunIcon } from '../../..'
 import { TbuttonModeDark } from '../../../../types'
 import { ThemeStore } from '../../../../_store'
-import { ButtonIcon } from '../../../Atoms/Buttons/ButtonIcon/ButtonIcon'
-import { MoonIcon } from '../../../Atoms/Icons/MoonIcon'
-import { SunIcon } from '../../../Atoms/Icons/SunIcon'
 
 export function ButtonModeDark({ addClass }: TbuttonModeDark) {
   const modeDark = ThemeStore.useModeDark()
