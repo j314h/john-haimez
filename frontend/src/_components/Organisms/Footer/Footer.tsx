@@ -1,13 +1,13 @@
 import React from 'react'
 import { LinkBrand, MenuSecondary, SpinnerCircle } from '../..'
-import { SettingStore } from '../../../_store'
+import { SettingService } from '../../../_store'
 import './Footer.css'
 
 export function Footer() {
   // call get all settings
-  SettingStore.useSettingsCall()
+  SettingService.useSettingsCall()
   // get value of observable settings
-  const settings = SettingStore.useSettings()
+  const settings = SettingService.useSettings()
 
   return (
     <footer className='footer'>

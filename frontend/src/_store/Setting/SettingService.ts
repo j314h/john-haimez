@@ -1,35 +1,47 @@
-import { SettingStore } from '..'
-import { http } from '../../shared/AxiosInstance'
-import { IsettingsResponseAxios } from '../../types'
+import { useEffect, useState } from 'react'
+import { SettingApi, SettingStore } from '..'
+import { EventService } from '../../shared/EventService'
+import { EeventModel, Isetting } from '../../types'
 
 export const SettingService = {
-  gets: async () => {
-    try {
-      const allSettings = await http.get<IsettingsResponseAxios>('settings')
-      console.log('GET ALL =>', allSettings.data['hydra:member'])
-      SettingStore.settings$.next([...allSettings.data['hydra:member']])
-    } catch (error) {}
+  /**
+   * sub of observable settings
+   * @returns Isetting[]
+   */
+  useSettings: () => {
+    const [value, setValue] = useState<Isetting[]>([])
+    useEffect(() => {
+      SettingStore.settings$.subscribe(v => setValue([...v]))
+    }, [])
+
+    return value
   },
 
-  get: async (id: number) => {
-    try {
-      const allSettings = await http.get(`settings/${id}`)
-      console.log(allSettings)
-    } catch (error) {}
-  },
+  /**
+   * get all setting and create listener event setting
+   */
+  useSettingsCall: () => {
+    useEffect(() => {
+      // get all setting
+      async function call() {
+        await SettingApi.gets()
+      }
 
-  create: () => {
-    try {
-    } catch (error) {}
-  },
+      // add listeners to settings
+      const url = new URL(EventService.urlHubMercure)
+      url.searchParams.append('topic', EeventModel.SETTING)
+      const ev = new EventSource(url)
+      ev.onmessage = e => {
+        const jsonData = [JSON.parse(e.data) as Isetting]
+        SettingStore.settings$.next([...jsonData])
+      }
 
-  update: () => {
-    try {
-    } catch (error) {}
-  },
+      call()
 
-  delete: () => {
-    try {
-    } catch (error) {}
+      return () => {
+        // close connection event listeners
+        ev.close()
+      }
+    }, [])
   },
 }

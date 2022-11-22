@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react'
+import { ErrorText } from '../../../_components'
 
 export function Home() {
-  return <section>Home</section>
+  return (
+    <section>
+      <div>Home</div>
+    </section>
+  )
 }
