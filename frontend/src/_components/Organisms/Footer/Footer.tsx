@@ -28,6 +28,7 @@ export function Footer() {
         {settings.length > 0 ? (
           <p className='text-s1 text-center mt-12 sm:mt-6 md:mt-4'>
             {settings[0].copyright}
+            {`${new Date().getFullYear()}`}
           </p>
         ) : (
           <div className='flex justify-center mt-12 sm:mt-6 md:mt-4'>
