@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react'
 import { BehaviorSubject, map, mergeMap } from 'rxjs'
 import { SettingService } from '..'
 import { EventService } from '../../shared/EventService'
-import { EeventModel, Isetting } from '../../types'
+import { EeventModel, IerrorApp, Isetting } from '../../types'
 
 export const SettingStore = {
   settings$: new BehaviorSubject<Isetting[]>([]),
-  settingsError$: new BehaviorSubject<string | null>(null),
+  settingsError$: new BehaviorSubject<IerrorApp>({
+    active: false,
+    message: null,
+  }),
 
   /**
    * sub of observable settings

@@ -51,6 +51,9 @@ export * from './Atoms/Spinners/SpinnerCircle/SpinnerCircle'
 // title
 export * from './Atoms/Titles/TitlePrimary/TitlePrimary'
 
+// errors
+export * from './Atoms/Errors/ErrorText/ErrorText'
+
 /*******************
  **** MOLECULES *****
  *******************/
