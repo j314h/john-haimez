@@ -1,8 +1,14 @@
 import React from 'react'
 import { LinkBrand, MenuSecondary } from '../..'
+import { SettingStore } from '../../../_store'
 import './Footer.css'
 
 export function Footer() {
+  // call get all settings
+  SettingStore.useSettingsCall()
+  // get value of observable settings
+  const settings = SettingStore.useSettings()
+
   return (
     <footer className='footer'>
       <div className='footer-link-menu'>
@@ -19,7 +25,13 @@ export function Footer() {
       </div>
       {/* copyright */}
       <div>
-        <p className='text-s1 text-center mt-12 sm:mt-6 md:mt-4'>blabla</p>
+        {settings.length > 0 ? (
+          <p className='text-s1 text-center mt-12 sm:mt-6 md:mt-4'>
+            {settings[0].copyright}
+          </p>
+        ) : (
+          <div></div>
+        )}
       </div>
     </footer>
   )
