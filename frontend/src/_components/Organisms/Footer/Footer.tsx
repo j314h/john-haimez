@@ -1,5 +1,5 @@
 import React from 'react'
-import { LinkBrand, MenuSecondary } from '../..'
+import { LinkBrand, MenuSecondary, SpinnerCircle } from '../..'
 import { SettingStore } from '../../../_store'
 import './Footer.css'
 
@@ -30,7 +30,9 @@ export function Footer() {
             {settings[0].copyright}
           </p>
         ) : (
-          <div></div>
+          <div className='flex justify-center mt-12 sm:mt-6 md:mt-4'>
+            <SpinnerCircle />
+          </div>
         )}
       </div>
     </footer>
