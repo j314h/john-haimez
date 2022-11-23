@@ -1,5 +1,5 @@
 import { AppService, SettingStore } from '..'
-import { http } from '../../shared/AxiosInstance'
+import { AxiosService } from '../../shared/AxiosService'
 import { EsettingCallApi, Isetting, IsettingsResponseAxios } from '../../types'
 
 export const SettingApi = {
@@ -7,31 +7,22 @@ export const SettingApi = {
    * get all settings
    * @returns IerrorApp | undefined
    */
-  gets: async () => {
-    try {
-      const allSettings = await http.get<IsettingsResponseAxios>(
-        EsettingCallApi.CALL_ALL,
-      )
-      SettingStore.settings$.next([...allSettings.data['hydra:member']])
-    } catch (error) {
-      return AppService.errorMessage(error)
-    }
-  },
+  gets: async () =>
+    AxiosService.findAll<IsettingsResponseAxios>(
+      EsettingCallApi.CALL_ALL,
+      SettingStore.settings$,
+    ),
 
   /**
    * get one setting for setting selected
    * @returns IerrorApp | undefined
    */
-  get: async (id: number) => {
-    try {
-      const allSettings = await http.get<Isetting>(
-        `${EsettingCallApi.CALL_ALL}/${id}`,
-      )
-      SettingStore.settingSelected$.next({ ...allSettings.data })
-    } catch (error) {
-      return AppService.errorMessage(error)
-    }
-  },
+  get: async (id: number) =>
+    AxiosService.find<Isetting>(
+      EsettingCallApi.CALL_ALL,
+      id,
+      SettingStore.settingSelected$,
+    ),
 
   create: () => {
     try {
