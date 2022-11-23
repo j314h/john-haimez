@@ -12,6 +12,7 @@ export const AxiosService = {
   findAll: async <T>(url: string, ob: BehaviorSubject<any>) => {
     try {
       const res = await http.get<T | any>(url)
+      console.log('RESPONSE FIND ALL', res)
       ob.next([...res.data['hydra:member']!])
     } catch (error) {
       return AppService.errorMessage(error)
