@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { ErrorText } from '../../../_components'
+import React from 'react'
 
 export function Home() {
   return (
