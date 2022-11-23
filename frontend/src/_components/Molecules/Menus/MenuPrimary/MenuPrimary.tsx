@@ -1,11 +1,11 @@
 import React from 'react'
 import { LinkPrimary } from '../../..'
-import { AppStore } from '../../../../_store'
+import { AppService } from '../../../../_store'
 import './MenuPrimary.css'
 
 export function MenuPrimary() {
   // recover value of active menu mobie
-  const activeMenuMobile = AppStore.useActiveMenuMobile()
+  const activeMenuMobile = AppService.useActiveMenuMobile()
 
   return (
     <nav

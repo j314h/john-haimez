@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export function Home() {
-  return <section>Home</section>
+  return (
+    <section>
+      <div>Home</div>
+    </section>
+  )
 }

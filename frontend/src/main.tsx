@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import './styles/Index.css'
-import { ThemeStore } from './_store'
+import { ThemeService } from './_store'
 
-ThemeStore.startCheckDarkMode()
+ThemeService.startCheckDarkMode()
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <RouterProvider router={router} />,

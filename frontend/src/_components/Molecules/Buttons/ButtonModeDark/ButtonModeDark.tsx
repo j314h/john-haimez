@@ -1,14 +1,14 @@
 import React from 'react'
 import { ButtonIcon, MoonIcon, SunIcon } from '../../..'
 import { TbuttonModeDark } from '../../../../types'
-import { ThemeStore } from '../../../../_store'
+import { ThemeService } from '../../../../_store'
 
 export function ButtonModeDark({ addClass }: TbuttonModeDark) {
-  const modeDark = ThemeStore.useModeDark()
+  const modeDark = ThemeService.useModeDark()
   return (
     <ButtonIcon
       addClass={addClass}
-      click={() => ThemeStore.switchModeDark(modeDark)}>
+      click={() => ThemeService.switchModeDark(modeDark)}>
       {modeDark ? (
         <SunIcon color='text-warning-d' />
       ) : (

@@ -1,22 +1,6 @@
 import { BehaviorSubject } from 'rxjs'
-import { createHook } from '../../shared/StoreService'
-
-const activeMenuMobile$ = new BehaviorSubject(false)
 
 export const AppStore = {
-  useActiveMenuMobile: createHook(activeMenuMobile$),
-
-  /**
-   * switch open or close menu mobile
-   */
-  switchActiveMenuMobile: (value: boolean) => {
-    activeMenuMobile$.next(!value)
-  },
-
-  /**
-   * close menu mobile
-   */
-  closeActiveMenuMobile: () => {
-    activeMenuMobile$.next(false)
-  },
+  // state of menu mobile is open (true) or closed (false)
+  activeMenuMobile$: new BehaviorSubject(false),
 }
