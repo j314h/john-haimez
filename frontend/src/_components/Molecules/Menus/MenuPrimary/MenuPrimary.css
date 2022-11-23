@@ -1,5 +1,5 @@
 .menu-primary-mobile-active {
-  @apply absolute top-12 left-0 w-full p-4 bg-white dark:bg-black 
+  @apply absolute top-12 left-0 w-full p-4 bg-white dark:bg-black z-50
     
     /* pc tablette */
     sm:static sm:bg-transparent sm:w-fit sm:dark:bg-transparent sm:p-0;

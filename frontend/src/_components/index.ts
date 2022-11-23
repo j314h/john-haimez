@@ -81,3 +81,6 @@ export * from './Organisms/Footer/Footer'
 
 // header
 export * from './Organisms/Header/Header'
+
+// profile
+export * from './Organisms/ProfileDisplayPublic/ProfileDisplayPublic'

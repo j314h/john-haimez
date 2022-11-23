@@ -26,3 +26,8 @@ export enum EprofileCallApi {
   CALL_MEDIA_POST = 'media/profile',
   CALL_MEDIA_DELETE = 'media/delete/profile',
 }
+
+/**
+ * type component for profile public
+ */
+export type TprofileDisplayPublic = {}

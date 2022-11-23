@@ -1,0 +1,48 @@
+.profile-title-box {
+  @apply relative flex justify-center items-center 
+  h-16 sm:h-28 
+  max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto;
+}
+
+.profile-title-box div:nth-child(1) {
+  animation: trans-color 15s linear infinite;
+  @apply absolute top-0 
+  h-16 sm:h-28 
+  left-1/4 right-1/4 sm:left-10 sm:right-10 md:left-16 md:right-16
+  border-8 sm:border-[14px];
+}
+
+.profile-title-box div:nth-child(2) {
+  @apply top-3 sm:top-5 left-0 z-40;
+}
+
+.profile-title {
+  @apply font-styling text-s9 sm:text-s12 md:text-s13 lg:text-s14 text-center lg:tracking-widest;
+}
+
+.profile-sub-title {
+  @apply text-center italic mt-4 sm:mt-2 text-s1 font-bold;
+}
+
+@keyframes trans-color {
+  0% {
+    border-color: #ffffff;
+    opacity: 0.5;
+  }
+  25% {
+    border-color: #f54b02;
+    opacity: 0.1;
+  }
+  50% {
+    border-color: #f54b02;
+    opacity: 0.8;
+  }
+  75% {
+    border-color: #f54b02;
+    opacity: 0.1;
+  }
+  100% {
+    border-color: #ffffff;
+    opacity: 0.5;
+  }
+}
