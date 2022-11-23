@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Metadata\Delete;
@@ -9,15 +11,17 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ProfileRepository;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Put;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 use App\ApiResource\Profile\ProfileMediaDeleteApiResource;
 use App\ApiResource\Profile\ProfileMediaUploadApiResource;
-use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
 #[ApiResource(
+    mercure: [
+        'topics' => ['/profile'],
+    ],
     normalizationContext: ['groups' => ['read:profile', 'read:profile:media']],
     operations: [
         // only media profile
@@ -25,6 +29,9 @@ use Symfony\Component\Validator\Constraints as Assert;
         new ProfileMediaDeleteApiResource(),
 
         // only profile data
+        new Get(
+            securityPostDenormalize: "is_granted('ROLE_ROOT')",
+        ),
         new GetCollection(),
         new Post(
             securityPostDenormalize: "is_granted('ROLE_ROOT')",

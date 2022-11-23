@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SettingRepository::class)]
 #[ApiResource(
-    mercure: ['topics' => '/setting'],
+    mercure: ['topics' => ['/setting']],
     normalizationContext: ['groups' => ['read:setting']],
     operations: [
         new GetCollection(),
