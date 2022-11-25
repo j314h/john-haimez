@@ -9,3 +9,10 @@ export interface Imedia extends ImodelType<never> {
   slugMedia?: string
   name?: string
 }
+
+/**
+ * enum for url of endpoint for call
+ */
+export enum EmediaCallApi {
+  CALL_ALL = 'media',
+}
