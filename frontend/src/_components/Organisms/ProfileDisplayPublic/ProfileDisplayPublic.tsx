@@ -1,8 +1,7 @@
 import React from 'react'
-import { TprofileDisplayPublic } from '../../../types'
+import { EtitlePrimary, TprofileDisplayPublic } from '../../../types'
 import { ProfileService } from '../../../_store'
-import { LinkText } from '../../Atoms/Links/LinkText/LinkText'
-import { SpinnerCircle } from '../../Atoms/Spinners/SpinnerCircle/SpinnerCircle'
+import { LinkText, SpinnerCircle, TitlePrimary } from '../../'
 import './ProfileDisplayPublic.css'
 
 export function ProfileDisplayPublic({}: TprofileDisplayPublic) {
@@ -15,8 +14,8 @@ export function ProfileDisplayPublic({}: TprofileDisplayPublic) {
         <p>En construction</p>
       ) : (
         <>
-          {loading && error.active === false ? (
-            <div className='flex justify-center'>
+          {loading && !error.active ? (
+            <div className='flex justify-center h-40'>
               <SpinnerCircle size='w-12 h-12' />
             </div>
           ) : (
@@ -24,7 +23,11 @@ export function ProfileDisplayPublic({}: TprofileDisplayPublic) {
               <div className='profile-title-box'>
                 <div className='cadre-profile-style'></div>
                 <div>
-                  <h1 className='profile-title'>{profile.title}</h1>
+                  <TitlePrimary
+                    typeTitlePrimary={EtitlePrimary.H1}
+                    addClass='profile-title'>
+                    {profile.title}
+                  </TitlePrimary>
                 </div>
               </div>
               <p className='profile-sub-title'>{profile.subTitle}</p>

@@ -5,6 +5,7 @@ import './ContainerPrimary.css'
 export function ContainerPrimary({
   children,
   typeContainer,
+  addClass,
 }: TcontainerPrimary) {
   /**
    * selected type container
@@ -30,7 +31,8 @@ export function ContainerPrimary({
   }
 
   return (
-    <section className={`container-primary ${selectedTypeContainer()}`}>
+    <section
+      className={`container-primary ${addClass} ${selectedTypeContainer()}`}>
       {children}
     </section>
   )

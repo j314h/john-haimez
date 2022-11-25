@@ -84,3 +84,6 @@ export * from './Organisms/Header/Header'
 
 // profile
 export * from './Organisms/ProfileDisplayPublic/ProfileDisplayPublic'
+
+// competence
+export * from './Organisms/CompetenceDisplayPublic/CompetenceDisplayPublic'

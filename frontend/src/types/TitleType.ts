@@ -13,7 +13,7 @@ export enum EtitlePrimary {
  * type for all title primary
  */
 export type TtitlePrimary = {
-  children: JSX.Element | string
+  children: JSX.Element | string | undefined
   addClass?: string
   typeTitlePrimary: EtitlePrimary
 }

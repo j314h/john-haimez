@@ -16,4 +16,5 @@ export enum EcontainerPrimary {
 export type TcontainerPrimary = {
   children: JSX.Element | string | null | JSX.Element[]
   typeContainer: EcontainerPrimary
+  addClass?: string
 }

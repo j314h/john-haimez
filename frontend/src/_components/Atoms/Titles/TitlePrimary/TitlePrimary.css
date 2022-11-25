@@ -1,19 +1,19 @@
-h1 {
-  @apply font-styling text-s12;
+.h1 {
+  @apply font-styling text-s9 sm:text-s12;
 }
 
-h2 {
-  @apply font-styling text-s10;
+.h2 {
+  @apply font-styling text-s8 sm:text-s10;
 }
 
-h3 {
+.h3 {
   @apply font-styling text-s8;
 }
 
-h4 {
+.h4 {
   @apply text-s10;
 }
 
-h5 {
+.h5 {
   @apply text-s8;
 }
