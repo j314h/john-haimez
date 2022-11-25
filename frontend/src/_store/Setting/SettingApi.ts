@@ -24,21 +24,21 @@ export const SettingApi = {
       SettingStore.settingSelected$,
     ),
 
-  create: () => {
+  create: async () => {
     try {
     } catch (error) {
       return AppService.errorMessage(error)
     }
   },
 
-  update: () => {
+  update: async () => {
     try {
     } catch (error) {
       return AppService.errorMessage(error)
     }
   },
 
-  delete: () => {
+  delete: async () => {
     try {
     } catch (error) {
       return AppService.errorMessage(error)
