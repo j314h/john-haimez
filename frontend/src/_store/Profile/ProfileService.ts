@@ -56,8 +56,8 @@ export const ProfileService = {
       url.searchParams.append('topic', EeventModel.PROFILE)
       const ev = new EventSource(url)
       ev.onmessage = e => {
-        const data = [JSON.parse(e.data) as Iprofile]
-        ProfileStore.profiles$.next([...data])
+        const jsonData = JSON.parse(e.data) as Iprofile
+        EventService.operationsEventForEntity(ProfileStore.profiles$, jsonData)
       }
 
       call()

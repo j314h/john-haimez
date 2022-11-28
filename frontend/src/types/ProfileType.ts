@@ -4,7 +4,6 @@ import { Imedia, ImodelType } from '.'
  * interface for model profile
  */
 export interface Iprofile extends ImodelType<never> {
-  id?: number
   title?: string
   subTitle?: string
   description?: string

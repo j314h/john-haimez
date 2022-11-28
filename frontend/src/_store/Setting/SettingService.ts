@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AppService, SettingApi, SettingStore } from '..'
 import { EventService } from '../../shared/EventService'
+import { createHookArray, createHookObject } from '../../shared/StoreService'
 import { EeventModel, IerrorApp, Isetting } from '../../types'
 
 export const SettingService = {
@@ -8,15 +9,7 @@ export const SettingService = {
    * sub of observable settings
    * @returns Isetting[]
    */
-  useSettings: () => {
-    const [value, setValue] = useState<Isetting[]>([])
-    useEffect(() => {
-      SettingStore.settings$.subscribe(v => setValue([...v]))
-      return () => {}
-    }, [])
-
-    return value
-  },
+  useSettings: createHookArray<Isetting>(SettingStore.settings$),
 
   /**
    * get all setting and create listener event setting
@@ -43,8 +36,8 @@ export const SettingService = {
       url.searchParams.append('topic', EeventModel.SETTING)
       const ev = new EventSource(url)
       ev.onmessage = e => {
-        const jsonData = [JSON.parse(e.data) as Isetting]
-        SettingStore.settings$.next([...jsonData])
+        const jsonData = JSON.parse(e.data) as Isetting
+        EventService.operationsEventForEntity(SettingStore.settings$, jsonData)
       }
 
       call()
@@ -63,16 +56,7 @@ export const SettingService = {
    * hook for setting selected observable
    * @returns Isetting
    */
-  useSetting: () => {
-    const [value, setValue] = useState<Isetting>({} as Isetting)
-
-    useEffect(() => {
-      SettingStore.settingSelected$.subscribe(v => setValue({ ...v }))
-      return () => {}
-    }, [])
-
-    return value
-  },
+  useSetting: createHookObject<Isetting>(SettingStore.settingSelected$),
 
   /**
    * get one setting and create listener event setting
@@ -100,7 +84,11 @@ export const SettingService = {
       const ev = new EventSource(url)
       ev.onmessage = e => {
         const jsonData = JSON.parse(e.data) as Isetting
-        SettingStore.settingSelected$.next({ ...jsonData })
+        let oldData: Isetting = {} as Isetting
+        SettingStore.settingSelected$.subscribe(v => {
+          oldData = v
+        })
+        SettingStore.settingSelected$.next({ ...oldData, ...jsonData })
       }
 
       call()
