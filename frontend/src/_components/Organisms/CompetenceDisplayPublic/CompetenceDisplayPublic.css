@@ -1,0 +1,34 @@
+.competence-display-public {
+  @apply max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-4;
+}
+
+.box-img-title-competence {
+  @apply flex-none flex items-center mb-4;
+}
+
+.img-competence {
+  @apply w-10 h-10 sm:w-14 sm:h-14 rounded-full ml-4 sm:ml-0 mr-4;
+}
+
+/* Scrollbar styles */
+
+/* Firefox */
+.article-competence {
+  scrollbar-width: thin;
+  scrollbar-color: #fff;
+  @apply flex-1 px-4 py-4 text-s4 sm:text-s5 overflow-auto overscroll-contain;
+}
+
+/* Chrome, Edge, and Safari */
+.article-competence::-webkit-scrollbar {
+  width: 6px;
+}
+
+.article-competence::-webkit-scrollbar-track {
+  @apply bg-gray-200 dark:bg-gray-900 rounded-full;
+}
+
+.article-competence::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-700 rounded-full;
+  border-radius: 20px;
+}

@@ -20,6 +20,7 @@ use App\ApiResource\Competence\CompetenceMediaUpdateApiResource;
 
 #[ORM\Entity(repositoryClass: CompetenceRepository::class)]
 #[ApiResource(
+    mercure: ['topics' => ['/competence']],
     normalizationContext: ['groups' => ['read:competence', 'read:competence:media']],
     operations: [
         // only media for competence
