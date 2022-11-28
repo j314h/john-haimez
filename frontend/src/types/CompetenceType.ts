@@ -4,7 +4,9 @@ import { Imedia, ImodelType } from '.'
  * interface for model competence
  */
 export interface Icompetence extends ImodelType<never> {
-  id?: number
+  title?: string
+  description?: string
+  media?: Imedia[]
 }
 
 /**

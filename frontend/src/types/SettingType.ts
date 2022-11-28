@@ -4,7 +4,6 @@ import { ImodelType } from '.'
  * interface for model setting
  */
 export interface Isetting extends ImodelType<never> {
-  id?: number
   copyright: string
 }
 

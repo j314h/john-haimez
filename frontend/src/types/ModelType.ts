@@ -7,4 +7,5 @@ export interface ImodelType<T> {
   '@type'?: string
   'hydra:member'?: T[]
   'hydra:totalItems'?: number
+  id?: number
 }

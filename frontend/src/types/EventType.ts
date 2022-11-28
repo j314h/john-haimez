@@ -4,4 +4,5 @@
 export enum EeventModel {
   SETTING = '/setting',
   PROFILE = '/profile',
+  COMPETENCE = '/competence',
 }
