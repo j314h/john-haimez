@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs'
  * @param obser observable
  * @returns
  */
-export function createHook<T>(obser: BehaviorSubject<T>) {
+export function createHook<T>(obser: BehaviorSubject<T>, valueInit: T) {
   return () => {
-    const [val, setVal] = useState<T>()
+    const [val, setVal] = useState<T>(valueInit)
 
     useEffect(() => {
       obser.subscribe(value => setVal(value))
-    }, [val])
+    }, [])
 
     return val!
   }
@@ -25,11 +25,11 @@ export function createHook<T>(obser: BehaviorSubject<T>) {
  */
 export function createHookObject<T>(obser: BehaviorSubject<T>) {
   return () => {
-    const [val, setVal] = useState<T>()
+    const [val, setVal] = useState<T>({} as T)
 
     useEffect(() => {
       obser.subscribe(value => setVal({ ...value }))
-    }, [val])
+    }, [])
 
     return val!
   }
@@ -42,11 +42,11 @@ export function createHookObject<T>(obser: BehaviorSubject<T>) {
  */
 export function createHookArray<T>(obser: BehaviorSubject<T[]>) {
   return () => {
-    const [val, setVal] = useState<T[]>()
+    const [val, setVal] = useState<T[]>([])
 
     useEffect(() => {
       obser.subscribe(value => setVal([...value]))
-    }, [val])
+    }, [])
 
     return val!
   }
