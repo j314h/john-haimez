@@ -15,7 +15,7 @@
 }
 
 .container-primary-medium {
-  @apply px-8 py-8 w-full sm:max-w-lg;
+  @apply px-2 sm:px-8 py-8 w-full sm:max-w-lg;
 }
 
 .container-primary-large-xl {
