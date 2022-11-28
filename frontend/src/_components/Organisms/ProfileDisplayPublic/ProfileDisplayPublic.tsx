@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { EtitlePrimary, TprofileDisplayPublic } from '../../../types'
 import { ProfileService } from '../../../_store'
 import { LinkText, SpinnerCircle, TitlePrimary } from '../../'

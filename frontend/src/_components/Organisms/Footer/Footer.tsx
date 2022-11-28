@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LinkBrand, MenuSecondary, SpinnerCircle } from '../..'
 import { SettingService } from '../../../_store'
 import './Footer.css'
