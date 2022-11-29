@@ -7,11 +7,12 @@ import './ProfileDisplayPublic.css'
 export function ProfileDisplayPublic({}: TprofileDisplayPublic) {
   ProfileService.useProfilesCall()
   const profile = ProfileService.useProfile()
-  const loaderGlobal = AppService.useActiveLoaderGlobal()
 
   return (
     <section>
-      {profile && !loaderGlobal ? (
+      {!profile ? (
+        <div>Aucun profile</div>
+      ) : (
         <>
           <div className='profile-title-box'>
             <div className='cadre-profile-style'></div>
@@ -30,8 +31,6 @@ export function ProfileDisplayPublic({}: TprofileDisplayPublic) {
             </LinkText>
           </div>
         </>
-      ) : (
-        <div>Aucun profile</div>
       )}
     </section>
   )
