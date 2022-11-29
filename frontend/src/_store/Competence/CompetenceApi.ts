@@ -6,9 +6,11 @@ export const CompetenceApi = {
   /**
    * get all
    */
-  gets: async () =>
-    AxiosService.findAll(
+  gets: async () => {
+    const res = await AxiosService.findAll(
       EcompetenceCallApi.CALL_ALL,
       CompetenceStore.competences$,
-    ),
+    )
+    return res
+  },
 }

@@ -47,6 +47,7 @@ export * from './Atoms/Links/LinkText/LinkText'
 
 // spinner
 export * from './Atoms/Spinners/SpinnerCircle/SpinnerCircle'
+export * from './Atoms/BackLoader/BackLoader'
 
 // title
 export * from './Atoms/Titles/TitlePrimary/TitlePrimary'
@@ -71,6 +72,9 @@ export * from './Molecules/Menus/MenuSecondary/MenuSecondary'
 
 // menu
 export * from './Molecules/Menus/MenuPrimary/MenuPrimary'
+
+// loader
+export * from './Molecules/Loaders/SpinnerLoader/SpinnerLoader'
 
 /*******************
  **** ORGANISMS ****

@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Footer, Header } from '../../_components'
+import { Footer, Header, SpinnerLoader } from '../../_components'
+import { AppService } from '../../_store'
 
 export function TemplatePublic() {
+  const activeLoader = AppService.useActiveLoaderGlobal()
+
   return (
     <>
+      {activeLoader ? <SpinnerLoader /> : null}
       <Header />
       <main
         className='

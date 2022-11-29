@@ -7,9 +7,11 @@ export const ProfileApi = {
    * get all profiles
    * @returns
    */
-  gets: async () =>
-    AxiosService.findAll<IprofilesResponseAxios>(
+  gets: async () => {
+    const res = await AxiosService.findAll<IprofilesResponseAxios>(
       EprofileCallApi.CALL_ALL,
       ProfileStore.profiles$,
-    ),
+    )
+    return res
+  },
 }

@@ -20,12 +20,10 @@ export const CompetenceService = {
     useEffect(() => {
       // get all
       async function call() {
-        setloading(true)
         const res = await CompetenceApi.gets()
         if (res?.errorApp) {
           setError({ ...res.errorApp })
         }
-        setloading(false)
       }
 
       // add listeners to settings

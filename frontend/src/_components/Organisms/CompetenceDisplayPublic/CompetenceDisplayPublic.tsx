@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react'
 import { ContainerPrimary, TitlePrimary } from '../..'
 import { EcontainerPrimary, EtitlePrimary } from '../../../types'
-import { CompetenceService } from '../../../_store'
+import { AppService, CompetenceService } from '../../../_store'
 import './CompetenceDisplayPublic.css'
 
 export function CompetenceDisplayPublic() {
-  const { error, loading } = CompetenceService.useCompetencesCall()
+  CompetenceService.useCompetencesCall()
   const competences = CompetenceService.useCompetences()
+  const loaderGlobal = AppService.useActiveLoaderGlobal()
 
   return (
     <section className='competence-display-public'>
-      {competences.length > 0 ? (
+      {competences.length > 0 && !loaderGlobal ? (
         competences.map(competence => (
           <ContainerPrimary
             key={competence.id}

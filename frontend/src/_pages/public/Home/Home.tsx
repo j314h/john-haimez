@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { EtitlePrimary } from '../../../types'
 import {
   CompetenceDisplayPublic,
   ProfileDisplayPublic,
   TitlePrimary,
 } from '../../../_components'
+import { CompetenceService, ProfileService } from '../../../_store'
 
 export function Home() {
   return (

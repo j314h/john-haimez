@@ -11,9 +11,12 @@ export const AxiosService = {
    */
   findAll: async <T>(url: string, ob: BehaviorSubject<any>) => {
     try {
+      AppService.startLoaderGlobal()
       const res = await http.get<T | any>(url)
       ob.next([...res.data['hydra:member']!])
+      AppService.stopLoaderGlobal()
     } catch (error) {
+      AppService.stopLoaderGlobal()
       return AppService.errorMessage(error)
     }
   },
@@ -27,9 +30,12 @@ export const AxiosService = {
    */
   find: async <T>(url: string, id: number, ob: BehaviorSubject<any>) => {
     try {
+      AppService.startLoaderGlobal()
       const res = await http.get<T | any>(`${url}/${id}`)
       ob.next([...res.data['hydra:member']!])
+      AppService.stopLoaderGlobal()
     } catch (error) {
+      AppService.stopLoaderGlobal()
       return AppService.errorMessage(error)
     }
   },

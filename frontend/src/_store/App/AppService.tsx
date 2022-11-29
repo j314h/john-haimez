@@ -1,5 +1,4 @@
 import { AxiosError } from 'axios'
-import { BehaviorSubject } from 'rxjs'
 import { AppStore } from '..'
 import { createHook } from '../../shared/StoreService'
 import { IerrorApp } from '../../types'
@@ -8,7 +7,26 @@ export const AppService = {
   /**
    * hook for value of observable active menu mobile
    */
-  useActiveMenuMobile: createHook(AppStore.activeMenuMobile$),
+  useActiveMenuMobile: createHook(AppStore.activeMenuMobile$, false),
+
+  /**
+   * hook for value of observable active loader
+   */
+  useActiveLoaderGlobal: createHook(AppStore.activeLoader$, true),
+
+  /**
+   * start loader global
+   */
+  startLoaderGlobal: () => {
+    AppStore.activeLoader$.next(true)
+  },
+
+  /**
+   * stop loader global
+   */
+  stopLoaderGlobal: () => {
+    AppStore.activeLoader$.next(false)
+  },
 
   /**
    * switch open or close menu mobile

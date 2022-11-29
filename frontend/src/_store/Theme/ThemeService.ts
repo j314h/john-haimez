@@ -5,7 +5,7 @@ export const ThemeService = {
   /**
    * create hook for value darkmode observable
    */
-  useModeDark: createHook<boolean>(ThemeStore.modeDark$),
+  useModeDark: createHook<boolean>(ThemeStore.modeDark$, false),
 
   /**
    * start, reload project

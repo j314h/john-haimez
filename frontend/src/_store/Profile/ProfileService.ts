@@ -11,7 +11,7 @@ export const ProfileService = {
    * hook for recover one first profile
    */
   useProfile: () => {
-    const [value, setValue] = useState<Iprofile>({} as Iprofile)
+    const [value, setValue] = useState<Iprofile | null>(null)
 
     useEffect(() => {
       ProfileStore.profiles$
@@ -20,7 +20,7 @@ export const ProfileService = {
             if (v.length > 0) {
               return v[0]
             } else {
-              return {} as Iprofile
+              return null
             }
           }),
         )
@@ -43,12 +43,10 @@ export const ProfileService = {
 
     useEffect(() => {
       async function call() {
-        setloading(true)
         const res = await ProfileApi.gets()
         if (res?.errorApp) {
           setError({ ...res.errorApp })
         }
-        setloading(false)
       }
 
       // add listeners to profile
