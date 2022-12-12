@@ -1,4 +1,0 @@
-.button-icon {
-  @apply p-2 hover:bg-prim dark:hover:bg-prim-d text-action block
-  rounded-full;
-}

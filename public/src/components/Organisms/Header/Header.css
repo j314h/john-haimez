@@ -1,9 +1,0 @@
-.header-public {
-  @apply flex items-center justify-between relative
-  /* colors */
-  bg-sec dark:bg-sec-d 
-  text-black dark:text-white
-
-  /* padding */
-  px-4 py-2 md:px-24 lg:px-52;
-}

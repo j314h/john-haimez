@@ -1,5 +1,0 @@
-import React from 'react'
-
-export function ProfilePage() {
-  return <div>ProfilPage</div>
-}
